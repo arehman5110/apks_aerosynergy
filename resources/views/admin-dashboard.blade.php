@@ -715,6 +715,58 @@
 
 
 
+            if (sub_reject != '') {
+                    map.removeLayer(sub_reject)
+                }
+
+                sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                    layers: 'cite:sub_reject',
+                    format: 'image/png',
+                    cql_filter: q_cql,
+                    maxZoom: 21,
+                    transparent: true
+                }, {
+                    buffer: 10
+                })
+
+
+                map.addLayer(sub_reject)
+                sub_reject.bringToFront()
+
+
+                if (sub_pending != '') {
+                    map.removeLayer(sub_pending)
+                }
+
+                sub_pending = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                    layers: 'cite:sub_pending',
+                    format: 'image/png',
+                    cql_filter: q_cql,
+                    maxZoom: 21,
+                    transparent: true
+                }, {
+                    buffer: 10
+                })
+
+
+                map.addLayer(sub_pending)
+                sub_pending.bringToFront()
+
+                if (unservey != '') {
+                    map.removeLayer(unservey)
+                }
+                unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                    layers: 'cite:sub_unserveyed',
+                    format: 'image/png',
+                    cql_filter: "ba ILIKE '%" + param + "%'",
+                    maxZoom: 21,
+                    transparent: true
+                }, {
+                    buffer: 10
+                })
+
+                map.addLayer(unservey)
+                unservey.bringToFront()
 
 
 
@@ -757,6 +809,60 @@
 
             map.addLayer(fp_without_defects)
             fp_without_defects.bringToFront()
+
+
+            if (fp_reject != '') {
+                map.removeLayer(fp_reject)
+            }
+
+            fp_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                layers: 'cite:fp_reject',
+                format: 'image/png',
+                cql_filter: q_cql,
+                maxZoom: 21,
+                transparent: true
+            }, {
+                buffer: 10
+            })
+
+
+            map.addLayer(fp_reject)
+            fp_reject.bringToFront()
+
+
+            if (fp_pending != '') {
+                map.removeLayer(fp_pending)
+            }
+
+            fp_pending = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                layers: 'cite:fp_pending',
+                format: 'image/png',
+                cql_filter: q_cql,
+                maxZoom: 21,
+                transparent: true
+            }, {
+                buffer: 10
+            })
+
+
+            map.addLayer(fp_pending)
+            fp_pending.bringToFront()
+
+            if (fp_unsurveyed != '') {
+                map.removeLayer(fp_unsurveyed)
+            }
+            fp_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                layers: 'cite:fp_unsurveyed',
+                format: 'image/png',
+                cql_filter: "ba ILIKE '%" + param + "%'",
+                maxZoom: 21,
+                transparent: true
+            }, {
+                buffer: 10
+            })
+
+            map.addLayer(fp_unsurveyed)
+            fp_unsurveyed.bringToFront()
 
             if (road != '') {
                 map.removeLayer(road)
@@ -918,10 +1024,19 @@
 
                     'Substation With defects': substation_with_defects,
                     'Substation Without defects': substation_without_defects,
+                    'Substation Pending': sub_pending,
+                    'Substation Reject': sub_reject
+                    'Substation Unsurveyed': unservey,
+
                     'Pano': pano_layer,
                     'Work Package': work_package,
+
                     'Feeder Pillar Surveyed with defects': fp_with_defects,
                     'Feeder Pillar Surveyed Without defects': fp_without_defects,
+                    'Feeder Pillar Pending':fp_pending,
+                    'Feeder Pillar Reject':fp_reject,
+                    'Feeder Pillar Unsurveyed': fp_unsurveyed,
+
                     'Tiang Surveyed with defects': ts_with_defects,
                     'Tiang Surveyed Without defects': ts_without_defects,
                     'Link Box Surveyed with defects': lb_with_defects,
