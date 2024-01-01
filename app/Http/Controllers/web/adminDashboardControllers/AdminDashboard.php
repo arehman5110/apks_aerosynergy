@@ -71,6 +71,9 @@ class AdminDashboard extends Controller
                  $accept = clone $query;
                  $defect = clone $query;
                  $pending = Clone $query;
+                 $reject = Clone $query;
+
+
 
                  $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
 
@@ -81,8 +84,7 @@ class AdminDashboard extends Controller
                  // Sum total_defects
                  $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
 
-                 $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
-
+                    $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
              }
 
 
@@ -162,13 +164,7 @@ class AdminDashboard extends Controller
                 $accept = $query->count();
                 $pending = $query->where('qa_status',  'pending')->count();
 
-                // Initialize sum for the table if it's not set
-                if (!isset($sum[$tableKey])) {
-                    $sum[$tableKey] = [
-                        'pending' => 0,
-                        'surveyed' => 0,
-                    ];
-                }
+              }
 
                 // Update sum for the table
                 $sum[$tableKey]['pending'] += $pending;

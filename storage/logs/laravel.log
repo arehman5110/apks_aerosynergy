@@ -1,0 +1,323 @@
+[2023-12-30 14:59:48] production.ERROR: No arguments expected for "serve" command, got "8292". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): No arguments expected for \"serve\" command, got \"8292\". at D:\\apks_aerosynergy\\vendor\\symfony\\console\\Input\\ArgvInput.php:193)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Input\\ArgvInput.php(86): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument('8292')
+#1 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Input\\ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('8292', true)
+#2 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Input\\Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Command\\Command.php(250): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(152): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(1014): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ServeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 D:\\apks_aerosynergy\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main}
+"} 
+[2023-12-30 15:00:56] local.ERROR: Vite manifest not found at: D:\apks_aerosynergy\public\build/manifest.json {"view":{"view":"D:\\apks_aerosynergy\\resources\\views\\layouts\\guest.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1864831906 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1508</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1864831906\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","componentName":"<pre class=sf-dump id=sf-dump-490422093 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"12 characters\">guest-layout</span>\"
+</pre><script>Sfdump(\"sf-dump-490422093\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attributes":"<pre class=sf-dump id=sf-dump-219016412 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentAttributeBag</span> {<a class=sf-dump-ref>#1543</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-219016412\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","resolve":"<pre class=sf-dump id=sf-dump-560646697 data-indent-pad=\"  \"><span class=sf-dump-note>App\\View\\Components\\GuestLayout::resolve($data)</span> {<a class=sf-dump-ref>#1554</a><samp data-depth=1 class=sf-dump-expanded>
+  <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Component.php
+78 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\apks_aerosynergy\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\View\\Component.php</span>\"
+  <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"9 characters\">91 to 106</span>\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-560646697\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","flushCache":"<pre class=sf-dump id=sf-dump-513216719 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\InvokableComponentVariable</span> {<a class=sf-dump-ref>#1553</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">callable</span>: <span class=sf-dump-note>Closure()</span> {<a class=sf-dump-ref>#1549</a><samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta>class</span>: \"<span class=sf-dump-str title=\"App\\View\\Components\\GuestLayout
+31 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">\\</span>GuestLayout</span>\"
+    <span class=sf-dump-meta>this</span>: <span class=sf-dump-note title=\"App\\View\\Components\\GuestLayout
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>GuestLayout</span> {<a class=sf-dump-ref>#1541</a> &#8230;}
+    <span class=sf-dump-meta>use</span>: {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-meta>$method</span>: \"<span class=sf-dump-str title=\"10 characters\">flushCache</span>\"
+    </samp>}
+    <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Component.php
+78 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\apks_aerosynergy\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\View\\Component.php</span>\"
+    <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"10 characters\">300 to 302</span>\"
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-513216719\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","forgetFactory":"<pre class=sf-dump id=sf-dump-1246441054 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\InvokableComponentVariable</span> {<a class=sf-dump-ref>#1557</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">callable</span>: <span class=sf-dump-note>Closure()</span> {<a class=sf-dump-ref>#1551</a><samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta>class</span>: \"<span class=sf-dump-str title=\"App\\View\\Components\\GuestLayout
+31 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">\\</span>GuestLayout</span>\"
+    <span class=sf-dump-meta>this</span>: <span class=sf-dump-note title=\"App\\View\\Components\\GuestLayout
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>GuestLayout</span> {<a class=sf-dump-ref>#1541</a> &#8230;}
+    <span class=sf-dump-meta>use</span>: {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-meta>$method</span>: \"<span class=sf-dump-str title=\"13 characters\">forgetFactory</span>\"
+    </samp>}
+    <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Component.php
+78 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\apks_aerosynergy\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\View\\Component.php</span>\"
+    <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"10 characters\">300 to 302</span>\"
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1246441054\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","forgetComponentsResolver":"<pre class=sf-dump id=sf-dump-460195090 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\InvokableComponentVariable</span> {<a class=sf-dump-ref>#1548</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">callable</span>: <span class=sf-dump-note>Closure()</span> {<a class=sf-dump-ref>#1550</a><samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta>class</span>: \"<span class=sf-dump-str title=\"App\\View\\Components\\GuestLayout
+31 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">\\</span>GuestLayout</span>\"
+    <span class=sf-dump-meta>this</span>: <span class=sf-dump-note title=\"App\\View\\Components\\GuestLayout
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\View\\Components</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>GuestLayout</span> {<a class=sf-dump-ref>#1541</a> &#8230;}
+    <span class=sf-dump-meta>use</span>: {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-meta>$method</span>: \"<span class=sf-dump-str title=\"24 characters\">forgetComponentsResolver</span>\"
+    </samp>}
+    <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Component.php
+78 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\apks_aerosynergy\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\View\\Component.php</span>\"
+    <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"10 characters\">300 to 302</span>\"
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-460195090\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","resolveComponentsUsing":"<pre class=sf-dump id=sf-dump-1084951707 data-indent-pad=\"  \"><span class=sf-dump-note>App\\View\\Components\\GuestLayout::resolveComponentsUsing($resolver)</span> {<a class=sf-dump-ref>#1542</a><samp data-depth=1 class=sf-dump-expanded>
+  <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Component.php
+78 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">D:\\apks_aerosynergy\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\View\\Component.php</span>\"
+  <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"10 characters\">454 to 457</span>\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1084951707\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slot":"<pre class=sf-dump id=sf-dump-220228591 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\HtmlString</span> {<a class=sf-dump-ref>#1555</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">html</span>: \"\"\"
+    <span class=sf-dump-str title=\"2222 characters\">&lt;!-- Session Status --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    &lt;form method=&quot;POST&quot; action=&quot;http://localhost:8292/en/login&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;3TLDgAZ0uXFeNjJhvBx7ugAS2i1zmnr1t1GBIwz1&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;text-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;img src=&quot;http://localhost:8292/assets/web-images/main-logo.png&quot; alt=&quot;&quot; height=&quot;60&quot; srcset=&quot;&quot; class=&quot;&quot; style=&quot;height: 60px !important ; margin:5% auto&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Email Address --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;label class=&quot;block font-medium text-sm text-gray-700&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    Username<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;input  class=&quot;border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;enter username&quot; name=&quot;name&quot; value=&quot;&quot; required=&quot;required&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;username&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Password --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;label class=&quot;block font-medium text-sm text-gray-700&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    Password<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;input  class=&quot;border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;current-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Remember Me --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;block mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;label for=&quot;remember_me&quot; class=&quot;inline-flex items-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">                &lt;input id=&quot;remember_me&quot; type=&quot;checkbox&quot; class=&quot;rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500&quot; name=&quot;remember&quot; placeholder=&quot;enter your password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">                &lt;span class=&quot;ml-2 text-sm text-gray-600&quot;&gt;Remember me&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">            &lt;button type=&quot;submit&quot; class=&quot;inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-3&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    Log in<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+    <span class=sf-dump-str title=\"2222 characters\">    &lt;/form&gt;</span>
+    \"\"\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-220228591\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","__laravel_slots":"<pre class=sf-dump id=sf-dump-308286216 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>__default</span>\" => <span class=sf-dump-note title=\"Illuminate\\Support\\HtmlString
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Support</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>HtmlString</span> {<a class=sf-dump-ref>#1555</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">html</span>: \"\"\"
+      <span class=sf-dump-str title=\"2222 characters\">&lt;!-- Session Status --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    &lt;form method=&quot;POST&quot; action=&quot;http://localhost:8292/en/login&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;3TLDgAZ0uXFeNjJhvBx7ugAS2i1zmnr1t1GBIwz1&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;text-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;img src=&quot;http://localhost:8292/assets/web-images/main-logo.png&quot; alt=&quot;&quot; height=&quot;60&quot; srcset=&quot;&quot; class=&quot;&quot; style=&quot;height: 60px !important ; margin:5% auto&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Email Address --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;label class=&quot;block font-medium text-sm text-gray-700&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    Username<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;input  class=&quot;border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;enter username&quot; name=&quot;name&quot; value=&quot;&quot; required=&quot;required&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;username&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Password --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;label class=&quot;block font-medium text-sm text-gray-700&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    Password<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;input  class=&quot;border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;current-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;!-- Remember Me --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;block mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;label for=&quot;remember_me&quot; class=&quot;inline-flex items-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">                &lt;input id=&quot;remember_me&quot; type=&quot;checkbox&quot; class=&quot;rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500&quot; name=&quot;remember&quot; placeholder=&quot;enter your password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">                &lt;span class=&quot;ml-2 text-sm text-gray-600&quot;&gt;Remember me&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            <span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">            &lt;button type=&quot;submit&quot; class=&quot;inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-3&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    Log in<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\r\\n</span></span>
+      <span class=sf-dump-str title=\"2222 characters\">    &lt;/form&gt;</span>
+      \"\"\"
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-308286216\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Vite manifest not found at: D:\\apks_aerosynergy\\public\\build/manifest.json at D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Vite.php:684)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Vite.php(273): Illuminate\\Foundation\\Vite->manifest('build')
+#1 D:\\apks_aerosynergy\\resources\\views\\layouts\\guest.blade.php(15): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\apks_aerosyn...')
+#3 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\apks_aerosyn...', Array)
+#5 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\apks_aerosyn...', Array)
+#6 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\apks_aerosyn...', Array)
+#7 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Concerns\\ManagesComponents.php(100): Illuminate\\View\\View->render()
+#10 D:\\apks_aerosynergy\\resources\\views\\auth\\login.blade.php(52): Illuminate\\View\\Factory->renderComponent()
+#11 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\apks_aerosyn...')
+#12 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#13 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\apks_aerosyn...', Array)
+#14 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\apks_aerosyn...', Array)
+#15 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\apks_aerosyn...', Array)
+#16 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#17 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#18 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#19 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#20 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#21 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#22 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#23 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\apks_aerosynergy\\app\\Http\\Middleware\\RedirectIfAuthenticated.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\RedirectIfAuthenticated->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 D:\\apks_aerosynergy\\app\\Http\\Middleware\\SetLocale.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#36 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#43 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#44 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#45 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#46 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#47 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#64 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#65 D:\\apks_aerosynergy\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#66 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\apks_aerosyn...')
+#67 {main}
+
+[previous exception] [object] (Exception(code: 0): Vite manifest not found at: D:\\apks_aerosynergy\\public\\build/manifest.json at D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Vite.php:684)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Vite.php(273): Illuminate\\Foundation\\Vite->manifest('build')
+#1 D:\\apks_aerosynergy\\storage\\framework\\views\\0fab9575a7285f0d42491edea94dcb58bdf1de4a.php(15): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\apks_aerosyn...')
+#3 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\apks_aerosyn...', Array)
+#5 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\apks_aerosyn...', Array)
+#6 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\apks_aerosyn...', Array)
+#7 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Concerns\\ManagesComponents.php(100): Illuminate\\View\\View->render()
+#10 D:\\apks_aerosynergy\\storage\\framework\\views\\d3b18d267db0e14035d8a0e682ed79214b122e5f.php(165): Illuminate\\View\\Factory->renderComponent()
+#11 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('D:\\\\apks_aerosyn...')
+#12 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#13 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\apks_aerosyn...', Array)
+#14 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\apks_aerosyn...', Array)
+#15 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\apks_aerosyn...', Array)
+#16 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#17 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#18 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#19 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#20 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#21 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#22 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#23 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\apks_aerosynergy\\app\\Http\\Middleware\\RedirectIfAuthenticated.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\RedirectIfAuthenticated->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 D:\\apks_aerosynergy\\app\\Http\\Middleware\\SetLocale.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#36 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#43 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#44 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#45 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#46 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#47 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#64 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#65 D:\\apks_aerosynergy\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#66 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\apks_aerosyn...')
+#67 {main}
+"} 

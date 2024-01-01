@@ -209,8 +209,9 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center">{{ __('messages.total_notice_generated') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="total_notice"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="total_notice"></span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -219,8 +220,9 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_supervision') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="total_supervision"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="total_supervision"></span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -246,7 +248,8 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="substation"></span>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="substation"></span>
                                     </p>
 
                                 </div>
@@ -262,44 +265,54 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="substation_pending"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="substation_pending"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_accept') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="substation_accept"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="substation_accept"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
+                            <div class="col-md-2">
+                                <div class="card p-3">
 
-                            <div class="col-md-4 ">
-                                <div class="card p-3">
-                                    <div id="suryed_substation-container"
-                                        style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 ">
-                                <div class="card p-3">
-                                    <div id="substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" >
-                                    </div>
+                                    <h3 class="text-center"> {{ __('messages.total_substation_reject') }}</h3>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="substation_reject"></span>
+                                    </p>
+
                                 </div>
                             </div>
 
                             <div class="col-md-4 ">
                                 <div class="card p-3">
-                                    <div id="pending_substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" >
-                                    </div>
+                                    <div id="suryed_substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 ">
+                                <div class="card p-3">
+                                    <div id="substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 ">
+                                <div class="card p-3">
+                                    <div id="pending_substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
                                 </div>
                             </div>
 
@@ -319,8 +332,9 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center">{{ __('messages.total_feeder_pillar_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="feeder_pillar"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="feeder_pillar"></span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -329,27 +343,41 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_defect"></span>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="feeder_pillar_defect"></span>
                                     </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_pending"></span>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="feeder_pillar_pending"></span>
                                     </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_accept') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_accept"></span>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="feeder_pillar_accept"></span>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="card p-3">
+
+                                    <h3 class="text-center"> {{ __('messages.total_feeder_pillar_reject') }}</h3>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="feeder_pillar_reject"></span>
                                     </p>
 
                                 </div>
@@ -394,7 +422,9 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center">{{ __('messages.total_tiang_visited') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span id="tiang"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="tiang"></span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -404,34 +434,53 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_tiang_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="tiang_defect"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="tiang_defect"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_tiang_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="tiang_pending"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="tiang_pending"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_tiang_accept') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="tiang_accept"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="tiang_accept"></span>
+                                    </p>
 
                                 </div>
                             </div>
-                            <div class="col-md-4">
+
+                            <div class="col-md-2">
                                 <div class="card p-3">
-                                    <div id="suryed_tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
-                                    </div>
+
+                                    <h3 class="text-center"> {{ __('messages.total_tiang_reject') }}</h3>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="tiang_reject"></span>
+                                    </p>
+
                                 </div>
                             </div>
+
+
+                            <div class="col-md-4">
+                                <div class="card p-3">
+                                    <div id="suryed_tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
+                                </div>
+                            </div>
+
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
@@ -460,7 +509,8 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_visited') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span id="link_box"></span>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="link_box"></span>
                                     </p>
 
                                 </div>
@@ -471,34 +521,51 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_defects') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span id="link_box_defect"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="link_box_defect"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_pending') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span id="link_box_pending"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="link_box_pending"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_accept') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span id="link_box_accept"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="link_box_accept"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
+                            <div class="col-md-2">
+                                <div class="card p-3">
+
+                                    <h3 class="text-center"> {{ __('messages.total_link_box_reject') }} </h3>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="link_box_reject"></span>
+                                    </p>
+
+                                </div>
+                            </div>
+
+
                             <div class="col-md-4">
                                 <div class="card p-3">
-                                    <div id="suryed_link_box-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
-                                    </div>
+                                    <div id="suryed_link_box-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -528,8 +595,9 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="cable_bridge"></span>
+                                    </p>
 
                                 </div>
                             </div>
@@ -537,31 +605,47 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_defects') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge_defect"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="cable_bridge_defect"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_pending') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge_pending"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="cable_bridge_pending"></span>
+                                    </p>
 
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_accept') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge_accept"></span></p>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="cable_bridge_accept"></span>
+                                    </p>
 
                                 </div>
                             </div>
+
+
+                            <div class="col-md-2">
+                                <div class="card p-3">
+
+                                    <h3 class="text-center"> {{ __('messages.total_cable_bridge_reject') }} </h3>
+                                    <p class="text-center mb-0 pb-0">
+                                        <span id="cable_bridge_reject"></span>
+                                    </p>
+
+                                </div>
+                            </div>
+
 
                             <div class="col-md-4">
                                 <div class="card p-3">
@@ -571,15 +655,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card p-3">
-                                    <div id="cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
-                                    </div>
+                                    <div id="cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="card p-3">
-                                    <div id="pending_cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
-                                    </div>
+                                    <div id="pending_cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
@@ -1227,10 +1309,21 @@
                         makeArray(data['patrolling'], 'patrolling-container', '')
                     }
 
-                    if (data && data['substation'] != '') {
-                        makeArray(data['substation'], 'substation-container', 'Defects')
+                    const counts = ['substation' , 'feeder_pillar' , 'link_box' , 'cable_bridge' , 'tiang']
+
+                    for (let index = 0; index < 5; index++) {
+
+
+                        makeArray(data[counts[index]] , `${counts[index]}-container` , "Defects" );
+
+                        makeArray(data['suryed_'+counts[index]] , `suryed_${counts[index]}-container` , "Visited" );
+
+                        makeArray(data['pending_'+counts[index]] , `pending_${counts[index]}-container` , "Pending" );
+
+                        
                     }
 
+<<<<<<< HEAD
                     if (data && data['feeder_pillar'] != '') {
                         makeArray(data['feeder_pillar'], 'feeder_pillar-container', 'Defects')
                     }
@@ -1290,6 +1383,8 @@
                     }
 
 
+=======
+>>>>>>> f6c887f7d31877b08949d6610bafa74f8df8c79f
 
                 }
             });
