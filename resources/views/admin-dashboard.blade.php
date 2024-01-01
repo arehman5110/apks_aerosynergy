@@ -1510,7 +1510,7 @@
                 success: function callback(data) {
                     var table = data.data;
                     var table_footer = data.sum;
-                    console.log(data.sum.substation.pending);
+                    // console.log(data.sum.substation.pending);
 
                     // Destroy existing DataTable instance (if any)
 
