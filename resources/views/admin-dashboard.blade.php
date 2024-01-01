@@ -93,7 +93,7 @@
 
         <div class=" d-sm-flex px-4    ">
             <div class="col-md-6 ">
-                
+
             <div class="card p-0">
                 <div class="card-header">
 
@@ -119,15 +119,15 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col" rowspan="2">BA</th>
-                                        <th scope="col" rowspan="2">Patroling(KM)</th>
+                                        <th scope="col" >BA</th>
+                                        <th scope="col" >Patroling(KM)</th>
                                         <th scope="col">Substation</th>
                                         <th scope="col">Feeder Pillar</th>
                                         <th scope="col">Tiang</th>
                                         <th scope="col">Link Box</th>
                                         <th scope="col">Cable Bridge</th>
                                     </tr>
-                            
+
                                 </thead>
 
                                 <tbody id='stats_table'>
@@ -142,17 +142,17 @@
                 </div>
             </div>
 
-           
+
             <div class="col-md-6">
                 <div class="card p-0">
                     <div class="card-header">
                         <h3 class="card-title">Map</h3>
-                        
+
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            
+
                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             </div>
-         
+
     @endif
     <div class=" px-4 mt-2">
         <div class="row dashboard-counts">
@@ -178,7 +178,7 @@
 
           </div>
     </div> --}}
- 
+
             <div class="col-md-12">
                 <div class="card card-success">
                     <div class="card-header">
@@ -187,7 +187,7 @@
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            
+
                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -225,7 +225,7 @@
                                 </div>
                             </div>
 
- 
+
                             <div class="col-md-12">
                                 <div class="card p-3">
                                     <div id="patrolling-container" class="high-chart" style="width:100%; height: 400px; margin: 0 auto"></div>
@@ -1142,7 +1142,7 @@
             // clear all charts
 
             $('.high-chart').html('');
-            
+
 
             getDateCounts();
             getAllStats();
@@ -1246,7 +1246,7 @@
                     if (data && data['tiang'] != '') {
                         makeArray(data['tiang'], 'tiang-container', 'Defects')
                     }
- 
+
 
                     if (data && data['suryed_substation'] != '') {
                         makeArray(data['suryed_substation'], 'suryed_substation-container', 'Visited')
@@ -1423,11 +1423,12 @@
                     // Destroy existing DataTable instance (if any)
 
                     if ($.fn.DataTable.isDataTable('#stats_table_1')) {
+
                         $('#stats_table_1').DataTable().destroy();
                     }
 
                     var str = '';
-                    
+
 
                     for (var i = 0; i < table.length; i++) {
                         str += '<tr><td>' + table[i].ba + '</td><td>' + table[i].patroling + '</td><td>' +
@@ -1435,8 +1436,10 @@
                             .tiang + '</td><td>' +
                                 table[i].link_box + '</td><td>' + table[i].cable_bridge + '</td></tr>';
 
-                      
+
                     }
+
+
 
                     $('#stats_table').html(str);
 
@@ -1453,14 +1456,15 @@
                         str += '</tr>'
 
 
-                    
+
 
                     $('#stats_table_footer').html(str2);
 
                     // Reinitialize DataTable with new options
                     $('#stats_table_1').DataTable({
                         searching: false, // Disable search bar
-                        paging: false // Disable pagination
+                        paging: false, // Disable pagination
+
                     });
 
 

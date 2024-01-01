@@ -217,15 +217,18 @@ function renderDropDownActions(data, type, full) {
 
 function renderQaStatus(data, type, full) {
 
-    if (full.qa_status === 'Accept' || full.qa_status === 'Reject') {
+    if (full.qa_status === 'Accept' || full.qa_status === 'Reject' ||full.qa_status === 'pending') {
         if (full.qa_status == 'Accept') {
             return `<span class="badge bg-success">Accept</span>`;
+        }
+        if (full.qa_status == 'pending') {
+            return `<span class="badge bg-warning text-dark">Pending</span>`;
         }
         return `<span class="badge bg-danger">${full.reject_remarks}</span>`;
     }
     return `<span class="badge bg-warning">Unsurveyed</span>`;
-     
-   
+
+
 }
 
 

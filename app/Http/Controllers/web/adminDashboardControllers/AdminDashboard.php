@@ -17,11 +17,11 @@ class AdminDashboard extends Controller
 
 
     public function index(Request $request){
- 
+
 
             return view('admin-dashboard');
 
-       
+
     }
 
 
@@ -54,44 +54,44 @@ class AdminDashboard extends Controller
                 'link_box' => 'tbl_link_box',
                 'cable_bridge' => 'tbl_cable_bridge',
             ];
-       
-     
+
+
              $data = [];
-    
+
              foreach ($tables as $key => $tableName) {
                  $query = DB::table($tableName);
 
                  $column = $key == 'tiang' ? 'review_date' : 'visit_date';
-    
-    
+
+
                  $query = $this->filterWithOutAccpet($query, $column, $request)->whereNotNull('qa_status')->where('qa_status', '!=', '');
 
-    
+
                  $count = clone $query;
                  $accept = clone $query;
                  $defect = clone $query;
                  $pending = Clone $query;
-      
+
                  $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
 
                  $data[$key] = $count->count(); // Count records
-                
+
 
 
                  // Sum total_defects
                  $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
-    
+
                  $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
-             
+
              }
-       
-    
+
+
                 $data['total_km'] = $this->filterWithOutAccpet(Patroling::select(DB::raw('sum(km)')), 'vist_date', $request)->first()->sum;
                 $data['total_notice'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('notice', 'yes'), 'survey_date', $request)->count();
                 $data['total_supervision'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('supervision', 'yes'), 'survey_date', $request)->count();
 
                 return $data;
- 
+
         } catch (\Throwable $th) {
             return $th->getMessage();
             return redirect()->route('third-party-digging.index', app()->getLocale());
@@ -147,21 +147,21 @@ class AdminDashboard extends Controller
         $sum = [];
 
 
-       
+
         foreach ($bas as $ba) {
             $request['ba'] = $ba;
             $count = [];
             $count['ba'] = $ba;
-    
+
             foreach ($tables as $tableKey => $tableName) {
                 $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
-    
+
                 // Clone the original query for each table
                 $query = $this->filterWithOutAccpet(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
-    
+
                 $accept = $query->count();
                 $pending = $query->where('qa_status',  'pending')->count();
-    
+
                 // Initialize sum for the table if it's not set
                 if (!isset($sum[$tableKey])) {
                     $sum[$tableKey] = [
@@ -169,16 +169,16 @@ class AdminDashboard extends Controller
                         'surveyed' => 0,
                     ];
                 }
-    
+
                 // Update sum for the table
                 $sum[$tableKey]['pending'] += $pending;
                 $sum[$tableKey]['surveyed'] += $accept;
-    
+
                 // Store count for the table
                 $count[$tableKey] =  $pending. ' / ' .  $accept;
             }
-    
-    
+
+
 
                 $count['patroling'] = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request)->sum('km');
 
@@ -196,7 +196,7 @@ class AdminDashboard extends Controller
 
         return response()->json(['data'=>$data , 'sum'=>$sum] );
 
-       
+
 
     }
 
@@ -376,23 +376,23 @@ class AdminDashboard extends Controller
     //         $column = $key == 'tiang' ? 'review_date' : 'visit_date';
 
     //              $query = DB::table($tableName);
-    
+
     //              $query = $this->filter($query, $column, $request)->whereNotNull('qa_status');
 
 
-    
-      
+
+
     //              $data[$key] = $query->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get(); // Count records
-    
+
     //              // Sum total_defects
     //              $data[$key . '_defect'] = $this->totalGraphCount($query , $column);
-    
-           
+
+
     //              $data[$key.'_pending'] = $query->where('qa_status','pending')->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get();
-    
+
     //          }
 
-     
+
 
     //   return response()->json($data);
 
