@@ -1320,10 +1320,9 @@
 
                         makeArray(data['pending_'+counts[index]] , `pending_${counts[index]}-container` , "Pending" );
 
-                        
+
                     }
 
-<<<<<<< HEAD
                     if (data && data['feeder_pillar'] != '') {
                         makeArray(data['feeder_pillar'], 'feeder_pillar-container', 'Defects')
                     }
@@ -1383,8 +1382,6 @@
                     }
 
 
-=======
->>>>>>> f6c887f7d31877b08949d6610bafa74f8df8c79f
 
                 }
             });

@@ -25,20 +25,6 @@ class AdminDashboard extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function getAllCounts(Request $request)
     {
 
@@ -84,7 +70,7 @@ class AdminDashboard extends Controller
                  // Sum total_defects
                  $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
 
-                    $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
+                $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
              }
 
 
@@ -166,6 +152,13 @@ class AdminDashboard extends Controller
 
               }
 
+
+              if (!isset($sum[$tableKey])) {
+                $sum[$tableKey] = [
+                    'pending' => 0,
+                    'surveyed' => 0,
+                ];
+            }
                 // Update sum for the table
                 $sum[$tableKey]['pending'] += $pending;
                 $sum[$tableKey]['surveyed'] += $accept;
@@ -188,9 +181,11 @@ class AdminDashboard extends Controller
 
                 $data[] = $count;
 
+                return response()->json(['data'=>$data , 'sum'=>$sum] );
+
         }
 
-        return response()->json(['data'=>$data , 'sum'=>$sum] );
+
 
 
 
@@ -408,4 +403,4 @@ class AdminDashboard extends Controller
 
 
 
-}
+//}
