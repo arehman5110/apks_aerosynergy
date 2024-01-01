@@ -1,7 +1,7 @@
 <nav class="main-header navbar navbar-expand navbar-light d-flex justify-content-between"
-    style="background-color: #708090">
+    style="background-color: #ac0a14">
     <!-- Left navbar links -->
-    
+
 
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -21,7 +21,7 @@
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
                 <button
-                    class="inline-flex items-center  border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#708090] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                    class="inline-flex items-center  border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#ac0a14] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                     <div>{{ Auth::user()->name }}</div>
 
                     <div class="ml-1">
@@ -43,8 +43,8 @@
 
                 @foreach (config('app.available_locales') as $locale)
                 <x-dropdown-link :href="route(request()->route()->getName(),[$locale,''])">
-                    <span @if (app()->getLocale() == $locale) 
-                        style="font-weight: bold; text-decoration: underline" 
+                    <span @if (app()->getLocale() == $locale)
+                        style="font-weight: bold; text-decoration: underline"
                         @endif>
                         {{ strtoupper($locale) }}
                     </span>
@@ -66,7 +66,7 @@
 
     </div>
     @endauth
- 
+
 
 
 </nav>
