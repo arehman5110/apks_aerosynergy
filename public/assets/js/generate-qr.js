@@ -23,7 +23,8 @@ var to_date = $('#excel_to_date').val() ??"";
 var excel_ba = $('#excelBa').val() ??'';
 var qa_status = $('#qa_status').val() ?? '';
 var f_status = $('#status').val() ?? '';
-
+var filters =[];
+var multipleCancelButton = '';
 
 
 
@@ -238,6 +239,12 @@ function resetIndex(){
 
     qa_status = '' ;
     f_status = '' ;
+    if (filters.length > 0) {
+    multipleCancelButton.removeActiveItems();
+        
+    }
+
+    filters = [];
 
     if (auth_ba == '') {
         excel_ba = '';

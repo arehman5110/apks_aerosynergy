@@ -199,6 +199,13 @@
 
 
         $(document).ready(function() {
+             multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+        maxItemCount:44,
+        searchResultLimit:44,
+        renderChoiceLimit:44
+      });
+   
 
             var columns = [{
                     render: function(data, type, full) {
@@ -309,6 +316,10 @@
                         if (qa_status) {
                             d.qa_status = qa_status;
                         }
+
+                        if (filters) {
+                            d.arr = filters;
+                        }
                     }
                 },
                 columns: columns,
@@ -326,7 +337,12 @@
  
         });
 
+        function filter_data_withDefects(){
+            var defect_vals=$("#choices-multiple-remove-button").val();
+            filters = defect_vals;
 
+            table.ajax.reload();
+        }
 
 
     </script>

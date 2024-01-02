@@ -23,4 +23,7 @@
 <script src="{{ URL::asset('assets/dist/js/lightbox-plus-jquery.min.js') }}"></script>
 <link rel="shortcut icon" href="{{ asset('assets/web-images/main-logo.ico') }}">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
 @yield('css')
