@@ -207,24 +207,30 @@ function getImageShow($key, $arr, $arr_name, $img_arr, $lab_name)
     <td class=''>";
 
     if ($key_exist && $img_arr != '') {
-        if (array_key_exists($key, $img_arr) && file_exists(public_path($img_arr[$key])) && $img_arr[$key] != '') {
+        // if (array_key_exists($key, $img_arr) && file_exists(public_path($img_arr[$key])) && $img_arr[$key] != '') {
+        if (array_key_exists($key, $img_arr) && $img_arr[$key] != '') {
+
             $html .=
-                "<a href='" .
-                URL::asset($img_arr[$key]) .
+                "<a href='" 
+                .(config('custom.image_url').$img_arr[$key]).
                 "' data-lightbox='roadtrip'>
-                    <img src='" .
-                URL::asset($img_arr[$key]) .
+                    <img src='" 
+                    .(config('custom.image_url').$img_arr[$key]).
                 "' class='adjust-height mb-1' style='height:30px; width:30px !important'>
                 </a>";
         }
 
-        if (array_key_exists($key . '_2', $img_arr) && file_exists(public_path($img_arr[$key . '_2'])) && $img_arr[$key . '_2'] != '') {
+        // if (array_key_exists($key . '_2', $img_arr) && file_exists(public_path($img_arr[$key . '_2'])) && $img_arr[$key . '_2'] != '') {
+        if (array_key_exists($key . '_2', $img_arr)  && $img_arr[$key . '_2'] != '') {
+           
             $html .=
-                "<a href='" .
-                URL::asset($img_arr[$key . '_2']) .
+                "<a href='" 
+                .(config('custom.image_url').$img_arr[$key.'_2']).
+
                 "' data-lightbox='roadtrip'>
-                    <img src='" .
-                URL::asset($img_arr[$key . '_2']) .
+                    <img src='" 
+                    .(config('custom.image_url').$img_arr[$key.'_2']).
+
                 "' class='adjust-height mb-1' style='height:30px; width:30px !important'>
                 </a>";
         }
@@ -293,6 +299,7 @@ function tiangSpanRadio($value , $key , $subkey , $status)
 
     function viewAndUpdateImage($image , $name , $disabled ){
 
+        // return config('custom.image_url').$image;
             $html = '';
 
 
@@ -305,9 +312,11 @@ function tiangSpanRadio($value , $key , $subkey , $status)
                   $html.="
                     <div class='col-md-6 text-center  py-2'>";
 
-                    if ( $image != '' && file_exists(public_path($image))){
-                        $html.="<a href='".URL::asset($image) ."' data-lightbox='roadtrip'>
-                        <img src='".URL::asset($image) ."' alt=''
+                    // if ( $image != '' && file_exists(config('custom.image_url').$image)){
+                     if ( $image != ''){
+
+                        $html.="<a href='".(config('custom.image_url').$image) ."' data-lightbox='roadtrip'>
+                        <img src='".(config('custom.image_url').$image) ."' alt=''
                             height='70' class='adjust-height ml-5'></a>";
                     }else{
                         $html.="<strong>".__('messages.no_image_found') ."</strong>";

@@ -42,10 +42,10 @@ class TiangExcelController extends Controller
             $result->where('review_date', '<=', $req->to_date);
         }
 
-        if (Auth::user()->ba == '') {
-            $result->where('qa_status', 'Accept');
+        // if (Auth::user()->ba == '') {
+        //     $result->where('qa_status', 'Accept');
 
-        }
+        // }
 
 
             $res = $result->whereNotNull('review_date')

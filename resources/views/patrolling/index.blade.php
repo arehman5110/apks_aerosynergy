@@ -451,8 +451,8 @@
                     {
                         render: function(data, type, full) {
                             if (full.image_reading_start !== '') {
-                                return ` <a href="{{ URL::asset('${full.image_reading_start}') }}" data-lightbox="roadtrip">
-                                    <img height="70" src="{{ URL::asset('${full.image_reading_start}') }}" ></a>`;
+                                return ` <a href="{{config('custom.image_url')}}${full.image_reading_start}" data-lightbox="roadtrip">
+                                    <img height="70" src="{{config('custom.image_url')}}${full.image_reading_start}" ></a>`;
                             }
                             return `<td></td>`;
                         },
@@ -461,8 +461,8 @@
                     {
                         render: function(data, type, full) {
                             if (full.image_reading_end !== '') {
-                                return ` <a href="{{ URL::asset('${full.image_reading_end}') }}" data-lightbox="roadtrip">
-                                    <img height="70" src="{{ URL::asset('${full.image_reading_end}') }}" ></a>`;
+                                return ` <a href="{{config('custom.image_url')}}${full.image_reading_end}" data-lightbox="roadtrip">
+                                    <img height="70" src="{{config('custom.image_url')}}${full.image_reading_end}" ></a>`;
                             }
                             return `<td></td>`;
                         },

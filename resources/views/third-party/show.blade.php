@@ -146,7 +146,7 @@
                         <div class="row">
                             <div class="col-md-4"><label for="survey_date">{{ __('messages.survey_date') }}</label></div>
                             <div class="col-md-4">
-                                <input readonly value="{{ $data->survey_date }}" class="form-control">
+                                <input readonly value="{{ date('Y-m-d', strtotime($data->survey_date)) }}" class="form-control">
                             </div>
                         </div>
 
@@ -275,8 +275,8 @@
 
                                 <div class="col-md-4 text-center mb-3">
                                     @if (file_exists(public_path($data->third_party_image_1)) && $data->third_party_image_1 != '')
-                                        <a href="{{ URL::asset($data->third_party_image_1) }}" data-lightbox="roadtrip">
-                                            <img src="{{ URL::asset($data->third_party_image_1) }}" alt=""
+                                        <a href="{{ config('custom.image_url')$data->third_party_image_1) }}" data-lightbox="roadtrip">
+                                            <img src="{{ config('custom.image_url')$data->third_party_image_1) }}" alt=""
                                                 height="70" class="adjust-height ml-5  "></a>
                                                 @else
                                                 <strong>{{__('messages.no_image_found')}}</strong>
@@ -290,8 +290,8 @@
 
                                 <div class="col-md-4 text-center mb-3">
                                     @if (file_exists(public_path($data->third_party_image_2)) && $data->third_party_image_2 != '')
-                                        <a href="{{ URL::asset($data->third_party_image_2) }}" data-lightbox="roadtrip">
-                                            <img src="{{ URL::asset($data->third_party_image_2) }}" alt=""
+                                        <a href="{{ config('custom.image_url')$data->third_party_image_2) }}" data-lightbox="roadtrip">
+                                            <img src="{{ config('custom.image_url')$data->third_party_image_2) }}" alt=""
                                                 height="70" class="adjust-height ml-5  "></a>
                                                 @else
                                                 <strong>{{__('messages.no_image_found')}}</strong>
@@ -305,9 +305,9 @@
                             </div>
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->before_image1)) && $data->before_image1 != '')
-                                    <a href="{{ URL::asset($data->before_image1) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->before_image1) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->before_image1) && $data->before_image1 != '')
+                                    <a href="{{ config('custom.image_url')}}{{$data->before_image1}}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url')}}{{$data->before_image1 }}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -321,9 +321,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->before_image2)) && $data->before_image2 != '')
-                                    <a href="{{ URL::asset($data->before_image2) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->before_image2) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->before_image2) && $data->before_image2 != '')
+                                    <a href="{{ config('custom.image_url').$data->before_image2 }}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->before_image2}}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -336,9 +336,9 @@
                             </div>
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->before_image3)) && $data->before_image3 != '')
-                                    <a href="{{ URL::asset($data->before_image3) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->before_image3) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->before_image3) && $data->before_image3 != '')
+                                    <a href="{{ config('custom.image_url').$data->before_image3 }}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->before_image3 }}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -352,9 +352,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->during_image1)) && $data->during_image1 != '')
-                                    <a href="{{ URL::asset($data->during_image1) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->during_image1) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->during_image1) && $data->during_image1 != '')
+                                    <a href="{{ config('custom.image_url').$data->during_image1}}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->during_image1}}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -368,9 +368,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->during_image2)) && $data->during_image2 != '')
-                                    <a href="{{ URL::asset($data->during_image2) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->during_image2) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->during_image2) && $data->during_image2 != '')
+                                    <a href="{{ config('custom.image_url').$data->during_image2 }}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->during_image2 }}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -384,9 +384,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->during_image3)) && $data->during_image3 != '')
-                                    <a href="{{ URL::asset($data->during_image3) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->during_image3) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->during_image3)) && $data->during_image3 != '')
+                                    <a href="{{ config('custom.image_url').$data->during_image3}}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->during_image3}}" alt="" height="70"
                                             class="adjust-heigh ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -400,9 +400,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->after_image1)) && $data->after_image1 != '')
-                                    <a href="{{ URL::asset($data->after_image1) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->after_image1) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->after_image1) && $data->after_image1 != '')
+                                    <a href="{{ config('custom.image_url').$data->after_image1}}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->after_image1 }}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -414,9 +414,9 @@
                             </div>
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->after_image2)) && $data->after_image2 != '')
-                                    <a href="{{ URL::asset($data->after_image2) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->after_image2) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->after_image2) && $data->after_image2 != '')
+                                    <a href="{{ config('custom.image_url').$data->after_image2}}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->after_image2 }}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>
@@ -430,9 +430,9 @@
 
 
                             <div class="col-md-4 text-center mb-3">
-                                @if (file_exists(public_path($data->after_image3)) && $data->after_image3 != '')
-                                    <a href="{{ URL::asset($data->after_image3) }}" data-lightbox="roadtrip">
-                                        <img src="{{ URL::asset($data->after_image3) }}" alt="" height="70"
+                                @if (file_exists(config('custom.image_url').$data->after_image3) && $data->after_image3 != '')
+                                    <a href="{{ config('custom.image_url').$data->after_image3 }}" data-lightbox="roadtrip">
+                                        <img src="{{ config('custom.image_url').$data->after_image3}}" alt="" height="70"
                                             class="adjust-height ml-5  "></a>
                                 @else
                                     <strong>{{ __('messages.no_image_found') }}</strong>

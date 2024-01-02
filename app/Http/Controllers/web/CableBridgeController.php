@@ -21,6 +21,8 @@ class CableBridgeController extends Controller
      */
     public function index(Request $request)
     {
+        // return     $globalVariable = config('custom.image_url');
+// 
         //
 
         if ($request->ajax()) {
