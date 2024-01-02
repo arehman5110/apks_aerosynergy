@@ -128,14 +128,14 @@
                                     <div class="col-md-4"><label for="pole_image-1">{{ __('messages.pole') }} Image 1
                                         </label>
                                     </div>
-                                    <div class="col-md-5 p-2 pr-5"><input type="file" name="pole_image_1"
+                                    {{-- <div class="col-md-5 p-2 pr-5"><input type="file" name="pole_image_1"
                                             id="pole_image_1" class="form-control"  {{'disabled'}}>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-3">
-                                        @if ($data->pole_image_1 != '' && file_exists(public_path($data->pole_image_1)))
-                                            <a href="{{ URL::asset($data->pole_image_1) }}" data-lightbox="roadtrip">
-                                                <img src="{{ URL::asset($data->pole_image_1) }}" alt=""
+                                        @if ($data->pole_image_1 != '' )
+                                            <a href="{{config('custom.image_url').$data->pole_image_1}}" data-lightbox="roadtrip">
+                                                <img src="{{config('custom.image_url').$data->pole_image_1}}" alt=""
                                                     class="adjust-height " style="height:30px; width:30px !important">
                                             </a>
                                         @else
@@ -148,13 +148,13 @@
                                     <div class="col-md-4"><label for="pole_image-2">{{ __('messages.pole') }} Image
                                             2</label>
                                     </div>
-                                    <div class="col-md-5 p-2 pr-5"><input type="file" name="pole_image_2"
+                                    {{-- <div class="col-md-5 p-2 pr-5"><input type="file" name="pole_image_2"
                                             id="pole_image_2" class="form-control"  {{'disabled'}}>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-3">
-                                        @if ($data->pole_image_2 != '' && file_exists(public_path($data->pole_image_2)))
-                                            <a href="{{ URL::asset($data->pole_image_2) }}" data-lightbox="roadtrip">
-                                                <img src="{{ URL::asset($data->pole_image_2) }}" alt=""
+                                        @if ($data->pole_image_2 != '')
+                                            <a href="{{config('custom.image_url').$data->pole_image_2}}" data-lightbox="roadtrip">
+                                                <img src="{{config('custom.image_url').$data->pole_image_2}}" alt=""
                                                     class="adjust-height " style="height:30px; width:30px !important">
                                             </a>
                                         @else
@@ -647,10 +647,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->tapak_road_img != '' && file_exists(public_path($data->tapak_road_img)))
-                                                        <a href="{{ URL::asset($data->tapak_road_img) }}"
+                                                    @if ($data->tapak_road_img != '' && checkCheckBox('road', $data->tapak_condition)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->tapak_road_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->tapak_road_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->tapak_road_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -666,10 +666,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->tapak_sidewalk_img != '' && file_exists(public_path($data->tapak_sidewalk_img)))
-                                                        <a href="{{ URL::asset($data->tapak_sidewalk_img) }}"
+                                                    @if ($data->tapak_sidewalk_img != '' && checkCheckBox('side_walk', $data->tapak_condition)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->tapak_sidewalk_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->tapak_sidewalk_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->tapak_sidewalk_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -686,10 +686,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->tapak_no_vehicle_entry_img != '' && file_exists(public_path($data->tapak_no_vehicle_entry_img)))
-                                                        <a href="{{ URL::asset($data->tapak_no_vehicle_entry_img) }}"
+                                                    @if ($data->tapak_no_vehicle_entry_img != '' &&    checkCheckBox('vehicle_entry', $data->tapak_condition)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->tapak_no_vehicle_entry_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->tapak_no_vehicle_entry_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->tapak_no_vehicle_entry_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -707,10 +707,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->kawasan_bend_img != '' && file_exists(public_path($data->kawasan_bend_img)))
-                                                        <a href="{{ URL::asset($data->kawasan_bend_img) }}"
+                                                    @if ($data->kawasan_bend_img != '' && checkCheckBox('bend', $data->kawasan)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->kawasan_bend_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->kawasan_bend_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->kawasan_bend_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -725,10 +725,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->kawasan_road_img != '' && file_exists(public_path($data->kawasan_road_img)))
-                                                        <a href="{{ URL::asset($data->kawasan_road_img) }}"
+                                                    @if ($data->kawasan_road_img != '' && checkCheckBox('road', $data->kawasan)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->kawasan_road_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->kawasan_road_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->kawasan_road_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -744,10 +744,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->kawasan_forest_img != '' && file_exists(public_path($data->kawasan_forest_img)))
-                                                        <a href="{{ URL::asset($data->kawasan_forest_img) }}"
+                                                    @if ($data->kawasan_forest_img != '' && checkCheckBox('forest', $data->kawasan)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->kawasan_forest_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->kawasan_forest_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->kawasan_forest_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
@@ -762,10 +762,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if ($data->kawasan_other_img != '' && file_exists(public_path($data->kawasan_other_img)))
-                                                        <a href="{{ URL::asset($data->kawasan_other_img) }}"
+                                                    @if ($data->kawasan_other_img != '' && checkCheckBox('other', $data->kawasan)  == 'checked')
+                                                        <a href="{{config('custom.image_url').$data->kawasan_other_img}}"
                                                             data-lightbox="roadtrip">
-                                                            <img src="{{ URL::asset($data->kawasan_other_img) }}"
+                                                            <img src="{{config('custom.image_url').$data->kawasan_other_img}}"
                                                                 alt="" class="adjust-height "
                                                                 style="height:30px; width:30px !important">
                                                         </a>
