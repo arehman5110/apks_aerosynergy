@@ -706,7 +706,9 @@
                                                 </td>
 
                                                 <td>
+                                                     
                                                     @if ($data->tapak_sidewalk_img != '' && checkCheckBox('side_walk', $data->tapak_condition)  == 'checked')
+                                                     
                                                         <a href="{{config('custom.image_url').$data->tapak_sidewalk_img}}"
                                                             data-lightbox="roadtrip">
                                                             <img src="{{config('custom.image_url').$data->tapak_sidewalk_img}}"

@@ -42,6 +42,11 @@ $(function(){
 
     to_date= localStorage[url_split[0] + '_to']??'';
     from_date= localStorage[url_split[0] + '_from']??'';
+
+    
+    
+
+
     $('#excel_from_date').val(from_date)
  $('#excel_to_date').val(to_date)
 
@@ -108,7 +113,27 @@ $(function(){
         // });
 
 
+        // multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        //     removeItemButton: true,
+        //     maxItemCount:44,
+        //     searchResultLimit:44,
+        //     renderChoiceLimit:44
+        //   });
 
+        $('#choices-multiple-remove-button').on('change',function(){
+
+
+            var defect_vals=$("#choices-multiple-remove-button").val();
+            filters = defect_vals;
+            table.ajax.reload();
+
+        localStorage.setItem(url_split[0]+'_defects', JSON.stringify(defect_vals));
+
+        console.log(filters);
+
+
+        })
+       
 
 
 
@@ -120,6 +145,14 @@ $(function(){
             $('#reject-id').val(id);
         });
 });
+
+// function filter_data_withDefects(){
+//     var defect_vals=$("#choices-multiple-remove-button").val();
+//     filters = defect_vals;
+
+//     table.ajax.reload();
+// }
+
 
 
 

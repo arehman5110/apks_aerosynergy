@@ -30,8 +30,22 @@ class TiangContoller extends Controller
     {
         //
         if ($request->ajax()) {
+
+            if ($request->filled('arr')) {
+
+                $getIds = DB::table('savr_all_defects');
+                foreach ($request->arr as $res) {
+                    $getIds->orWhere($res, 'YES');
+                }
+                $ids = $getIds->pluck('id');
+                
+            }
+
             $ba = $request->filled('ba') ? $request->ba : Auth::user()->ba;
             $result = Tiang::query();
+            if ($request->filled('arr')) {
+                $result->whereIn('id', $ids);
+            }
 
            $result = $this->filter($result , 'review_date' , $request);
 

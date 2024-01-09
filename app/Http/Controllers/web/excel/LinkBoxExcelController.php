@@ -17,14 +17,27 @@ class LinkBoxExcelController extends Controller
     use Filter;
     public function generateLinkBoxExcel(Request $req){
         try{ 
+            if ($req->filled('defects')) {
+
+                $getIds = DB::table('link_box_all_defects');
+        
+                foreach($req->defects as $res){
+        
+                    $getIds->orWhere($res,'Yes');
+               }
+        
+                $ids = $getIds->pluck('id');
+            }
             
         $result = LinkBox::query();
-
+        if ($req->filled('defects')) {
+            $result->whereIn('id',$ids);
+        }
         $result = $this->filter($result , 'visit_date',$req);
 
 
 
-        $result = $result->whereNotNull('visit_date')->select('*', DB::raw('ST_X(geom) as x'), DB::raw('ST_Y(geom) as y'))->get();
+        $result = $result->select('*', DB::raw('ST_X(geom) as x'), DB::raw('ST_Y(geom) as y'))->get();
 
          
         if ($result) {

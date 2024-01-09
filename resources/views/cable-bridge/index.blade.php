@@ -125,47 +125,46 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
 
     <script>
- var lang = "{{app()->getLocale()}}";
- var url = "cable-bridge"
- var auth_ba = "{{Auth::user()->ba}}"
+        var lang = "{{app()->getLocale()}}";
+        var url = "cable-bridge"
+        var auth_ba = "{{Auth::user()->ba}}"
 
 
-        $(document).ready(function() {
+        $(document).ready(function() { 
+
+            //define defects
+            $('#choices-multiple-remove-button').append(`
+                <option value="vandalism_status">vandalism_status</option>
+                <option value="pipe_staus">pipe_staus</option>
+                <option value="rust_status">rust_status</option> 
+                <option value="bushes_status">bushes_status</option>
+                <option value="collapsed_status">collapsed_status</option>
+            `);
+
+           // Initialize Choices
+            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount: 44,
+            searchResultLimit: 44,
+            renderChoiceLimit: 44
+            });
 
 
-            var columns = [{
-                    data:"cable_bridge_id",
-                    name:"cable_bridge_id"
-
-                },{
-                        data: 'zone',
-                        name: 'zone'
-                    },
-                    {
-                        data: 'ba',
-                        name: 'ba',
-                        orderable: true
-                    },
-                    {
-                        data: 'team',
-                        name: 'team'
-                    },
-                    {
-                        data: 'visit_date',
-                        name: 'visit_date'
-                    },
-                    {
-                        data:'total_defects',
-                        name:'total_defects',
-                    },
-                
+            // define columns
+            var columns = [
+                    { data:"cable_bridge_id", name:"cable_bridge_id" },
+                    { data: 'zone', name: 'zone' },
+                    { data: 'ba', name: 'ba', orderable: true },
+                    { data: 'team', name: 'team' },
+                    { data: 'visit_date', name: 'visit_date' },
+                    { data:'total_defects', name:'total_defects' },
+                    { data: null, render: renderQaStatus },
+                    { data: null, render: renderDropDownActions }
                 ];
 
-                // if (auth_ba !== '') {
-        columns.push({ data: null, render: renderQaStatus });
-    // }
 
-    columns.push({ data: null, render: renderDropDownActions });
+        
+                // define table
             table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -177,23 +176,15 @@
                     type: "GET",
                     data: function(d) {
 
-                        if (from_date) {
-                            d.from_date = from_date;
-                        }
+                        if (from_date)  { d.from_date = from_date }
+                        if (excel_ba)   { d.ba        = excel_ba }
+                        if (to_date)    { d.to_date   = to_date }
+                        if (qa_status)  { d.qa_status = qa_status }
+                        if (filters)    { d.arr       = filters }
 
-                        if (excel_ba) {
-                            d.ba = excel_ba;
-                        }
-
-                        if (to_date) {
-                            d.to_date = to_date;
-                        }
                         if (f_status) {
                             d.status = f_status;
                             d.image = 'cable_bridge_image_1';
-                        }
-                        if (qa_status) {
-                            d.qa_status = qa_status;
                         }
                     }
                 },
@@ -202,9 +193,6 @@
                     [0, 'desc']
                 ]
             })
-
-
-
         });
     </script>
 @endsection

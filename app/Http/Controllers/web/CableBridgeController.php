@@ -26,10 +26,27 @@ class CableBridgeController extends Controller
         //
 
         if ($request->ajax()) {
+
+            if ($request->filled('arr')) {
+
+                $getIds = DB::table('cable_bridge_all_defects');
+        
+                foreach($request->arr as $res){
+        
+                    $getIds->orWhere($res,'Yes');
+               }
+        
+                $ids = $getIds->pluck('id');
+            }
+
+       
             $ba = $request->filled('ba') ? $request->ba : Auth::user()->ba;
             $result = CableBridge::query();
 
-           $result = $this->filter($result , 'visit_date',$request);
+            $result = $this->filter($result , 'visit_date',$request);
+            if ($request->filled('arr')) {
+                $result->whereIn('id',$ids);
+            }
 
             $result->when(true, function ($query) {
                 return $query->select('id', 'ba', 'zone', 'team', 'visit_date', 'total_defects', 'qa_status','qa_status' , 'reject_remarks');
@@ -39,26 +56,7 @@ class CableBridgeController extends Controller
                 ->of($result->get())
                 ->addColumn('cable_bridge_id', function ($row) {
                     return 'CB-' . $row->id;
-                })
-                // ->addColumn('qa_status_action', function ($row) {
-                    
-                //     if ($row->visit_date != '' && $row->cable_bridge_image_1 != '') {
-                //         return "SDfsdfsd";
-                //         if ($row->qa_status === 'Accept' || $row->qa_status === 'Reject') {
-                //             if ($row->qa_status == 'Accept') {
-                //                 return "<span class='badge bg-success'>Accept</span>";
-                //             }
-                //             return "<span class='badge bg-danger'>Reject</span>";
-                //         } else {
-                //             return "<div class='d-flex text-center' id='status-$row->id'>
-                //                         <a type='button' class='btn btn-sm btn-success' onclick='updateQaStatus('Accept',$row->id)'>Accept</a>/
-                //                         <a type='button' class='btn btn-sm btn-danger ' onclick='updateQaStatus('Reject',$row->id)'> Reject </a>
-                //                     </div>";
-                //         }
-                //     }
-                //     return '';
-                // })
-                ->make(true);
+                })->make(true);
         }
         return view('cable-bridge.index');
     }

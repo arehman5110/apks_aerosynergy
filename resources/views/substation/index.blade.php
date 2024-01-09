@@ -199,13 +199,26 @@
 
 
         $(document).ready(function() {
+           
+            $('#choices-multiple-remove-button').append(`
+            <option value="grass">grass</option>
+                        <option value="treebranches">tree_branches_status</option>
+                        <option value="gate_loc">gate_loc</option>
+                        <option value="gate_demage">gate_demage</option>
+                        <option value="gate_other">gate_other</option>
+                        <option value="broken_gutter">broken_gutter</option>
+                        <option value="broken_roof">broken_roof</option>
+                        <option value="broken_base">broken_base</option>
+                        <option value="building_other">building_others</option>
+                        <option value="poster_status">poster_status</option>
+            `)
+
              multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-        removeItemButton: true,
-        maxItemCount:44,
-        searchResultLimit:44,
-        renderChoiceLimit:44
-      });
-   
+            removeItemButton: true,
+            maxItemCount:44,
+            searchResultLimit:44,
+            renderChoiceLimit:44
+          });
 
             var columns = [{
                     render: function(data, type, full) {
@@ -337,13 +350,7 @@
  
         });
 
-        function filter_data_withDefects(){
-            var defect_vals=$("#choices-multiple-remove-button").val();
-            filters = defect_vals;
-
-            table.ajax.reload();
-        }
-
+       
 
     </script>
 @endsection

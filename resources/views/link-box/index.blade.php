@@ -140,6 +140,38 @@
         var auth_ba = "{{ Auth::user()->ba }}"
 
         $(document).ready(function() {
+            $('#choices-multiple-remove-button').append(`
+  <option value="vandalism_status">vandalism_status</option>
+  <option value="leaning_staus">leaning_status</option>
+  <option value="rust_status">rust_status</option>
+  <option value="advertise_poster_status">advertise_poster_status</option>
+  <option value="bushes_status">bushes_status</option>
+  <option value="cover_status">cover_status</option>
+`);
+
+           // Initialize Choices
+var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+  removeItemButton: true,
+  maxItemCount: 44,
+  searchResultLimit: 44,
+  renderChoiceLimit: 44
+});
+
+// Append options to the select element
+
+
+// var storedValues = localStorage.getItem(`${url_split[0]}_defects`); 
+
+// if (storedValues) {
+//   var parsedValues = JSON.parse(storedValues);
+//   multipleCancelButton.setValue(parsedValues);
+
+//   // Now you can retrieve the selected values
+//   filters = multipleCancelButton.getValue();
+// }
+
+// Use the 'filters' variable
+console.log(filters);
 
             var columns = [{
                     data: "link_box_id",
@@ -206,6 +238,9 @@
                         }
                         if (qa_status) {
                             d.qa_status = qa_status;
+                        }
+                        if (filters) {
+                            d.arr = filters;
                         }
                     }
                 },

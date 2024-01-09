@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item"><a href="#">{{__('messages.index')}}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('link-box-pelbagai-voltan.index',app()->getLocale())}}">{{__('messages.index')}}</a></li>
                         <li class="breadcrumb-item active">{{__("messages.show")}}</li>
                     </ol>
                 </div>

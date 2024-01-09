@@ -19,19 +19,26 @@ class SubstationExcelController extends Controller
 
     public function generateSubstationExcel(Request $req)
     {
-        // return $req;
-
 
         try {
- 
-//  return $req;
-            $result = Substation::query();
+            if ($req->filled('defects')) {
 
+                $getIds = DB::table('substation_all_defects');
+        
+                foreach($req->defects as $res){
+        
+                    $getIds->orWhere($res,'Yes');
+               }
+        
+                $ids = $getIds->pluck('id');
+            }
+            $result = Substation::query();
+            if ($req->filled('defects')) {
+                $result->whereIn('id',$ids);
+            }
             $result = $this->filter($result , 'visit_date',$req);
 
-
-
-            $result = $result->whereNotNull('visit_date')->select('*', DB::raw('ST_X(geom) as x'), DB::raw('ST_Y(geom) as y'))->get();
+            $result = $result->select('*', DB::raw('ST_X(geom) as x'), DB::raw('ST_Y(geom) as y'))->get();
  
                 // return $result; 
             if ($result) {
