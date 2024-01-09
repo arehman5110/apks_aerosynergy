@@ -173,27 +173,21 @@
                                         <label for="main_line">{{__('messages.main_line_service_line')}}</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <select name="talian_utama" id="main_line" class="form-control"   disabled>
-                                            <option value="{{$data->talian_utama ?? ''}}" hidden>{{$data->talian_utama ?? 'select'}}</option>
+                                        <select name="talian_utama_connection" id="main_line" class="form-control"   disabled>
+                                            <option value="{{$data->talian_utama_connection ?? ''}}" hidden>{{$data->talian_utama_connection ?? 'select'}}</option>
                                             <option value="main_line">Main Line</option>
                                             <option value="service_line">Service Line</option>
                                         </select>
+                                    </div>
                                 </div>
-                                </div>
+
                                 <div class="row " >
                                     <div class="col-md-4">
-                                        <label for="">
-                                            Number of Services Involves 1 user only
-
-                                        </label>
+                                        <label for="">  Number of Services Involves 1 user only </label>
                                     </div>
                                     <div class="col-md-4 d-flex mt-2">
-                                        <input type="number" disabled class="form-control"  value="{{$data->talian_utama_connection}}" 
-                                         
-                                      >
-
-                                      
-                                            </div>
+                                        <input type="number" disabled class="form-control"  value="{{$data->talian_utama}}" >
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -273,7 +267,7 @@
                                             <label for="">{{ __('messages.Pole_type_No') }} </label>
                                             <div class="row">
                                                 <div class="d-flex col-md-4">
-                                                    <input type="radio" name="jenis_tiang" value="spun id="spun" {{ $data->jenis_tiang == 'spun' ? 'checked' : '' }} disabled>
+                                                    <input type="radio" name="jenis_tiang" value="spun" id="spun" {{ $data->jenis_tiang == 'spun' ? 'checked' : '' }} disabled>
                                                     <label for="spun" class="fw-400">{{ __('messages.Spun') }}</label>
                                                 </div>
 

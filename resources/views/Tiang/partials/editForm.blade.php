@@ -119,8 +119,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="number" name="talian_utama_connection" value="{{$data->talian_utama_connection}}" class="form-control" id="main_line_connection_one"   {{'disabled'}}>
-                                            <label for="main_line_connection_one">One</label>
-                                        </div>
+                                            {{-- <label for="main_line_connection_one">One</label> --}}
+                                    </div>
 
 
                                 </div>
