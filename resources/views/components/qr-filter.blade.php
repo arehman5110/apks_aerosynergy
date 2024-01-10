@@ -53,7 +53,7 @@
                             <label for="status">Status</label>
                             <select name="status" id="status" class="form-control">
                                 <option value="" >All</option>
-                                <option value="unsurveyed">Unurveyed</option>
+                                {{-- <option value="unsurveyed">Unurveyed</option> --}}
                                 <option value="surveyed_with_defects">Surveyed with defects</option>
                                 <option value="surveyed_without_defects">Surveyed without defects</option>
 
@@ -66,7 +66,7 @@
                             <select name="qa_status" id="qa_status" class="form-control">
                                 <option value="" >All</option>
                                 <option value="Accept">Accept</option>
-                                <option value="Reject">Reject</option>
+                                {{-- <option value="Reject">Reject</option> --}}
                                 <option value="pending">Pending</option>
 
                             </select>

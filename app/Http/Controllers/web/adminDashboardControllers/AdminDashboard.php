@@ -64,14 +64,14 @@ class AdminDashboard extends Controller
                  $column = $key == 'tiang' ? 'review_date' : 'visit_date';
     
     
-                 $query = $this->filterWithOutAccpet($query, $column, $request)->whereNotNull('qa_status')->where('qa_status', '!=', '');
+                 $query = $this->filter($query, $column, $request);
 
     
                  $count = clone $query;
                  $accept = clone $query;
                  $defect = clone $query;
                  $pending = Clone $query;
-                 $reject = Clone $query;
+                //  $reject = Clone $query;
 
       
                  $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
@@ -84,7 +84,7 @@ class AdminDashboard extends Controller
                  $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
     
                  $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
-                 $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
+                //  $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
              
              }
        
@@ -160,7 +160,7 @@ class AdminDashboard extends Controller
                 $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
     
                 // Clone the original query for each table
-                $query = $this->filterWithOutAccpet(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
+                $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
     
                 $accept = $query->count();
                 $pending = $query->where('qa_status', '!=',  'pending')->count();

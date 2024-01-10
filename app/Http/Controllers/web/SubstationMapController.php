@@ -51,6 +51,8 @@ class SubstationMapController extends Controller
 
         $data = Substation::where('ba', 'LIKE', '%' . $ba . '%')
             ->where('name', 'LIKE', '%' . $q . '%')
+            ->where('qa_status' , '!=' ,'Reject')
+            ->whereNotNull('visit_date')
             ->select('name')
             ->limit(10)
             ->get();

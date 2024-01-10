@@ -41,19 +41,19 @@ class TiangExcelController extends Controller
             $result = Tiang::query();
 
            
-            //  $result = $this->filter($result , 'review_date',$req);
+             $result = $this->filter($result , 'review_date',$req);
 
-            if ($ba != '') {
-                $result->where('ba', $ba);
-            }
+            // if ($ba != '') {
+            //     $result->where('ba', $ba);
+            // }
 
-            if ($req->filled('from_date')) {
-                $result->where('review_date', '>=', $req->from_date);
-            }
+            // if ($req->filled('from_date')) {
+            //     $result->where('review_date', '>=', $req->from_date);
+            // }
 
-            if ($req->filled('to_date')) {
-                $result->where('review_date', '<=', $req->to_date);
-            }
+            // if ($req->filled('to_date')) {
+            //     $result->where('review_date', '<=', $req->to_date);
+            // }
 
             if ($req->filled('defects')) {
                 // return "ASdasd";
@@ -107,17 +107,20 @@ class TiangExcelController extends Controller
             if ($req->filled('defects')) {
                 $query->whereIn('id', $ids);
             }
-            if ($ba != '') {
-                $query->where('ba', $ba);
-            }
+            // if ($ba != '') {
+            //     $query->where('ba', $ba);
+            // }
 
-            if ($req->filled('from_date')) {
-                $query->where('review_date', '>=', $req->from_date);
-            }
+            // if ($req->filled('from_date')) {
+            //     $query->where('review_date', '>=', $req->from_date);
+            // }
 
-            if ($req->filled('to_date')) {
-                $query->where('review_date', '<=', $req->to_date);
-            }
+            // if ($req->filled('to_date')) {
+            //     $query->where('review_date', '<=', $req->to_date);
+            // }
+
+            $query = $this->filter($query , 'review_date',$req);
+
             
 
             $roadStatistics = $query->groupBy('fp_road')->get();

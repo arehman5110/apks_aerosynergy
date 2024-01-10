@@ -114,11 +114,11 @@
                     <label for="substation_without_defects">Surveyed without defects</label>
                 </div>
                 {{-- @if (Auth::user()->ba != '') --}}
-                    <div class=" mx-4">
+                    {{-- <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_unsurveyed" value="unsurveyed"
                             onchange="selectLayer(this.value)" class="unsurveyed">
                         <label for="select_layer_unsurveyed">Unsurveyed </label>
-                    </div>
+                    </div> --}}
 
                     <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_pending" value="sub_pending"
@@ -127,11 +127,11 @@
                     </div>
 
 
-                    <div class=" mx-4">
+                    {{-- <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_reject" value="sub_reject"
                             onchange="selectLayer(this.value)" class="reject">
                         <label for="select_layer_reject">Reject </label>
-                    </div>
+                    </div> --}}
                 {{-- @endif --}}
 
                 <div class=" mx-4">
@@ -450,23 +450,23 @@
 
 
 
-                if (sub_reject != '') {
-                    map.removeLayer(sub_reject)
-                }
+                // if (sub_reject != '') {
+                //     map.removeLayer(sub_reject)
+                // }
 
-                sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:sub_reject',
-                    format: 'image/png',
-                    cql_filter: q_cql,
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+                // sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                //     layers: 'cite:sub_reject',
+                //     format: 'image/png',
+                //     cql_filter: q_cql,
+                //     maxZoom: 21,
+                //     transparent: true
+                // }, {
+                //     buffer: 10
+                // })
 
 
-                map.addLayer(sub_reject)
-                sub_reject.bringToFront()
+                // map.addLayer(sub_reject)
+                // sub_reject.bringToFront()
 
 
                 if (sub_pending != '') {
@@ -487,21 +487,21 @@
                 map.addLayer(sub_pending)
                 sub_pending.bringToFront()
 
-                if (unservey != '') {
-                    map.removeLayer(unservey)
-                }
-                unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:sub_unserveyed',
-                    format: 'image/png',
-                    cql_filter: "ba ILIKE '%" + param + "%'",
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+                // if (unservey != '') {
+                //     map.removeLayer(unservey)
+                // }
+                // unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                //     layers: 'cite:sub_unserveyed',
+                //     format: 'image/png',
+                //     cql_filter: "ba ILIKE '%" + param + "%'",
+                //     maxZoom: 21,
+                //     transparent: true
+                // }, {
+                //     buffer: 10
+                // })
 
-                map.addLayer(unservey)
-                unservey.bringToFront()
+                // map.addLayer(unservey)
+                // unservey.bringToFront()
 
             // }
 
@@ -526,11 +526,11 @@
                     'Pano': pano_layer,
                     'With defects': substation_with_defects,
                     'Without defects': substation_without_defects,
-                    'Unsurveyed': unservey,
+                    // 'Unsurveyed': unservey,
 
                     'Work Package': work_package,
                     'Pending': sub_pending,
-                    'Reject': sub_reject
+                    // 'Reject': sub_reject
                 }
             };
         // }else{

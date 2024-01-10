@@ -123,11 +123,11 @@
 
 
 
-                <div class=" mx-4 d-flex">
+                {{-- <div class=" mx-4 d-flex">
                     <input type="radio" name="select_layer" id="fp_unsurveyed" value="fp_unsurveyed" class="unsurveyed"
                         onchange="selectLayer(this.value)">
                     <label for="fp_unsurveyed">Unsurveyed</label>
-                </div>
+                </div> --}}
 
                 <div class=" mx-4">
                     <input type="radio" name="select_layer" id="select_layer_pending" value="fp_pending"
@@ -136,11 +136,11 @@
                 </div>
 
 
-                <div class=" mx-4">
+                {{-- <div class=" mx-4">
                     <input type="radio" name="select_layer" id="select_layer_reject" value="fp_reject"
                         onchange="selectLayer(this.value)" class="reject">
                     <label for="select_layer_reject">Reject </label>
-                </div>
+                </div> --}}
                 {{-- @endif --}}
                 <div class=" mx-4 d-flex">
                     <input type="radio" name="select_layer" id="select_layer_pano" value="pano"
@@ -415,23 +415,23 @@
             // if (ba !== '') {
 
 
-            if (fp_reject != '') {
-                map.removeLayer(fp_reject)
-            }
+            // if (fp_reject != '') {
+            //     map.removeLayer(fp_reject)
+            // }
 
-            fp_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                layers: 'cite:fp_reject',
-                format: 'image/png',
-                cql_filter: q_cql,
-                maxZoom: 21,
-                transparent: true
-            }, {
-                buffer: 10
-            })
+            // fp_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+            //     layers: 'cite:fp_reject',
+            //     format: 'image/png',
+            //     cql_filter: q_cql,
+            //     maxZoom: 21,
+            //     transparent: true
+            // }, {
+            //     buffer: 10
+            // })
 
 
-            map.addLayer(fp_reject)
-            fp_reject.bringToFront()
+            // map.addLayer(fp_reject)
+            // fp_reject.bringToFront()
 
 
             if (fp_pending != '') {
@@ -452,21 +452,21 @@
             map.addLayer(fp_pending)
             fp_pending.bringToFront()
 
-            if (fp_unsurveyed != '') {
-                map.removeLayer(fp_unsurveyed)
-            }
-            fp_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                layers: 'cite:fp_unsurveyed',
-                format: 'image/png',
-                cql_filter: "ba ILIKE '%" + param + "%'",
-                maxZoom: 21,
-                transparent: true
-            }, {
-                buffer: 10
-            })
+            // if (fp_unsurveyed != '') {
+            //     map.removeLayer(fp_unsurveyed)
+            // }
+            // fp_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+            //     layers: 'cite:fp_unsurveyed',
+            //     format: 'image/png',
+            //     cql_filter: "ba ILIKE '%" + param + "%'",
+            //     maxZoom: 21,
+            //     transparent: true
+            // }, {
+            //     buffer: 10
+            // })
 
-            map.addLayer(fp_unsurveyed)
-            fp_unsurveyed.bringToFront()
+            // map.addLayer(fp_unsurveyed)
+            // fp_unsurveyed.bringToFront()
         // }
             addGroupOverLays()
 
@@ -486,12 +486,12 @@
                 "POI": {
                     'BA': boundary,
                     'Pano': pano_layer,
-                    'Unsurveyed': fp_unsurveyed,
+                    // 'Unsurveyed': fp_unsurveyed,
                     'Surveyed with defects': fp_with_defects,
                     'Surveyed Without defects': fp_without_defects,
                     'Work Package': work_package,
                     'Pending':fp_pending,
-                    'Reject':fp_reject
+                    // 'Reject':fp_reject
 
                 }
             };

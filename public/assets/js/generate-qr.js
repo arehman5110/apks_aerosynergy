@@ -260,7 +260,7 @@ function renderQaStatus(data, type, full) {
         }
         return `<span class="badge bg-danger">${full.reject_remarks}</span>`;
     }
-    return `<span class="badge bg-warning">Unsurveyed</span>`;
+    return `<span class="badge bg-warning text-dark">Pending</span>`;
 
 
 }

@@ -238,28 +238,15 @@
                                             <option value="main_line">Main Line</option>
                                             <option value="service_line">Service Line</option>
                                         </select>
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="row d-none" >
                                     <div class="col-md-4">
-                                        <label for="">
-                                            Number of Services Involves 1 user only
-
-                                        </label>
+                                        <label for="">Number of Services Involves 1 user only </label>
                                     </div>
                                     <div class="col-md-2 d-flex mt-2">
-                                        <input type="number" name="talian_utama_connection" class="form-control"  id="main_line_connection_one"
-                                              >
-                                          
-                                              
-
-
-
-
-
-                                       
-
-                                            </div>
+                                        <input type="number" name="talian_utama_connection" class="form-control"  id="main_line_connection_one" >
+                                    </div>
                                 </div>
 
 
