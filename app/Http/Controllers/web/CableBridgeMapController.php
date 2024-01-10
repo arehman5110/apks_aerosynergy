@@ -16,7 +16,7 @@ class CableBridgeMapController extends Controller
     {
 
         $data = CableBridge::find($id);
-        return $data ?  view('cable-bridge.edit-form', ['data' => $data, 'disabled'=>false]) : abort(404);
+        return $data ?  view('cable-bridge.edit-form', ['data' => $data, 'disabled'=>true]) : abort(404);
 
     }
 
@@ -87,7 +87,8 @@ class CableBridgeMapController extends Controller
 
         $ba = \Illuminate\Support\Facades\Auth::user()->ba;
 
-        $data = CableBridge::where('ba', 'LIKE', '%' . $ba . '%')->where('id' , 'LIKE' , '%' . $q . '%')->select('id')->limit(10)->get();
+        $data = CableBridge::where('ba', 'LIKE', '%' . $ba . '%')->where('id' , 'LIKE' , '%' . $q . '%')->where('qa_status' , '!=' ,'Reject')
+        ->whereNotNull('visit_date')->select('id')->limit(10)->get();
 
         return response()->json($data, 200);
     }

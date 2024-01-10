@@ -126,12 +126,12 @@
                     <label for="select_layer_pending">Pending </label>
                 </div>
 
-
+{{-- 
                 <div class=" mx-4">
                     <input type="radio" name="select_layer" id="ts_layer_reject" value="ts_reject"
                         onchange="selectLayer(this.value)" class="reject">
                     <label for="select_layer_reject">Reject </label>
-                </div>  
+                </div>   --}}
 
 
                 <div class="px-3 d-flex">
@@ -380,8 +380,8 @@
                 buffer: 10
             })
 
-            map.addLayer(substation)
-            substation.bringToFront()
+            // map.addLayer(substation)
+            // substation.bringToFront()
 
             road = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
                 layers: 'cite:tbl_roads',
@@ -397,19 +397,19 @@
 
 
 
-            if (ts_unsurveyed != '') {
-                map.removeLayer(ts_unsurveyed)
-            }
+            // if (ts_unsurveyed != '') {
+            //     map.removeLayer(ts_unsurveyed)
+            // }
 
-            ts_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                layers: 'cite:ts_unsurveyed',
-                format: 'image/png',
-                cql_filter: "ba ILIKE '%" + param + "%'",
-                maxZoom: 21,
-                transparent: true
-            }, {
-                buffer: 10
-            })
+            // ts_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+            //     layers: 'cite:ts_unsurveyed',
+            //     format: 'image/png',
+            //     cql_filter: "ba ILIKE '%" + param + "%'",
+            //     maxZoom: 21,
+            //     transparent: true
+            // }, {
+            //     buffer: 10
+            // })
 
             // map.addLayer(ts_unsurveyed)
             // ts_unsurveyed.bringToFront()
@@ -449,6 +449,10 @@
             map.addLayer(ts_without_defects)
             ts_without_defects.bringToFront()
 
+            if (ts_pending !== '') {
+                map.removeLayer(ts_pending)
+            }
+
             ts_pending= L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
                 layers: 'cite:ts_pending',
                 format: 'image/png',
@@ -462,18 +466,18 @@
             map.addLayer(ts_pending)
             ts_pending.bringToFront()
 
-            ts_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                layers: 'cite:ts_reject',
-                format: 'image/png',
-                cql_filter: q_cql,
-                maxZoom: 21,
-                transparent: true
-            }, {
-                buffer: 10
-            })
+            // ts_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+            //     layers: 'cite:ts_reject',
+            //     format: 'image/png',
+            //     cql_filter: q_cql,
+            //     maxZoom: 21,
+            //     transparent: true
+            // }, {
+            //     buffer: 10
+            // })
 
-            map.addLayer(ts_reject)
-            ts_reject.bringToFront()
+            // map.addLayer(ts_reject)
+            // ts_reject.bringToFront()
 
 
             if (pano_layer !== '') {
@@ -526,11 +530,11 @@
                     'BA': boundary,
                     'Substation': substation,
                     'Pano': pano_layer,
-                   'Unsurveyed' : ts_unsurveyed,
+                //    'Unsurveyed' : ts_unsurveyed,
                     'Surveyed with defects' : ts_with_defects,
                     'Surveyed Without defects' : ts_without_defects,
                    'Surveyed Pending' : ts_pending,
-                   'Surveyed Rejected' : ts_reject,
+                //    'Surveyed Rejected' : ts_reject,
                     'Roads': road,
                     'Work Package':work_package
 

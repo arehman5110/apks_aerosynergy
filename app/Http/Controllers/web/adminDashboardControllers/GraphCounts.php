@@ -96,7 +96,7 @@ class GraphCounts extends Controller
                         // }
                         if ($bar != 'km') {
                             
-                            $query->whereNotNull('qa_status') ->where('qa_status', '!=', '')->groupBy('ba', DB::raw("$date::date"));
+                            $query->whereNotNull('qa_status') ->where('qa_status', '!=', '') ->where('qa_status', '!=', 'Reject')->groupBy('ba', DB::raw("$date::date"));
                         }
 
                         $query->orderBy($date , 'desc');
@@ -114,6 +114,7 @@ class GraphCounts extends Controller
                          ->whereNotNull($date)
                          ->whereNotNull('total_defects')
                          ->where('qa_status', '!=', '')
+                         ->where('qa_status', '!=', 'Reject')
                          ->whereNotNull('qa_status');
 
                          if ($ba) {
@@ -149,6 +150,8 @@ class GraphCounts extends Controller
                         ->select('ba', DB::raw("$date::date as visit_date"), DB::raw('count(*) as bar' ))
                         ->whereNotNull($date)
                         ->where('qa_status', '!=', '')
+                        ->where('qa_status', '!=', 'Reject')
+
                         ->whereNotNull('total_defects');
 
                         if ($ba) {

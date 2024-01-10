@@ -15,7 +15,7 @@ class LinkBoxMapController extends Controller
     public function editMap($lang, $id)
     {
         $data = LinkBox::find($id);
-        return $data ? view('link-box.edit-form', ['data' => $data, 'disabled'=>false]) : abort(404);
+        return $data ? view('link-box.edit-form', ['data' => $data, 'disabled'=>true]) : abort(404);
     }
 
     public function update(Request $request, $language, $id)

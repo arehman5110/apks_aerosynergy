@@ -265,7 +265,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_pending') }}</h3>
@@ -276,7 +276,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_accept') }}</h3>
@@ -287,7 +287,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_reject') }}</h3>
@@ -296,7 +296,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-4 ">
                                 <div class="card p-3">
@@ -350,7 +350,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_pending') }}</h3>
@@ -361,7 +361,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_accept') }}</h3>
@@ -371,7 +371,7 @@
 
                                 </div>
                             </div>
-
+{{-- 
                             <div class="col-md-2">
                                 <div class="card p-3">
 
@@ -381,7 +381,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-4">
                                 <div class="card p-3">
@@ -441,7 +441,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_tiang_pending') }}</h3>
@@ -452,7 +452,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_tiang_accept') }}</h3>
@@ -462,7 +462,7 @@
 
                                 </div>
                             </div>
-
+{{-- 
                             <div class="col-md-2">
                                 <div class="card p-3">
 
@@ -472,7 +472,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-md-4">
@@ -529,7 +529,7 @@
                             </div>
 
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_pending') }} </h3>
@@ -540,7 +540,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_accept') }} </h3>
@@ -551,7 +551,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_link_box_reject') }} </h3>
@@ -560,7 +560,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-md-4">
@@ -612,7 +612,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_pending') }} </h3>
@@ -623,7 +623,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_accept') }} </h3>
@@ -635,7 +635,7 @@
                             </div>
 
 
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_reject') }} </h3>
@@ -644,7 +644,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-md-4">
@@ -885,21 +885,21 @@
                 map.addLayer(sub_pending)
                 sub_pending.bringToFront()
 
-                if (unservey != '') {
-                    map.removeLayer(unservey)
-                }
-                unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:sub_unserveyed',
-                    format: 'image/png',
-                    cql_filter: "ba ILIKE '%" + param + "%'",
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+                // if (unservey != '') {
+                //     map.removeLayer(unservey)
+                // }
+                // unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                //     layers: 'cite:sub_unserveyed',
+                //     format: 'image/png',
+                //     cql_filter: "ba ILIKE '%" + param + "%'",
+                //     maxZoom: 21,
+                //     transparent: true
+                // }, {
+                //     buffer: 10
+                // })
 
-                map.addLayer(unservey)
-                unservey.bringToFront()
+                // map.addLayer(unservey)
+                // unservey.bringToFront()
 
 
 
@@ -981,21 +981,21 @@
             map.addLayer(fp_pending)
             fp_pending.bringToFront()
 
-            if (fp_unsurveyed != '') {
-                map.removeLayer(fp_unsurveyed)
-            }
-            fp_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                layers: 'cite:fp_unsurveyed',
-                format: 'image/png',
-                cql_filter: "ba ILIKE '%" + param + "%'",
-                maxZoom: 21,
-                transparent: true
-            }, {
-                buffer: 10
-            })
+            // if (fp_unsurveyed != '') {
+            //     map.removeLayer(fp_unsurveyed)
+            // }
+            // fp_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+            //     layers: 'cite:fp_unsurveyed',
+            //     format: 'image/png',
+            //     cql_filter: "ba ILIKE '%" + param + "%'",
+            //     maxZoom: 21,
+            //     transparent: true
+            // }, {
+            //     buffer: 10
+            // })
 
-            map.addLayer(fp_unsurveyed)
-            fp_unsurveyed.bringToFront()
+            // map.addLayer(fp_unsurveyed)
+            // fp_unsurveyed.bringToFront()
 
             if (road != '') {
                 map.removeLayer(road)
@@ -1159,7 +1159,7 @@
                     'Substation Without defects': substation_without_defects,
                     'Substation Pending': sub_pending,
                     'Substation Reject': sub_reject,
-                    'Substation Unsurveyed': unservey,
+                    // 'Substation Unsurveyed': unservey,
 
                     'Pano': pano_layer,
                     'Work Package': work_package,
@@ -1168,7 +1168,7 @@
                     'Feeder Pillar Surveyed Without defects': fp_without_defects,
                     'Feeder Pillar Pending':fp_pending,
                     'Feeder Pillar Reject':fp_reject,
-                    'Feeder Pillar Unsurveyed': fp_unsurveyed,
+                    // 'Feeder Pillar Unsurveyed': fp_unsurveyed,
 
                     'Tiang Surveyed with defects': ts_with_defects,
                     'Tiang Surveyed Without defects': ts_without_defects,

@@ -35,7 +35,7 @@
 
 
                 <li class="nav-item">
-                    <a href="/pencawang" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="fas fa-road"></i>
 
                         <p>{{__('messages.patrolling')}}
@@ -111,7 +111,7 @@
 
 
                 <li class="nav-item">
-                    <a href="/pencawang" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="fas fa-building"></i>
                         <p>{{__('messages.substation')}}
                         <i class="right fas fa-angle-left"></i></p>
@@ -143,7 +143,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/feeder-pillar" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="fas fa-cube"></i>
                         <p>{{__('messages.feeder_pillar')}}
                         <i class="right fas fa-angle-left"></i></p>

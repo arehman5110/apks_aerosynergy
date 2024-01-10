@@ -26,10 +26,31 @@ class FPController extends Controller
     {
         if ($request->ajax()) {
 
+            if ($request->filled('arr')) {
+                # code...
+           
+                // $input_req=explode(',',$request);
+
+                $getIds = DB::table('feeder_pillar_all_defects');
+        
+                foreach($request->arr as $res){
+        
+                    $getIds->orWhere($res,'Yes');
+        
+               }
+        
+                $ids = $getIds->pluck('id');
+ }
+          
+
 
             $result = FeederPillar::query();
 
             $result = $this->filter($result,'visit_date',$request);
+
+            if ($request->filled('arr')) {
+                $result->whereIn('id',$ids);
+             }
 
             $result->when(true, function ($query) {
                 return $query->select(

@@ -21,94 +21,111 @@ class TiangExcelController extends Controller
 
     public function generateTiangExcel(Request $req)
     {
-        try{
-// return date('Y-m-d');
+        try {
 
-        $ba = $req->filled('excelBa') ? $req->excelBa : Auth::user()->ba;
+           
+            // return date('Y-m-d');
+            if ($req->filled('defects')) {
+                $getIds = DB::table('savr_all_defects');
 
-        $result = Tiang::query();
+                foreach ($req->defects as $res) {
+                    $getIds->orWhere($res, 'YES');
+                }
 
-      //  $result = $this->filter($result , 'review_date',$req);
+                $ids = $getIds->pluck('id');
+            }
+            // return $ids;
 
-        if ($req->filled('excelBa')) {
-         $result->where('ba', $ba);
-        }
+            $ba = $req->filled('ba') ? $req->ba : Auth::user()->ba;
 
-        if ($req->filled('from_date')) {
-            $result->where('review_date', '>=', $req->from_date);
-        }
+            $result = Tiang::query();
 
-        if ($req->filled('to_date')) {
-            $result->where('review_date', '<=', $req->to_date);
-        }
+           
+             $result = $this->filter($result , 'review_date',$req);
 
-        // if (Auth::user()->ba == '') {
-        //     $result->where('qa_status', 'Accept');
+            // if ($ba != '') {
+            //     $result->where('ba', $ba);
+            // }
 
-        // }
+            // if ($req->filled('from_date')) {
+            //     $result->where('review_date', '>=', $req->from_date);
+            // }
 
+            // if ($req->filled('to_date')) {
+            //     $result->where('review_date', '<=', $req->to_date);
+            // }
 
-            $res = $result->whereNotNull('review_date')
-            ->get()->makeHidden(['geom' , 'tiang_defect_image' , 'talian_defect_image' ,
-             'umbang_defect_image' , 'ipc_defect_image' ,'jumper_image','kilat_defect_image',
-             'servis_defect_image' ,'pembumian_defect_image','blackbox_defect_image','bekalan_dua_defect_image',
-             'kaki_lima_defect_image','tapak_road_img','tapak_sidewalk_img','tapak_sidewalk_img','tapak_no_vehicle_entry_img','kawasan_bend_img',
-            'kawasan_road_img' , 'kawasan_forest_img' , 'kawasan_other_img']);
+            if ($req->filled('defects')) {
+                // return "ASdasd";
+                $result->whereIn('id', $ids);
+            }
+
+            // if (Auth::user()->ba == '') {
+            //     $result->where('qa_status', 'Accept');
+
+            // }
+
+            $res = $result->get()
+                ->makeHidden(['geom', 'tiang_defect_image', 'talian_defect_image', 'umbang_defect_image', 'ipc_defect_image', 'jumper_image', 'kilat_defect_image', 'servis_defect_image', 'pembumian_defect_image', 'blackbox_defect_image', 'bekalan_dua_defect_image', 'kaki_lima_defect_image', 'tapak_road_img', 'tapak_sidewalk_img', 'tapak_sidewalk_img', 'tapak_no_vehicle_entry_img', 'kawasan_bend_img', 'kawasan_road_img', 'kawasan_forest_img', 'kawasan_other_img']);
             // return $res;
 
+            // return $res;
+
+
             $query = Tiang::select('fp_road as road')
-            ->selectRaw("SUM(CASE WHEN size_tiang = '7.5' THEN 1 ELSE 0 END) as size_tiang_75")
-            ->selectRaw("SUM(CASE WHEN size_tiang = '9' THEN 1 ELSE 0 END) as size_tiang_9")
-            ->selectRaw("SUM(CASE WHEN size_tiang = '10' THEN 1 ELSE 0 END) as size_tiang_10")
-            ->selectRaw("SUM(CASE WHEN jenis_tiang = 'iron' THEN 1 ELSE 0 END) as jenis_tiang_iron")
-            ->selectRaw("SUM(CASE WHEN jenis_tiang = 'concrete' THEN 1 ELSE 0 END) as jenis_tiang_concrete")
-            ->selectRaw("SUM(CASE WHEN jenis_tiang = 'spun' THEN 1 ELSE 0 END) as jenis_tiang_spun")
-            ->selectRaw("SUM(CASE WHEN jenis_tiang = 'wood' THEN 1 ELSE 0 END) as jenis_tiang_wood")
-            ->selectRaw("SUM(CASE WHEN (abc_span->'s3_185')::text <> '' AND (abc_span->'s3_185')::text <> 'null' THEN 0 ELSE 1 END) as abc_s3186")
-            ->selectRaw("SUM(CASE WHEN (abc_span->'s3_95')::text <> '' AND (abc_span->'s3_95')::text <> 'null' THEN 0 ELSE 1 END) as abc_s3195")
-            ->selectRaw("SUM(CASE WHEN (abc_span->'s3_16')::text <> '' AND (abc_span->'s3_16')::text <> 'null' THEN 0 ELSE 1 END) as abc_s316")
-            ->selectRaw("SUM(CASE WHEN (abc_span->'s1_16')::text <> '' AND (abc_span->'s1_16')::text <> 'null' THEN 0 ELSE 1 END) as abc_s116")
-            ->selectRaw("SUM(CASE WHEN (pvc_span->'s19_064')::text <> '' AND (pvc_span->'s19_064')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s9064")
-            ->selectRaw("SUM(CASE WHEN (pvc_span->'s7_083')::text <> '' AND (pvc_span->'s7_083')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s7083")
-            ->selectRaw("SUM(CASE WHEN (pvc_span->'s7_044')::text <> '' AND (pvc_span->'s7_044')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s7044")
-            ->selectRaw("SUM(CASE WHEN (bare_span->'s7_173')::text <> '' AND (bare_span->'s7_173')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7173")
-            ->selectRaw("SUM(CASE WHEN (bare_span->'s7_122')::text <> '' AND (bare_span->'s7_122')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7122")
-            ->selectRaw("SUM(CASE WHEN (bare_span->'s3_132')::text <> '' AND (bare_span->'s3_132')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7132")
-            ->selectRaw("SUM(CASE WHEN (umbang_defect->'breaking')::text <> '' AND (bare_span->'breaking')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7132")
-            ->selectRaw("SUM(CASE WHEN (blackbox_defect->'cracked')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (blackbox_defect->'other')::text = 'true' THEN 1 ELSE 0 END) as blackbox")
-            ->selectRaw("SUM(CASE WHEN (ipc_defect->'burn')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (ipc_defect->'other')::text = 'true' THEN 1 ELSE 0 END) as ipc")
+                ->selectRaw("SUM(CASE WHEN size_tiang = '7.5' THEN 1 ELSE 0 END) as size_tiang_75")
+                ->selectRaw("SUM(CASE WHEN size_tiang = '9' THEN 1 ELSE 0 END) as size_tiang_9")
+                ->selectRaw("SUM(CASE WHEN size_tiang = '10' THEN 1 ELSE 0 END) as size_tiang_10")
+                ->selectRaw("SUM(CASE WHEN jenis_tiang = 'iron' THEN 1 ELSE 0 END) as jenis_tiang_iron")
+                ->selectRaw("SUM(CASE WHEN jenis_tiang = 'concrete' THEN 1 ELSE 0 END) as jenis_tiang_concrete")
+                ->selectRaw("SUM(CASE WHEN jenis_tiang = 'spun' THEN 1 ELSE 0 END) as jenis_tiang_spun")
+                ->selectRaw("SUM(CASE WHEN jenis_tiang = 'wood' THEN 1 ELSE 0 END) as jenis_tiang_wood")
+                ->selectRaw("SUM(CASE WHEN (abc_span->'s3_185')::text <> '' AND (abc_span->'s3_185')::text <> 'null' THEN 0 ELSE 1 END) as abc_s3186")
+                ->selectRaw("SUM(CASE WHEN (abc_span->'s3_95')::text <> '' AND (abc_span->'s3_95')::text <> 'null' THEN 0 ELSE 1 END) as abc_s3195")
+                ->selectRaw("SUM(CASE WHEN (abc_span->'s3_16')::text <> '' AND (abc_span->'s3_16')::text <> 'null' THEN 0 ELSE 1 END) as abc_s316")
+                ->selectRaw("SUM(CASE WHEN (abc_span->'s1_16')::text <> '' AND (abc_span->'s1_16')::text <> 'null' THEN 0 ELSE 1 END) as abc_s116")
+                ->selectRaw("SUM(CASE WHEN (pvc_span->'s19_064')::text <> '' AND (pvc_span->'s19_064')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s9064")
+                ->selectRaw("SUM(CASE WHEN (pvc_span->'s7_083')::text <> '' AND (pvc_span->'s7_083')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s7083")
+                ->selectRaw("SUM(CASE WHEN (pvc_span->'s7_044')::text <> '' AND (pvc_span->'s7_044')::text <> 'null' THEN 0 ELSE 1 END) as pvc_s7044")
+                ->selectRaw("SUM(CASE WHEN (bare_span->'s7_173')::text <> '' AND (bare_span->'s7_173')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7173")
+                ->selectRaw("SUM(CASE WHEN (bare_span->'s7_122')::text <> '' AND (bare_span->'s7_122')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7122")
+                ->selectRaw("SUM(CASE WHEN (bare_span->'s3_132')::text <> '' AND (bare_span->'s3_132')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7132")
+                ->selectRaw("SUM(CASE WHEN (umbang_defect->'breaking')::text <> '' AND (bare_span->'breaking')::text <> 'null'THEN 0 ELSE 1 END) as bare_s7132")
+                ->selectRaw("SUM(CASE WHEN (blackbox_defect->'cracked')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (blackbox_defect->'other')::text = 'true' THEN 1 ELSE 0 END) as blackbox")
+                ->selectRaw("SUM(CASE WHEN (ipc_defect->'burn')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (ipc_defect->'other')::text = 'true' THEN 1 ELSE 0 END) as ipc")
 
-
-            ->selectRaw("SUM(CASE WHEN (umbang_defect->'breaking')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (umbang_defect->'creepers')::text = 'true' THEN 1 ELSE 0 END
+                ->selectRaw(
+                    "SUM(CASE WHEN (umbang_defect->'breaking')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (umbang_defect->'creepers')::text = 'true' THEN 1 ELSE 0 END
             + CASE WHEN (umbang_defect->'cracked')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (umbang_defect->'stay_palte')::text = 'true' THEN 1 ELSE 0 END + CASE WHEN (umbang_defect->'other')::text = 'true' THEN 1 ELSE 0 END
-            ) as umbagan")
+            ) as umbagan",
+                )
 
-            ->selectRaw("SUM(CASE WHEN (talian_utama_connection)::text ='one' THEN 1 ELSE 0 END ) as service")
+                ->selectRaw("SUM(CASE WHEN (talian_utama_connection)::text ='one' THEN 1 ELSE 0 END ) as service")
+                ->whereNotNull('review_date')
+                ->whereNotNull('fp_road');
 
+            if ($req->filled('defects')) {
+                $query->whereIn('id', $ids);
+            }
+            // if ($ba != '') {
+            //     $query->where('ba', $ba);
+            // }
 
-            ->whereNotNull('review_date')
-            ->whereNotNull('fp_road');
-                if ($ba != '') {
-                    $query->where('ba',$ba);
-                }
+            // if ($req->filled('from_date')) {
+            //     $query->where('review_date', '>=', $req->from_date);
+            // }
 
-                if ($req->filled('from_date')) {
-                    $query->where('review_date', '>=', $req->from_date);
-                }
+            // if ($req->filled('to_date')) {
+            //     $query->where('review_date', '<=', $req->to_date);
+            // }
 
-                if ($req->filled('to_date')) {
-                    $query->where('review_date', '<=', $req->to_date);
-                }
-                if (Auth::user()->ba == '') {
-                    $query->where('qa_status', 'Accept');
+            $query = $this->filter($query , 'review_date',$req);
 
-                }
+            
 
-           $roadStatistics = $query->groupBy('fp_road' )->get();
+            $roadStatistics = $query->groupBy('fp_road')->get();
 
-         //  return $roadStatistics;
-
-
+            //  return $roadStatistics;
 
             if ($roadStatistics) {
                 $excelFile = public_path('assets/excel-template/QR TIANG.xlsx');
@@ -116,9 +133,14 @@ class TiangExcelController extends Controller
                 $spreadsheet = IOFactory::load($excelFile);
 
                 $worksheet = $spreadsheet->getSheet(0);
-                $worksheet->getStyle('B:AK')->getAlignment()->setHorizontal('center');
-            $worksheet->getStyle('B:AL')->getFont()->setSize(9);
-
+                $worksheet
+                    ->getStyle('B:AK')
+                    ->getAlignment()
+                    ->setHorizontal('center');
+                $worksheet
+                    ->getStyle('B:AL')
+                    ->getFont()
+                    ->setSize(9);
 
                 $worksheet->setCellValue('D4', $ba);
                 $i = 8;
@@ -129,82 +151,64 @@ class TiangExcelController extends Controller
                     // $worksheet->setCellValue('I' . $i, $rec->section_from );
                     // $worksheet->setCellValue('J' . $i, $rec->section_to);
 
-                    $worksheet->setCellValue('L' . $i, $rec->size_tiang_75 );
-                    $worksheet->setCellValue('M' . $i, $rec->size_tiang_9  );
-                    $worksheet->setCellValue('N' . $i, $rec->size_tiang_10 );
+                    $worksheet->setCellValue('L' . $i, $rec->size_tiang_75);
+                    $worksheet->setCellValue('M' . $i, $rec->size_tiang_9);
+                    $worksheet->setCellValue('N' . $i, $rec->size_tiang_10);
 
-                    $worksheet->setCellValue('O' . $i, $rec->jenis_tiang_spun );
-                    $worksheet->setCellValue('P' . $i, $rec->jenis_tiang_concrete );
-                    $worksheet->setCellValue('Q' . $i, $rec->jenis_tiang_iron );
-                    $worksheet->setCellValue('R' . $i, $rec->jenis_tiang_wood );
+                    $worksheet->setCellValue('O' . $i, $rec->jenis_tiang_spun);
+                    $worksheet->setCellValue('P' . $i, $rec->jenis_tiang_concrete);
+                    $worksheet->setCellValue('Q' . $i, $rec->jenis_tiang_iron);
+                    $worksheet->setCellValue('R' . $i, $rec->jenis_tiang_wood);
 
-                    $worksheet->setCellValue('T' . $i, $rec->abc_s3186 );
-                    $worksheet->setCellValue('U' . $i, $rec->abc_s3195 );
-                    $worksheet->setCellValue('V' . $i, $rec->abc_s316 );
-                    $worksheet->setCellValue('W' . $i, $rec->abc_s116 );
+                    $worksheet->setCellValue('T' . $i, $rec->abc_s3186);
+                    $worksheet->setCellValue('U' . $i, $rec->abc_s3195);
+                    $worksheet->setCellValue('V' . $i, $rec->abc_s316);
+                    $worksheet->setCellValue('W' . $i, $rec->abc_s116);
 
                     $worksheet->setCellValue('X' . $i, $rec->pvc_s9064);
                     $worksheet->setCellValue('Y' . $i, $rec->pvc_s7083);
                     $worksheet->setCellValue('Z' . $i, $rec->pvc_s7044);
 
-                    $worksheet->setCellValue('AA' . $i, $rec->bare_s7173 );
-                    $worksheet->setCellValue('AB' . $i, $rec->bare_s7122 );
-                    $worksheet->setCellValue('AC' . $i, $rec->bare_s7132 );
-                   $one_line = Tiang::where('fp_road', $rec->road)
-                    ->whereNotNull('talian_utama_connection')
-                    ->where('talian_utama_connection' ,'one')
-                    ->where('talian_utama', 'main_line')
-                    ->count();
+                    $worksheet->setCellValue('AA' . $i, $rec->bare_s7173);
+                    $worksheet->setCellValue('AB' . $i, $rec->bare_s7122);
+                    $worksheet->setCellValue('AC' . $i, $rec->bare_s7132);
+                    $one_line = Tiang::where('fp_road', $rec->road)
+                        ->whereNotNull('talian_utama_connection')
+                        ->where('talian_utama_connection', 'one')
+                        ->where('talian_utama', 'main_line')
+                        ->count();
 
                     $many_line = Tiang::where('fp_road', $rec->road)
-                    ->whereNotNull('talian_utama_connection')
-                    ->where('talian_utama_connection' ,'many')
-                    ->where('talian_utama', 'main_line')
-                    ->count();
+                        ->whereNotNull('talian_utama_connection')
+                        ->where('talian_utama_connection', 'many')
+                        ->where('talian_utama', 'main_line')
+                        ->count();
                     $line = '';
-                    if ($one_line > 0)  {
-
-                            $line = 'M';
-                    }elseif($many_line > 0){
+                    if ($one_line > 0) {
+                        $line = 'M';
+                    } elseif ($many_line > 0) {
                         $line = 'S';
                     }
 
+                    $service_line = Tiang::where('fp_road', $rec->road)
+                        ->whereNotNull('talian_utama')
+                        ->where('talian_utama', '');
 
-
-
-                    $service_line = Tiang::where('fp_road' ,$rec->road)
-                    ->whereNotNull('talian_utama')
-                    ->where('talian_utama','');
-
-
-                     ($rec->road);
+                    $rec->road;
                     $array = json_decode($rec, true);
 
                     // Sum the values
-                  $totalSum = array_sum($array);
+                    $totalSum = array_sum($array);
 
+                    $worksheet->setCellValue('AD' . $i, $totalSum);
 
-                    $worksheet->setCellValue('AD' . $i, $totalSum );
+                    $worksheet->setCellValue('AE' . $i, $line);
+                    $worksheet->setCellValue('AF' . $i, $rec->umbagan);
 
-                    $worksheet->setCellValue('AE' . $i, $line  );
-                    $worksheet->setCellValue('AF' . $i, $rec->umbagan  );
+                    $worksheet->setCellValue('AG' . $i, $rec->blackbox);
+                    $worksheet->setCellValue('AH' . $i, $rec->ipc);
 
-
-
-                    $worksheet->setCellValue('AG' . $i, $rec->blackbox  );
-                    $worksheet->setCellValue('AH' . $i, $rec->ipc  );
-
-                    $worksheet->setCellValue('AJ' . $i, $rec->service  );
-
-
-
-
-
-
-
-
-
-
+                    $worksheet->setCellValue('AJ' . $i, $rec->service);
 
                     $i++;
                 }
@@ -213,15 +217,19 @@ class TiangExcelController extends Controller
 
                 $worksheet->calculateColumnWidths();
 
-
                 $i = 8;
                 $secondWorksheet = $spreadsheet->getSheet(1);
-                $secondWorksheet->getStyle('B:AL')->getAlignment()->setHorizontal('center');
-                $secondWorksheet->getStyle('B:AL')->getFont()->setSize(9);
-
+                $secondWorksheet
+                    ->getStyle('B:AL')
+                    ->getAlignment()
+                    ->setHorizontal('center');
+                $secondWorksheet
+                    ->getStyle('B:AL')
+                    ->getFont()
+                    ->setSize(9);
 
                 $secondWorksheet->setCellValue('C1', $ba);
-                $secondWorksheet->setCellValue('B3', 'Tarikh Pemeriksaan : ' .date('Y-m-d'));
+                $secondWorksheet->setCellValue('B3', 'Tarikh Pemeriksaan : ' . date('Y-m-d'));
 
                 //return $res;
                 foreach ($res as $secondRec) {
@@ -237,7 +245,7 @@ class TiangExcelController extends Controller
                     if ($secondRec->tiang_defect != '') {
                         $tiang_defect = json_decode($secondRec->tiang_defect);
 
-                        $secondWorksheet->setCellValue('N' . $i,  excelCheckBOc('cracked', $tiang_defect));
+                        $secondWorksheet->setCellValue('N' . $i, excelCheckBOc('cracked', $tiang_defect));
                         $secondWorksheet->setCellValue('O' . $i, excelCheckBOc('leaning', $tiang_defect));
                         $secondWorksheet->setCellValue('P' . $i, excelCheckBOc('dim', $tiang_defect));
                     }
@@ -258,12 +266,10 @@ class TiangExcelController extends Controller
                     }
 
                     if ($secondRec->ipc_defect != '') {
-
                         $secondWorksheet->setCellValue('X' . $i, excelCheckBOc('burn', json_decode($secondRec->ipc_defect)));
                     }
 
                     if ($secondRec->blackbox_defect != '') {
-
                         $secondWorksheet->setCellValue('Y' . $i, excelCheckBOc('cracked', json_decode($secondRec->blackbox_defect)));
                     }
 
@@ -305,57 +311,57 @@ class TiangExcelController extends Controller
                 // return;
                 //$i = 11
 
-
-
                 $i = 11;
                 $thirdWorksheet = $spreadsheet->getSheet(2);
 
-//                 $commonStyle = $thirdWorksheet->getDefaultStyle()->getAlignment();
-// $commonStyle->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-// $commonStyle->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+                //                 $commonStyle = $thirdWorksheet->getDefaultStyle()->getAlignment();
+                // $commonStyle->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                // $commonStyle->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 
-// // Set font size for all cells
-// $commonStyle->setFont(['size' => 12]);
+                // // Set font size for all cells
+                // $commonStyle->setFont(['size' => 12]);
 
+                $thirdWorksheet
+                    ->getStyle('A:O')
+                    ->getAlignment()
+                    ->setHorizontal('center');
+                $secondWorksheet
+                    ->getStyle('B:AL')
+                    ->getFont()
+                    ->setSize(9);
 
-$thirdWorksheet->getStyle('A:O')->getAlignment()->setHorizontal('center');
-$secondWorksheet->getStyle('B:AL')->getFont()->setSize(9);
+                // $borderStyle = [
+                //     'borders' => [
+                //         'outline' => [
+                //             'borderStyle' => Border::BORDER_THICK,
+                //             'color' => ['argb' => 'FFFF0000'], // You can adjust the color code as needed
+                //         ],
+                //     ],
+                // ];
 
+                // $thirdWorksheet->getStyle('A:O')->applyFromArray($borderStyle);
+                // $thirdWorksheet->getStyle('A:O')->getBorders()
+                // ->getOutline()
+                // ->setBorderStyle(Border::BORDER_THICK)
+                // ->setColor(new Color('FFFF0000'));
 
-// $borderStyle = [
-//     'borders' => [
-//         'outline' => [
-//             'borderStyle' => Border::BORDER_THICK,
-//             'color' => ['argb' => 'FFFF0000'], // You can adjust the color code as needed
-//         ],
-//     ],
-// ];
-
-// $thirdWorksheet->getStyle('A:O')->applyFromArray($borderStyle);
-// $thirdWorksheet->getStyle('A:O')->getBorders()
-// ->getOutline()
-// ->setBorderStyle(Border::BORDER_THICK)
-// ->setColor(new Color('FFFF0000'));
-
-// $thirdWorksheet->getStyle('A:O')->applyFromArray([
-//     'alignment' => [
-//         'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
-//         'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
-//     ],
-//     'borders' => [
-//         'allBorders' => [
-//             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-//         ],
-//     ],
-// ]);
+                // $thirdWorksheet->getStyle('A:O')->applyFromArray([
+                //     'alignment' => [
+                //         'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                //         'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                //     ],
+                //     'borders' => [
+                //         'allBorders' => [
+                //             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                //         ],
+                //     ],
+                // ]);
                 // $thirdWorksheet->setCellValue('K4' , date('Y-m-d'));
 
                 foreach ($res as $rec) {
                     $thirdWorksheet->setCellValue('A' . $i, $i - 10);
                     $thirdWorksheet->setCellValue('B' . $i, $rec->review_date);
                     // $thirdWorksheet->getStyle('B'.$i)
-
-
 
                     if ($rec->tapak_condition != '') {
                         $tapak_condition = json_decode($rec->tapak_condition);
@@ -375,12 +381,11 @@ $secondWorksheet->getStyle('B:AL')->getFont()->setSize(9);
                     $thirdWorksheet->setCellValue('L' . $i, $rec->jarak_kelegaan);
 
                     if ($rec->talian_spec != '') {
-                        $thirdWorksheet->setCellValue('M' . $i, $rec->talian_spec == "comply" ? '1' : '');
-                        $thirdWorksheet->setCellValue('N' . $i, $rec->talian_spec == "uncomply" ? '1' : '');
+                        $thirdWorksheet->setCellValue('M' . $i, $rec->talian_spec == 'comply' ? '1' : '');
+                        $thirdWorksheet->setCellValue('N' . $i, $rec->talian_spec == 'uncomply' ? '1' : '');
                     }
 
-                    $thirdWorksheet->setCellValue('O' . $i, $rec->arus_pada_tiang == "Yes" ? '1' : '');
-
+                    $thirdWorksheet->setCellValue('O' . $i, $rec->arus_pada_tiang == 'Yes' ? '1' : '');
 
                     $i++;
                 }
@@ -397,7 +402,7 @@ $secondWorksheet->getStyle('B:AL')->getFont()->setSize(9);
                 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 
                 $writer->save(public_path('assets/updated-excels/') . 'qr-tiang-talian.xlsx');
-              //  ob_end_clean();
+                //  ob_end_clean();
                 return response()->download(public_path('assets/updated-excels/') . 'qr-tiang-talian.xlsx');
             } else {
                 return redirect()

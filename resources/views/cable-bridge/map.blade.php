@@ -127,11 +127,11 @@
 
 
                 {{-- @if (Auth::user()->ba != '') --}}
-                    <div class=" mx-4">
+                    {{-- <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_unsurveyed" value="cb_unsurveyed"
                             onchange="selectLayer(this.value)" class="unsurveyed">
                         <label for="select_layer_unsurveyed">Unsurveyed </label>
-                    </div>
+                    </div> --}}
 
                     <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_pending" value="cb_pending"
@@ -140,11 +140,11 @@
                     </div>
 
 
-                    <div class=" mx-4">
+                    {{-- <div class=" mx-4">
                         <input type="radio" name="select_layer" id="select_layer_reject" value="cb_reject"
                             onchange="selectLayer(this.value)" class="reject">
                         <label for="select_layer_reject">Reject </label>
-                    </div>
+                    </div> --}}
                 {{-- @endif --}}
 
 
@@ -432,7 +432,7 @@
                 }
 
                 cb_pending = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:sub_reject',
+                    layers: 'cite:cb_pending',
                     format: 'image/png',
                     cql_filter: q_cql,
                     maxZoom: 21,
@@ -447,41 +447,41 @@
 
 
                 // link box Reject -----
-                if (cb_reject != '') {
-                    map.removeLayer(cb_reject)
-                }
+                // if (cb_reject != '') {
+                //     map.removeLayer(cb_reject)
+                // }
 
-                cb_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:cb_reject',
-                    format: 'image/png',
-                    cql_filter: q_cql,
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+                // cb_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                //     layers: 'cite:cb_reject',
+                //     format: 'image/png',
+                //     cql_filter: q_cql,
+                //     maxZoom: 21,
+                //     transparent: true
+                // }, {
+                //     buffer: 10
+                // })
 
 
-                map.addLayer(cb_reject)
-                cb_reject.bringToFront()
+                // map.addLayer(cb_reject)
+                // cb_reject.bringToFront()
 
                 // link box unsurvey  -----
 
-                if (cb_unsurveyed != '') {
-                    map.removeLayer(cb_unsurveyed)
-                }
-                cb_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:cb_unsurveyed',
-                    format: 'image/png',
-                    cql_filter: "ba ILIKE '%" + param + "%'",
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+                // if (cb_unsurveyed != '') {
+                //     map.removeLayer(cb_unsurveyed)
+                // }
+                // cb_unsurveyed = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                //     layers: 'cite:cb_unsurveyed',
+                //     format: 'image/png',
+                //     cql_filter: "ba ILIKE '%" + param + "%'",
+                //     maxZoom: 21,
+                //     transparent: true
+                // }, {
+                //     buffer: 10
+                // })
 
-                map.addLayer(cb_unsurveyed)
-                cb_unsurveyed.bringToFront()
+                // map.addLayer(cb_unsurveyed)
+                // cb_unsurveyed.bringToFront()
 
             // }
 
@@ -506,11 +506,11 @@
                         'Pano': pano_layer,
                         'With defects': cb_with_defects,
                         'Without defects': cb_without_defects,
-                        'Unsurveyed': cb_unsurveyed,
+                        // 'Unsurveyed': cb_unsurveyed,
 
                         'Work Package': work_package,
                         'Pending': cb_pending,
-                        'Reject': cb_reject
+                        // 'Reject': cb_reject
                     }
                 };
             // } else {

@@ -31,10 +31,34 @@ class SubstationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            // return $request->arr;
+
+            if ($request->filled('arr')) {
+                # code...
+           
+                // $input_req=explode(',',$request);
+
+                $getIds = DB::table('substation_all_defects');
+        
+                foreach($request->arr as $res){
+        
+                    $getIds->orWhere($res,'Yes');
+        
+               }
+        
+                $ids = $getIds->pluck('id');
+ }
+          
+
+
+
             $result = Substation::query();
 
             $result = $this->filter($result, 'visit_date', $request);
 
+            if ($request->filled('arr')) {
+               $result->whereIn('id',$ids);
+            }
             $result->when(true, function ($query) {
                 return $query->select('id','updated_at', 'name', DB::raw("CASE WHEN (gate_status->>'unlocked')::text='true' THEN 'Yes' ELSE 'No' END as unlocked"), DB::raw("CASE WHEN (gate_status->>'demaged')::text='true' THEN 'Yes' ELSE 'No' END as demaged"), DB::raw("CASE WHEN (gate_status->>'other')::text='true' THEN 'Yes' ELSE 'No' END as other_gate"), DB::raw("CASE WHEN (building_status->>'broken_roof')::text='true' THEN 'Yes' ELSE 'No' END as broken_roof"), DB::raw("CASE WHEN (building_status->>'broken_gutter')::text='true' THEN 'Yes' ELSE 'No' END as broken_gutter"), DB::raw("CASE WHEN (building_status->>'broken_base')::text='true' THEN 'Yes' ELSE 'No' END as broken_base"), DB::raw("CASE WHEN (building_status->>'other')::text='true' THEN 'Yes' ELSE 'No' END as building_other"), 'grass_status', 'tree_branches_status', 'advertise_poster_status', 'total_defects', 'visit_date', 'substation_image_1', 'substation_image_2', 'qa_status' ,'reject_remarks');
             });

@@ -44,6 +44,7 @@ var fp_pending = '';
 var ts_without_defects = '';
 var ts_unsurveyed ='';
 var ts_with_defects ='';
+var ts_pending = '';
 
 var cb_without_defects = '';
 var cb_unsurveyed ='';
