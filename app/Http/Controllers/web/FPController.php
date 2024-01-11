@@ -24,36 +24,27 @@ class FPController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-
-            if ($request->filled('arr')) {
-                # code...
-           
-                // $input_req=explode(',',$request);
-
+        if ($request->ajax()) 
+        {
+            if ($request->filled('arr')) 
+            {
                 $getIds = DB::table('feeder_pillar_all_defects');
-        
-                foreach($request->arr as $res){
-        
+                foreach($request->arr as $res)
+                {
                     $getIds->orWhere($res,'Yes');
-        
-               }
-        
+                }
                 $ids = $getIds->pluck('id');
- }
-          
+            }
+
+            $result = $this->filter(FeederPillar::query(),'visit_date',$request);
 
 
-            $result = FeederPillar::query();
+            if ($request->filled('arr')){  $result->whereIn('id',$ids);  }
 
-            $result = $this->filter($result,'visit_date',$request);
-
-            if ($request->filled('arr')) {
-                $result->whereIn('id',$ids);
-             }
-
-            $result->when(true, function ($query) {
-                return $query->select(
+            $result->when(true, function ($query) 
+            {
+                return $query->select
+                (
                     'id',
                     'ba',
                     'visit_date',
@@ -70,8 +61,8 @@ class FPController extends Controller
                 );
             });
 
-            return datatables()->of($result->get())->addColumn('feeder_pillar_id', function ($row) {
-
+            return datatables()->of($result->get())->addColumn('feeder_pillar_id', function ($row) 
+            {
                 return "FP-" .$row->id;
             })->make(true);
         }

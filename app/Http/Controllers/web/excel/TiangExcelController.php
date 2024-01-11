@@ -43,33 +43,14 @@ class TiangExcelController extends Controller
            
              $result = $this->filter($result , 'review_date',$req);
 
-            // if ($ba != '') {
-            //     $result->where('ba', $ba);
-            // }
 
-            // if ($req->filled('from_date')) {
-            //     $result->where('review_date', '>=', $req->from_date);
-            // }
-
-            // if ($req->filled('to_date')) {
-            //     $result->where('review_date', '<=', $req->to_date);
-            // }
-
-            if ($req->filled('defects')) {
-                // return "ASdasd";
+            if ($req->filled('defects')) 
+            {
                 $result->whereIn('id', $ids);
             }
 
-            // if (Auth::user()->ba == '') {
-            //     $result->where('qa_status', 'Accept');
-
-            // }
-
             $res = $result->get()
                 ->makeHidden(['geom', 'tiang_defect_image', 'talian_defect_image', 'umbang_defect_image', 'ipc_defect_image', 'jumper_image', 'kilat_defect_image', 'servis_defect_image', 'pembumian_defect_image', 'blackbox_defect_image', 'bekalan_dua_defect_image', 'kaki_lima_defect_image', 'tapak_road_img', 'tapak_sidewalk_img', 'tapak_sidewalk_img', 'tapak_no_vehicle_entry_img', 'kawasan_bend_img', 'kawasan_road_img', 'kawasan_forest_img', 'kawasan_other_img']);
-            // return $res;
-
-            // return $res;
 
 
             $query = Tiang::select('fp_road as road')
@@ -104,28 +85,16 @@ class TiangExcelController extends Controller
                 ->whereNotNull('review_date')
                 ->whereNotNull('fp_road');
 
-            if ($req->filled('defects')) {
+            if ($req->filled('defects')) 
+            {
                 $query->whereIn('id', $ids);
             }
-            // if ($ba != '') {
-            //     $query->where('ba', $ba);
-            // }
-
-            // if ($req->filled('from_date')) {
-            //     $query->where('review_date', '>=', $req->from_date);
-            // }
-
-            // if ($req->filled('to_date')) {
-            //     $query->where('review_date', '<=', $req->to_date);
-            // }
 
             $query = $this->filter($query , 'review_date',$req);
 
-            
-
+        
             $roadStatistics = $query->groupBy('fp_road')->get();
 
-            //  return $roadStatistics;
 
             if ($roadStatistics) {
                 $excelFile = public_path('assets/excel-template/QR TIANG.xlsx');
