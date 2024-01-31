@@ -265,6 +265,24 @@
 
 
 </div>
+
+
+<div class="row">
+    <div class="col-md-4"><label
+            for="images_gate_after_lock">{{ __('messages.images_gate_after_lock') }}</label>
+    </div>
+
+    <div class="col-md-8 row">
+        {!!  viewAndUpdateImage($data->image_building , 'images_gate_after_lock' , $disabled )  !!}
+
+        {!!  viewAndUpdateImage($data->image_building_2 , 'image_building_2' , $disabled )  !!}
+
+    </div>
+
+
+</div>
+
+
 <div class="row">
     <div class="col-md-4"><label for="image_grass">{{ __('messages.image_grass') }}</label>
     </div>
@@ -294,20 +312,7 @@
 
 </div>
 
-<div class="row">
-    <div class="col-md-4"><label
-            for="images_gate_after_lock">{{ __('messages.images_gate_after_lock') }}</label>
-    </div>
 
-    <div class="col-md-8 row">
-        {!!  viewAndUpdateImage($data->image_building , 'images_gate_after_lock' , $disabled )  !!}
-
-        {!!  viewAndUpdateImage($data->image_building_2 , 'image_building_2' , $disabled )  !!}
-
-    </div>
-
-
-</div>
 
 
 

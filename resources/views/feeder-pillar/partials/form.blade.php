@@ -157,6 +157,28 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-4"><label for="fp_gaurd">{{ __('messages.fp_gaurd') }}</label></div>
+    <div class="col-md-4">
+        <select name="guard_status" {{$disabled ? 'disabled' : '' }}  id="fp_gaurd" class="form-control" required>
+            <option value="{{ $data->guard_status }}" hidden>{{ $data->guard_status != ''? $data->guard_status : 'select status' }}</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4"><label for="paint_status">{{ __('messages.paint_faded') }}</label></div>
+    <div class="col-md-4">
+        <select name="paint_status" {{$disabled ? 'disabled' : '' }}  id="paint_status" class="form-control" required>
+            <option value="{{ $data->paint_status }}" hidden>{{ $data->paint_status != ''? $data->paint_status : 'select status' }}</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-md-4"><label for="advertise_poster_status">
@@ -189,6 +211,24 @@
 </div>
 
 
+<div class="row">
+    <div class="col-md-4"><label for="image_name_plate">{{__('messages.name_plate')}}</label></div>
+    @if (!$disabled)
+        <div class="col-md-4 form-input pr-3">
+            <input {{$disabled ? 'disabled' : '' }}  type="file" accept="image/*" name="image_name_plate" id="image_name_plate" class="form-control">
+        </div>
+    @endif
+
+    <div class="col-md-4 text-center mb-3">
+        @if (file_exists(public_path($data->image_name_plate)) && $data->image_name_plate != '')
+            <a href="{{ URL::asset($data->image_name_plate) }}" data-lightbox="roadtrip">
+                <img src="{{ URL::asset($data->image_name_plate) }}" alt="" height="70" class="adjust-height ml-5  ">
+            </a>
+        @else
+            <strong>{{__('messages.no_image_found')}}</strong>
+        @endif
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-4">

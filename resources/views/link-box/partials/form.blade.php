@@ -1,19 +1,20 @@
-<div class="row">
-    <div class="col-md-4"><label for="zone">{{__('messages.zone')}}</label></div>
-    <div class="col-md-4">
-        <select {{$disabled ? 'disabled' : '' }}  name="zone" id="search_zone" class="form-control" required>
 
-            <option value="{{ $data->zone }}" hidden>{{ $data->zone }}</option>
-            @if (Auth::user()->ba == '')
-                <option value="W1">W1</option>
-                <option value="B1">B1</option>
-                <option value="B2">B2</option>
-                <option value="B4">B4</option>
-            @endif
+    <div class="row">
+        <div class="col-md-4"><label for="zone">{{__('messages.zone')}}</label></div>
+        <div class="col-md-4">
+            <select {{$disabled ? 'disabled' : '' }}  name="zone" id="search_zone" class="form-control" required>
 
-        </select>
+                <option value="{{ $data->zone }}" hidden>{{ $data->zone }}</option>
+                @if (Auth::user()->ba == '')
+                    <option value="W1">W1</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B4">B4</option>
+                @endif
+
+            </select>
+        </div>
     </div>
-</div>
 
 <div class="row">
     <div class="col-md-4"><label for="ba">{{__('messages.ba')}}</label></div>
@@ -154,6 +155,19 @@
 
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-4"><label for="paint_status">{{ __('messages.paint_faded') }}</label></div>
+    <div class="col-md-4">
+        <select name="paint_status" {{$disabled ? 'disabled' : '' }}  id="paint_status" class="form-control" required>
+            <option value="{{ $data->paint_status }}" hidden>{{ $data->paint_status != ''? $data->paint_status : 'select status' }}</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-4"><label for="advertise_poster_status">{{__("messages.cleaning_illegal_ads_banners")}}</label>
     </div>
