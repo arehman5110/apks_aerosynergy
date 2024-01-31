@@ -188,6 +188,10 @@ return [
 
     'generate_notice' => 'Generate Notice',
 
+    'fp_gaurd'=>'FP Gaurd',
+        'paint_faded'=>'Paint Faded',
+        'name_plate'=>'Name Plate',
+
     /******************Tiang */
 
     'tiang'=>'Tiang',
