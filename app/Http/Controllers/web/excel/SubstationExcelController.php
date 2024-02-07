@@ -80,14 +80,11 @@ class SubstationExcelController extends Controller
                           $worksheet->setCellValue('R' . $i, substaionCheckBox('broken_gutter', $building_status ) == 'checked' ? 'yes' : 'no' );
                          $worksheet->setCellValue('S' . $i,  substaionCheckBox('broken_base', $building_status ) == 'checked' ? 'yes' : 'no' );
                          $worksheet->setCellValue('T' . $i,  substaionCheckBox('other', $building_status ) == 'checked' ? 'yes' : 'no' );
-
-
-
                     }
                     // $worksheet->setCellValue('O' . $i, $rec->building_status);
                     $worksheet->setCellValue('U' . $i, $rec->advertise_poster_status);
                     $worksheet->setCellValue('V' . $i, $rec->total_defects);
-
+                    // $worksheet->setCellValue('W' . $i, $rec->repair_date != ''?date('Y-m-d', strtotime($rec->repair_date)) : '');
 
                     $i++;
 

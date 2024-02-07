@@ -305,6 +305,13 @@ return [
     'login'=>' Login',
     'logout'=>'logout',
 
+     // ************************CABLE BRIDGE */
+
+ 'danger_sign'=>'Danger Sign',
+ 'anti_crossing_device'=>'Anti Crossing Device',
+ 'trespass'=>'Trespass',
+ 'cleanliness'=>'Cleanliness',
+ 'image'=>'Image',
 
 
  /******************patroling */

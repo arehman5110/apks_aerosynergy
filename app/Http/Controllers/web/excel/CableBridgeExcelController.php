@@ -60,7 +60,7 @@ class CableBridgeExcelController extends Controller
                         $worksheet->setCellValue('B' . $i, $rec->zone);
                         $worksheet->setCellValue('C' . $i, $rec->ba);
                         $worksheet->setCellValue('D' . $i, $rec->team);
-                        $worksheet->setCellValue('E' . $i,  date('Y-m-d', strtotime($rec->visit_date))  );
+                        $worksheet->setCellValue('E' . $i, date('Y-m-d', strtotime($rec->visit_date))  );
                         $worksheet->setCellValue('F' . $i, date('H:i:s', strtotime($rec->patrol_time)) );
                         $worksheet->setCellValue('G' . $i, $rec->feeder_involved);
                         $worksheet->setCellValue('H' . $i, $rec->aera);
@@ -68,11 +68,17 @@ class CableBridgeExcelController extends Controller
                         $worksheet->setCellValue('J' . $i, $rec->end_date);
                         $worksheet->setCellValue('K' . $i, $rec->voltage);
                         $worksheet->setCellValue('L' . $i, $rec->coordinate);
-                        $worksheet->setCellValue('M' . $i, $rec->vandalism_status);
-                        $worksheet->setCellValue('N' . $i, $rec->pipe_staus);
-                        $worksheet->setCellValue('O' . $i, $rec->collapsed_status);
-                        $worksheet->setCellValue('P' . $i, $rec->rust_status);
-                        $worksheet->setCellValue('Q' . $i, $rec->bushes_status);
+                        $worksheet->setCellValue('M' . $i, $rec->danger_sign);
+                        $worksheet->setCellValue('N' . $i, $rec->anti_crossing_device);
+                        $worksheet->setCellValue('O' . $i, $rec->vandalism_status);
+                        $worksheet->setCellValue('P' . $i, $rec->kebersihan_jabatan);
+                        $worksheet->setCellValue('Q' . $i, $rec->pipe_staus);
+                        $worksheet->setCellValue('R' . $i, $rec->collapsed_status);
+                        $worksheet->setCellValue('S' . $i, $rec->condong);
+                        $worksheet->setCellValue('T' . $i, $rec->rust_status);
+                        $worksheet->setCellValue('U' . $i, '');
+                        $worksheet->setCellValue('V' . $i, $rec->bushes_status);
+                        // $worksheet->setCellValue('W' . $i, $rec->repair_date != ''?date('Y-m-d', strtotime($rec->repair_date)) : '');
 
                         $i++;
 
