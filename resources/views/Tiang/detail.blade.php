@@ -349,305 +349,113 @@
                             {{-- END Asset Register (2) --}}
 
                             <h3>{{ __('messages.kejanggalan') }} </h3>
-                            <fieldset class="form-input">
+                            <fieldset class="form-input defects">
 
-
+                                <h3>{{ __('messages.kejanggalan') }}</h3>
+                
                                 <div class="table-responsive">
                                     <table class="table table-bordered w-100">
                                         <thead style="background-color: #E4E3E3 !important">
                                             <th class="col-4">{{ __('messages.title') }}</th>
                                             <th class="col-4">{{ __('messages.defects') }}</th>
                                             <th class="col-3">{{ __('messages.images') }}</th>
-
                                         </thead>
+                
                                         {{-- POLE --}}
                                         <tr>
-                                            <th rowspan="5">{{ __('messages.pole') }}</th>
-
-                                            {!! getImageShow('cracked', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'cracked') !!}
-
+                                            <th rowspan="7">{{ __('messages.pole') }}</th>
+                                            {!! getImageShow('cracked', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'cracked',false) !!}
                                         </tr>
-                                        <tr>
-                                            {!! getImageShow('leaning', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'leaning') !!}
-
-                                        </tr>
-
-
-                                        <tr>
-                                            {!! getImageShow('dim', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'no_dim_post_none') !!}
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow('creepers', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'creepers') !!}
-
-                                        </tr>
-
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('leaning', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'leaning',false) !!}</tr>
+                                        <tr>{!! getImageShow('dim', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'no_dim_post_none',false) !!}</tr>
+                                        <tr>{!! getImageShow('creepers', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'creepers',false) !!}</tr>
+                                        <tr>{!! getImageShow('creepers_after', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'Creepers') !!}</tr>              
+                                        <tr>{!! getImageShow('current_leakage', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'current_leakage',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->tiang_defect, 'tiang_defect', $data->tiang_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Line (Main / Service) --}}
-
                                         <tr>
                                             <th rowspan="4">{{ __('messages.line_main_service') }}</th>
-                                            {!! getImageShow('joint', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'joint') !!}
-
-
+                                            {!! getImageShow('joint', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'joint',false) !!}
                                         </tr>
-                                        <tr>
-                                            {!! getImageShow(
-                                                'need_rentis',
-                                                $data->talian_defect,
-                                                'talian_defect',
-                                                $data->talian_defect_image,
-                                                'need_rentis',
-                                            ) !!}
-
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow(
-                                                'ground',
-                                                $data->talian_defect,
-                                                'talian_defect',
-                                                $data->talian_defect_image,
-                                                'Does_Not_Comply_With_Ground_Clearance',
-                                            ) !!}
-
-                                        </tr>
-
-                                        <tr>
-
-                                            {!! getImageShow('other', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'others') !!}
-
-                                        </tr>
-
-
+                                        <tr>{!! getImageShow('need_rentis', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'need_rentis',false) !!}</tr>
+                                        <tr>{!! getImageShow('ground', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'Does_Not_Comply_With_Ground_Clearance',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->talian_defect, 'talian_defect', $data->talian_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Umbang --}}
-
                                         <tr>
-                                            <th rowspan="5">{{ __('messages.Umbang') }}</th>
-                                            {!! getImageShow(
-                                                'breaking',
-                                                $data->umbang_defect,
-                                                'umbang_defect',
-                                                $data->umbang_defect_image,
-                                                'Sagging_Breaking',
-                                            ) !!}
-
+                                            <th rowspan="7">{{ __('messages.Umbang') }}</th>
+                                            {!! getImageShow('breaking', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'Sagging_Breaking',false) !!}
                                         </tr>
-                                        <tr>
-                                            {!! getImageShow('creepers', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'Creepers') !!}
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow(
-                                                'cracked',
-                                                $data->umbang_defect,
-                                                'umbang_defect',
-                                                $data->umbang_defect_image,
-                                                'No_Stay_Insulator_Damaged',
-                                            ) !!}
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow(
-                                                'stay_palte',
-                                                $data->umbang_defect,
-                                                'umbang_defect',
-                                                $data->umbang_defect_image,
-                                                'Stay_Plate_Base_Stay_Blocked',
-                                            ) !!}
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'others') !!}
-
-                                        </tr>
-
-
+                                        <tr>{!! getImageShow('creepers', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'Creepers',false) !!}</tr>
+                                        <tr>{!! getImageShow('creepers_after', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'Creepers') !!}</tr>              
+                                        <tr>{!! getImageShow('cracked', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'No_Stay_Insulator_Damaged',false) !!}</tr>
+                                        <tr>{!! getImageShow('stay_palte', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'Stay_Plate_Base_Stay_Blocked',false) !!}</tr>
+                                        <tr>{!! getImageShow('current_leakage', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'current_leakage',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->umbang_defect, 'umbang_defect', $data->umbang_defect_image, 'others',false) !!} </tr>
+                
                                         {{-- IPC --}}
                                         <tr>
                                             <th rowspan="2">{{ __('messages.IPC') }}</th>
-
-                                            {!! getImageShow('burn', $data->ipc_defect, 'ipc_defect', $data->ipc_defect_image, 'Burn Effect') !!}
-
+                                            {!! getImageShow('burn', $data->ipc_defect, 'ipc_defect', $data->ipc_defect_image, 'Burn Effect',false) !!}
                                         </tr>
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->ipc_defect, 'ipc_defect', $data->ipc_defect_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('other', $data->ipc_defect, 'ipc_defect', $data->ipc_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Black Box --}}
-
                                         <tr>
                                             <th rowspan="2">{{ __('messages.Black_Box') }}</th>
-
-                                            {!! getImageShow(
-                                                'cracked',
-                                                $data->blackbox_defect,
-                                                'blackbox_defect',
-                                                $data->blackbox_defect_image,
-                                                'Kesan_Bakar',
-                                            ) !!}
-
+                                            {!! getImageShow('cracked', $data->blackbox_defect, 'blackbox_defect', $data->blackbox_defect_image, 'Kesan_Bakar',false) !!}
                                         </tr>
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->blackbox_defect, 'blackbox_defect', $data->blackbox_defect_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('other', $data->blackbox_defect, 'blackbox_defect', $data->blackbox_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Jumper --}}
-
                                         <tr>
                                             <th rowspan="3">{{ __('messages.jumper') }}</th>
-                                            {!! getImageShow('sleeve', $data->jumper, 'jumper', $data->jumper_image, 'no_uv_sleeve') !!}
-
+                                            {!! getImageShow('sleeve', $data->jumper, 'jumper', $data->jumper_image, 'no_uv_sleeve',false) !!}
                                         </tr>
-                                        <tr>
-                                            {!! getImageShow('burn', $data->jumper, 'jumper', $data->jumper_image, 'Burn Effect') !!}
-
-                                        </tr>
-
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->jumper, 'jumper', $data->jumper_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('burn', $data->jumper, 'jumper', $data->jumper_image, 'Burn Effect',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->jumper, 'jumper', $data->jumper_image, 'others',false) !!}</tr>
+                
                                         {{-- Lightning catcher --}}
-
                                         <tr>
                                             <th rowspan="2">{{ __('messages.lightning_catcher') }}</th>
-
-                                            {!! getImageShow('broken', $data->kilat_defect, 'kilat_defect', $data->kilat_defect_image, 'broken') !!}
-
+                                            {!! getImageShow('broken', $data->kilat_defect, 'kilat_defect', $data->kilat_defect_image, 'broken',false) !!}
                                         </tr>
-
-                                        <tr>
-
-                                            {!! getImageShow('other', $data->kilat_defect, 'kilat_defect', $data->kilat_defect_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('other', $data->kilat_defect, 'kilat_defect', $data->kilat_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Service --}}
-
+                
                                         <tr>
                                             <th rowspan="3">{{ __('messages.Service') }}</th>
-
-                                            {!! getImageShow(
-                                                'roof',
-                                                $data->servis_defect,
-                                                'servis_defect',
-                                                $data->servis_defect_image,
-                                                'the_service_line_is_on_the_roof',
-                                            ) !!}
-
+                                            {!! getImageShow('roof', $data->servis_defect, 'servis_defect', $data->servis_defect_image, 'the_service_line_is_on_the_roof',false) !!}
                                         </tr>
-
-                                        <tr>
-                                            {!! getImageShow(
-                                                'won_piece',
-                                                $data->servis_defect,
-                                                'servis_defect',
-                                                $data->servis_defect_image,
-                                                'won_piece_date',
-                                            ) !!}
-
-
-                                        </tr>
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->servis_defect, 'servis_defect', $data->servis_defect_image, 'others') !!}
-
-                                        </tr>
-
-
+                                        <tr>{!! getImageShow('won_piece', $data->servis_defect, 'servis_defect', $data->servis_defect_image, 'won_piece_date',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->servis_defect, 'servis_defect', $data->servis_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Grounding --}}
-
                                         <tr>
                                             <th rowspan="2">{{ __('messages.grounding') }}</th>
-
-                                            {!! getImageShow(
-                                                'netural',
-                                                $data->pembumian_defect,
-                                                'pembumian_defect',
-                                                $data->pembumian_defect_image,
-                                                'no_connection_to_neutral',
-                                            ) !!}
-
+                                            {!! getImageShow('netural', $data->pembumian_defect, 'pembumian_defect', $data->pembumian_defect_image, 'no_connection_to_neutral',false) !!}
                                         </tr>
-
-                                        <tr>
-                                            {!! getImageShow('other', $data->pembumian_defect, 'pembumian_defect', $data->pembumian_defect_image, 'others') !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('other', $data->pembumian_defect, 'pembumian_defect', $data->pembumian_defect_image, 'others',false) !!}</tr>
+                
                                         {{-- Signage - OFF Point / Two Way Supply --}}
                                         <tr>
                                             <th rowspan="2">{{ __('messages.signage_off_point_two_way_supply') }}</th>
-
-                                            {!! getImageShow(
-                                                'damage',
-                                                $data->bekalan_dua_defect,
-                                                'bekalan_dua_defect',
-                                                $data->bekalan_dua_defect_image,
-                                                'faded_damaged_missing_signage',
-                                            ) !!}
-
+                                            {!! getImageShow('damage', $data->bekalan_dua_defect, 'bekalan_dua_defect', $data->bekalan_dua_defect_image, 'faded_damaged_missing_signage',false) !!}
                                         </tr>
-
-                                        <tr>
-                                            {!! getImageShow(
-                                                'other',
-                                                $data->bekalan_dua_defect,
-                                                'bekalan_dua_defect',
-                                                $data->bekalan_dua_defect_image,
-                                                'others',
-                                            ) !!}
-
-                                        </tr>
-
+                                        <tr>{!! getImageShow('other', $data->bekalan_dua_defect, 'bekalan_dua_defect', $data->bekalan_dua_defect_image,'others',false) !!}</tr>
+                
                                         {{-- Main Street --}}
-
                                         <tr>
                                             <th rowspan="3">{{ __('messages.main_street') }}</th>
-
-                                            {!! getImageShow(
-                                                'date_wire',
-                                                $data->kaki_lima_defect,
-                                                'kaki_lima_defect',
-                                                $data->kaki_lima_defect_image,
-                                                'date_wire',
-                                            ) !!}
-
+                                            {!! getImageShow('date_wire', $data->kaki_lima_defect, 'kaki_lima_defect', $data->kaki_lima_defect_image,'date_wire',false) !!}
                                         </tr>
-                                        <tr>
-                                            {!! getImageShow(
-                                                'burn',
-                                                $data->kaki_lima_defect,
-                                                'kaki_lima_defect',
-                                                $data->kaki_lima_defect_image,
-                                                'junction_box_date_burn_effect',
-                                            ) !!}
-
-                                        </tr>
-                                        <tr>
-                                            {!! getImageShow('other', $data->kaki_lima_defect, 'kaki_lima_defect', $data->kaki_lima_defect_image, 'others') !!}
-
-                                        </tr>
+                                        <tr>{!! getImageShow('burn', $data->kaki_lima_defect, 'kaki_lima_defect', $data->kaki_lima_defect_image, 'junction_box_date_burn_effect',false) !!}</tr>
+                                        <tr>{!! getImageShow('other', $data->kaki_lima_defect, 'kaki_lima_defect', $data->kaki_lima_defect_image, 'others',false) !!}</tr>
                                     </table>
                                 </div>
-
+                                <input type="hidden" name="total_defects" id="total_defects">
                             </fieldset>
 
 

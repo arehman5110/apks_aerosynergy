@@ -177,7 +177,7 @@ function getImage2($key, $arr, $arr_name, $img_arr, $lab_name, $status)
 }
 
 function getImageShow($key, $arr, $arr_name, $img_arr, $lab_name)
-{
+{   
     $lab_name = __('messages.' . $lab_name);
     $html = '';
 
@@ -190,15 +190,20 @@ function getImageShow($key, $arr, $arr_name, $img_arr, $lab_name)
     // Check if $key is "other" to decide the CSS classes
     $class = $key != 'other' ? 'd-flex' : '';
 
-    $html .=
-        "<td class='$class'>
-                <input type='checkbox' name='$name' id='$id' " .
-        ($key_exist ? 'checked' : '') .
-        " class='form-check' disabled >
+    if ($key  !== 'creepers_after') {
+        // Check for checked checkbox
+        $key_exist = !empty($arr) && array_key_exists($key, $arr) && $arr[$key] == true;
+        $html .= "<td class='$class'>
+                        <input type='checkbox' name='$name' id='$id' " . ($key_exist? 'checked' : '') . " disabled class='form-check'>
                 <label class='text-capitalize' for='$id'> $lab_name</label>";
-
+    }else{
+        // Check for checked checkbox
+        $key_exist = !empty($arr) && array_key_exists('creepers', $arr) && $arr['creepers'] == true;
+        $html .=
+        "<td class='$class'><label class='text-capitalize' for='$id'> $lab_name After</label>";
+    }
     if ($key == 'other') {
-        $key2 = $key . '_input';
+        $key2 = $key . '_value';
         $otherValue = isset($arr[$key2]) ? $arr[$key2] : '';
         $html .= "<input type='text'  id='{$id}-input'  value='$otherValue' class='form-control " . ($key_exist ? '' : 'd-none') . "' placeholder='mention other defect' disabled>";
     }
@@ -207,30 +212,22 @@ function getImageShow($key, $arr, $arr_name, $img_arr, $lab_name)
     <td class=''>";
 
     if ($key_exist && $img_arr != '') {
-        // if (array_key_exists($key, $img_arr) && file_exists(public_path($img_arr[$key])) && $img_arr[$key] != '') {
-        if (array_key_exists($key, $img_arr) && $img_arr[$key] != '') {
-
+        $image1 = $key == 'creepers_after' ? 'creepers_after1' : $key;
+        if (array_key_exists($image1, $img_arr) && file_exists(public_path($img_arr[$image1])) && $img_arr[$image1] != '') {
+             
             $html .=
-                "<a href='" 
-                .(config('custom.image_url').$img_arr[$key]).
-                "' data-lightbox='roadtrip'>
-                    <img src='" 
-                    .(config('custom.image_url').$img_arr[$key]).
-                "' class='adjust-height mb-1' style='height:30px; width:30px !important'>
+                "<a href='" . URL::asset($img_arr[$image1]) . "' data-lightbox='roadtrip'>
+                    <img src='" . URL::asset($img_arr[$image1]) . "' class='adjust-height mb-1' style='height:30px; width:30px !important'>
                 </a>";
         }
 
-        // if (array_key_exists($key . '_2', $img_arr) && file_exists(public_path($img_arr[$key . '_2'])) && $img_arr[$key . '_2'] != '') {
-        if (array_key_exists($key . '_2', $img_arr)  && $img_arr[$key . '_2'] != '') {
-           
+        if (array_key_exists($key . '2', $img_arr) && file_exists(public_path($img_arr[$key . '2'])) && $img_arr[$key . '2'] != '') {
             $html .=
-                "<a href='" 
-                .(config('custom.image_url').$img_arr[$key.'_2']).
-
+                "<a href='" .
+                URL::asset($img_arr[$key . '2']) .
                 "' data-lightbox='roadtrip'>
-                    <img src='" 
-                    .(config('custom.image_url').$img_arr[$key.'_2']).
-
+                    <img src='" .
+                URL::asset($img_arr[$key . '2']) .
                 "' class='adjust-height mb-1' style='height:30px; width:30px !important'>
                 </a>";
         }
@@ -238,7 +235,7 @@ function getImageShow($key, $arr, $arr_name, $img_arr, $lab_name)
     $html .= '</td>';
 
     return $html;
-}
+}   
 
 
 function tiangSpanRadio($value , $key , $subkey , $status)
