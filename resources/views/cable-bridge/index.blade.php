@@ -142,7 +142,7 @@
             `);
 
            // Initialize Choices
-            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+             multipleCancelButton = new Choices('#choices-multiple-remove-button', {
             removeItemButton: true,
             maxItemCount: 44,
             searchResultLimit: 44,

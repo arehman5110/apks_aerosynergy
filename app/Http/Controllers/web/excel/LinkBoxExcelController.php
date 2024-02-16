@@ -54,22 +54,22 @@ class LinkBoxExcelController extends Controller
                     $worksheet->setCellValue('C' . $i, $rec->ba);
                     $worksheet->setCellValue('D' . $i, $rec->team);
                     $worksheet->setCellValue('E' . $i, date('Y-m-d', strtotime($rec->visit_date)) );
-                    $worksheet->setCellValue('F' . $i,date('H:i:s', strtotime($rec->patrol_time)) );
+                    $worksheet->setCellValue('F' . $i, date('H:i:s', strtotime($rec->patrol_time)) );
                     $worksheet->setCellValue('G' . $i, $rec->feeder_involved);
                     $worksheet->setCellValue('H' . $i, $rec->aera);
                     $worksheet->setCellValue('I' . $i, $rec->start_date);
                     $worksheet->setCellValue('J' . $i, $rec->end_date);
                     $worksheet->setCellValue('K' . $i, $rec->type);
-
                     $worksheet->setCellValue('L' . $i, $rec->coordinate);
                     $worksheet->setCellValue('M' . $i, $rec->gate_status);
-                    $worksheet->setCellValue('N' . $i, $rec->vandalism_status);
-
-                    $worksheet->setCellValue('O' . $i, $rec->leaning_staus);
-                    $worksheet->setCellValue('P' . $i, $rec->rust_status);
-                    $worksheet->setCellValue('Q' . $i, $rec->advertise_poster_status);
-                    $worksheet->setCellValue('R' . $i, $rec->bushes_status);
-
+                    $worksheet->setCellValue('N' . $i, $rec->cover_status);
+                    $worksheet->setCellValue('O' . $i, $rec->vandalism_status);
+                    $worksheet->setCellValue('P' . $i, $rec->leaning_staus);
+                    $worksheet->setCellValue('Q' . $i, $rec->rust_status);
+                    $worksheet->setCellValue('R' . $i, $rec->paint_status);
+                    $worksheet->setCellValue('S' . $i, $rec->advertise_poster_status);
+                    $worksheet->setCellValue('T' . $i, $rec->bushes_status);
+                    
                     $i++;
                 }
 

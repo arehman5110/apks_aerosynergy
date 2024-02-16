@@ -143,6 +143,10 @@ return [
     'image_pipe' => 'Paip Imej',
     'image_collapsed' => 'Imej Diruntuhkan',
 
+    'fp_gaurd'=>'FP Gaurd',
+        'paint_faded'=>'Paint Faded',
+        'name_plate'=>'Name Plate',
+
 
      /******************Tiang */
 

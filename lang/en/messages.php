@@ -188,6 +188,10 @@ return [
 
     'generate_notice' => 'Generate Notice',
 
+    'fp_gaurd'=>'FP Gaurd',
+        'paint_faded'=>'Paint Faded',
+        'name_plate'=>'Name Plate',
+
     /******************Tiang */
 
     'tiang'=>'Tiang',
@@ -301,6 +305,13 @@ return [
     'login'=>' Login',
     'logout'=>'logout',
 
+     // ************************CABLE BRIDGE */
+
+ 'danger_sign'=>'Danger Sign',
+ 'anti_crossing_device'=>'Anti Crossing Device',
+ 'trespass'=>'Trespass',
+ 'cleanliness'=>'Cleanliness',
+ 'image'=>'Image',
 
 
  /******************patroling */

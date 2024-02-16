@@ -24,8 +24,6 @@ class LinkBoxController extends Controller
         //
         if ($request->ajax()) { 
 
-
-
             if ($request->filled('arr')) {
 
                 $getIds = DB::table('link_box_all_defects');
@@ -35,9 +33,6 @@ class LinkBoxController extends Controller
                 $ids = $getIds->pluck('id');
                 
             }
-
-
-
 
             $ba = $request->filled('ba') ? $request->ba : Auth::user()->ba;
             $result = LinkBox::query();
