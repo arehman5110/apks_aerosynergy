@@ -61,7 +61,7 @@ class SubstationExcelController extends Controller
                     $worksheet->setCellValue('H' . $i, $rec->voltage);
                     $worksheet->setCellValue('I' . $i, $rec->name);
                     $worksheet->setCellValue('J' . $i, $rec->type);
-                    $worksheet->setCellValue('K' . $i, number_format( $rec->y, 2) .",". number_format( $rec->x , 2));
+                    $worksheet->setCellValue('K' . $i, number_format( $rec->y, 5) .",". number_format( $rec->x , 5));
                     if ($rec->gate_status) {
                         $gate_status = json_decode($rec->gate_status);
                         $worksheet->setCellValue('L' . $i, substaionCheckBox('unlocked', $gate_status ) == 'checked' ? 'yes' : 'no' );
@@ -80,11 +80,34 @@ class SubstationExcelController extends Controller
                           $worksheet->setCellValue('R' . $i, substaionCheckBox('broken_gutter', $building_status ) == 'checked' ? 'yes' : 'no' );
                          $worksheet->setCellValue('S' . $i,  substaionCheckBox('broken_base', $building_status ) == 'checked' ? 'yes' : 'no' );
                          $worksheet->setCellValue('T' . $i,  substaionCheckBox('other', $building_status ) == 'checked' ? 'yes' : 'no' );
+
+
+
                     }
+                   
+
                     // $worksheet->setCellValue('O' . $i, $rec->building_status);
                     $worksheet->setCellValue('U' . $i, $rec->advertise_poster_status);
                     $worksheet->setCellValue('V' . $i, $rec->total_defects);
-                    // $worksheet->setCellValue('W' . $i, $rec->repair_date != ''?date('Y-m-d', strtotime($rec->repair_date)) : '');
+
+                    $worksheet->setCellValue('W' . $i, 'http://121.121.232.53:8090/'.$rec->substation_image_1
+                    .' http://121.121.232.53:8090/'.$rec->substation_image_2
+                    .' http://121.121.232.53:8090/'.$rec->image_gate
+                    .' http://121.121.232.53:8090/'.$rec->image_gate_2
+                    .' http://121.121.232.53:8090/'.$rec->images_gate_after_lock
+                    .' http://121.121.232.53:8090/'.$rec->images_gate_after_lock_2
+                    .' http://121.121.232.53:8090/'.$rec->image_grass
+                    .' http://121.121.232.53:8090/'.$rec->image_grass_2
+                    .' http://121.121.232.53:8090/'.$rec->image_tree_branches
+                    .' http://121.121.232.53:8090/'.$rec->image_tree_branches_2
+                    .' http://121.121.232.53:8090/'.$rec->image_building
+                    .' http://121.121.232.53:8090/'.$rec->image_building_2
+                    .' http://121.121.232.53:8090/'.$rec->image_advertisement_before_1
+                    .' http://121.121.232.53:8090/'.$rec->image_advertisement_before_2
+                    .' http://121.121.232.53:8090/'.$rec->image_advertisement_after_1
+                    .' http://121.121.232.53:8090/'.$rec->image_advertisement_after_2
+                    .' http://121.121.232.53:8090/'.$rec->other_image);
+
 
                     $i++;
 
