@@ -153,17 +153,53 @@
         var url = "tiang-talian-vt-and-vr"
         var auth_ba = "{{ Auth::user()->ba }}"
 
-        var defectsNames = ['tinag_dimm','tiang_cracked','tiang_leaning','tiang_creepers','tiang_other','talian_joint',
-            'talian_ground', 'talian_need_rentis', 'talian_other', 'umbang_breaking', 'umbang_creepers', 'umbang_cracked', 'umbang_stay_palte',
-    'umbang_other','ipc_burn','ipc_other','blackbox_cracked','blackbox_other','jumper_sleeve','jumper_burn','jumper_other','kilat_broken','kilat_other',
-    'servis_roof','servis_won_piece', 'servis_other', 'pembumian_netural', 'pembumian_other', 'bekalan_dua_damage', 'bekalan_dua_other',
-    'kaki_lima_date_wire', 'kaki_lima_burn', 'kaki_lima_other', 'tapak_condition_road', 'tapak_condition_side_walk',
-	 'tapak_condition_vehicle_entry', 'kawasan_bend', 'kawasan_road', 'kawasan_forest', 'kawasan_other']
+        const defectsNames = {
+    bekalan_dua_damage: 'bekalan_dua_rosak/tiada',
+    bekalan_dua_other: 'bekalan_dua_lain-lain',
+    blackbox_cracked: 'blackbox_bakar',
+    blackbox_other: 'blackbox_lain-lain',
+    ipc_burn: 'ipc_terbakar',
+    ipc_other: 'ipc_lain-lain',
+    jumper_burn: 'jumper_terbakar',
+    jumper_other: 'jumper_lain-lain',
+    jumper_sleeve: 'jumper_sleeve',
+    kaki_lima_burn: 'kaki_lima_terbakar',
+    kaki_lima_date_wire: 'kaki_lima_wayar_tanggal',
+    kaki_lima_other: 'kaki_lima_other',
+    kawasan_bend: 'kawasan_bendang',
+    kawasan_forest: 'kawasan_hutan',
+    kawasan_other: 'kawasan_lain-lain',
+    kawasan_road: 'kawasan_jalanraya',
+    kilat_broken: 'penangkap_kilat_rosak',
+    kilat_other: 'penangkap_kilat_lain-lain',
+    pembumian_neutral: 'pembumian_neutral',
+    pembumian_other: 'pembumian_lain-lain',
+    servis_other: 'servis_lain-lain',
+    servis_roof: 'servis_bumbung',
+    servis_won_piece: 'servis_won_piece',
+    talian_ground: 'talian_ground_clearance',
+    talian_joint: 'talian_maruku_joint',
+    talian_need_rentis: 'talian_perlu rentis',
+    talian_other: 'talian_lain-lain',
+    tapak_condition_road: 'tapak_condition_melintasi_jalanraya',
+    tapak_condition_side_walk: 'tapak_condition_bahu_jalan',
+    tapak_condition_vehicle_entry: 'tapak_condition_tidak_dimasuki_kenderaan',
+    tiang_cracked: 'tiang_reput/retak',
+    tiang_creepers: 'tiang_creepers',
+    tiang_leaning: 'tiang_condong',
+    tiang_other: 'tiang_lain-lain',
+    tinag_dimm: 'tiang_pudar',
+    umbang_breaking: 'umbang_tiada_stay_insulator',
+    umbang_cracked: 'umbang_kendur/putus',
+    umbang_creepers: 'umbang_creepers',
+    umbang_other: 'umbang_lain-lain',
+    umbang_stay_palte: 'umbang_stay_plate'
+};
 
         $(document).ready(function() {
-            for (let index = 0; index < defectsNames.length; index++) {
-                const element = defectsNames[index];
-                $('#choices-multiple-remove-button').append(` <option value="${element}">${element}</option>`)
+            for (const key in defectsNames) {
+                const value = defectsNames[key];
+                $('#choices-multiple-remove-button').append(`<option value="${key}">${value}</option>`);
             }
 
        
