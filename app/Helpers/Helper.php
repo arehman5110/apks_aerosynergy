@@ -323,3 +323,14 @@ function tiangSpanRadio($value , $key , $subkey , $status)
     }
 
 //  for show and update images end
+
+
+// Get repair Date
+    function getRepairDate($key , $array)
+    {
+        if ($array != null && array_key_exists($key , $array)) {
+            return  $array[$key];
+        }
+        return "";
+
+    }
