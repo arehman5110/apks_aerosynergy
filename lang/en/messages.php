@@ -313,6 +313,7 @@ return [
  'cleanliness'=>'Cleanliness',
  'image'=>'Image',
 
+ 'Inspection_of_current_leakage_on_the_umbang' =>'Pemeriksaan Kebocoran Arus pada Umbang',
 
  /******************patroling */
 

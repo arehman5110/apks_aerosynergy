@@ -564,25 +564,71 @@
 
     <fieldset class="form-input">
         <div class="row">
-            <div class="col-md-4"><label for="">{{ __('messages.Inspection_of_current_leakage_on_the_pole') }}</label></div>
+            <div class="col-md-4"><label
+                    for="">{{ __('messages.Inspection_of_current_leakage_on_the_pole') }}
+                </label></div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-4 d-flex">
-                        <input type="radio" name="arus_pada_tiang" id="arus_pada_tiang_no" class="form-check" value="No" {{ $data->arus_pada_tiang === 'No' ? 'checked' : '' }} {{'disabled'}}>
+                        <input type="radio" name="tiang_defect_current_leakage" id="arus_pada_tiang_no" disabled
+                            class="form-check" value="No"
+                            {{ $data->arus_pada_tiang === 'No' ? 'checked' : '' }}>
                         <label for="arus_pada_tiang_no">{{ __('messages.no') }}</label>
                     </div>
 
                     <div class="col-md-4 d-flex">
-                        <input type="radio" name="arus_pada_tiang" id="arus_pada_tiang_yes" class="form-check" value="Yes" {{ $data->arus_pada_tiang === 'Yes' ? 'checked' : '' }} {{'disabled'}}>
+                        <input type="radio" name="tiang_defect_current_leakage" id="arus_pada_tiang_yes" disabled
+                            class="form-check" value="Yes"
+                            {{ $data->arus_pada_tiang === 'Yes' ? 'checked' : '' }}>
                         <label for="arus_pada_tiang_yes">{{ __('messages.yes') }}</label>
                     </div>
 
-                    <div class="col-md-4 @if ($data->arus_pada_tiang == 'No' || $data->arus_pada_tiang == '') d-none @endif" id="arus_pada_tiang_amp_div">
+                    <div class="col-md-4 @if ($data->arus_pada_tiang == 'No' || $data->arus_pada_tiang == '') d-none @endif"
+                        id="arus_pada_tiang_amp_div">
                         <label for="arus_pada_tiang_amp">{{ __('messages.Amp') }}</label>
-                        <input type="text" name="arus_pada_tiang_amp" id="arus_pada_tiang_amp" class="form-control" value="{{ $data->arus_pada_tiang_amp }}" required {{'disabled'}}>
+                        <input type="text" name="tiang_defect[current_leakage_val]" id="arus_pada_tiang_amp" disabled
+                            class="form-control" value="{{ $data->arus_pada_tiang_amp }}"
+                            required>
+
                     </div>
                 </div>
             </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4"><label
+                    for="">{{ __('messages.Inspection_of_current_leakage_on_the_umbang') }}
+                </label></div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <input type="radio" name="umbang_defect_current_leakage" id="arus_pada_umbgan_no"
+                            class="form-check" value="No" disabled
+                            {{ array_key_exists('current_leakage' , $data->umbang_defect) && $data->umbang_defect['current_leakage'] === false ? 'checked' : '' }}>
+                        <label for="arus_pada_umbgan_no">{{ __('messages.no') }}</label>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <input type="radio" name="umbang_defect_current_leakage" id="arus_pada_umbgan_yes"
+                            class="form-check" value="Yes" disabled
+                            {{ array_key_exists('current_leakage' , $data->umbang_defect) && $data->umbang_defect['current_leakage'] === true ? 'checked' : '' }}>
+
+                        <label for="arus_pada_umbgan_yes">{{ __('messages.yes') }}</label>
+                    </div>
+
+                    <div class="col-md-4 @if(!array_key_exists('current_leakage' , $data->umbang_defect) || $data->umbang_defect['current_leakage'] !== true) d-none @endif"
+                        id="arus_pada_umbgan_amp_div">
+                        <label for="arus_pada_tiang_amp">{{ __('messages.Amp') }}</label>
+                        <input type="text" name="umbang_defect[current_leakage_val]" id="arus_pada_tiang_amp" disabled
+                            class="form-control" value="{{array_key_exists('current_leakage_val' , $data->umbang_defect) ? $data->umbang_defect['current_leakage_val'] : ''}}"
+                            required>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </fieldset>
