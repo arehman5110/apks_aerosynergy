@@ -195,6 +195,8 @@ Route::group(
                 Route::get('/admin-get-all-counts', [AdminDashboard::class, 'getAllCounts'])->name('admin-get-all-counts');
                 Route::get('/get-all-counts', [GraphCounts::class, 'getAllCounts'])->name('get-all-counts');
                 Route::get('/admin-patrol_graph', [AdminDashboard::class, 'patrol_graph'])->name('admin-patrol_graph');
+                Route::get('/get-users-by-team', [AdminDashboard::class, 'getUsersByTeam'])->name('get-users-by-team');
+
 
 
 

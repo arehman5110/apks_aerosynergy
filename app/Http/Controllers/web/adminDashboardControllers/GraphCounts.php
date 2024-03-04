@@ -37,7 +37,7 @@ class GraphCounts extends Controller
       $data['cable_bridge']     = $this->getGraphCount('tbl_cable_bridge' , 'visit_date' , 'total_defects', $ba , $request );
       $data['tiang']            = $this->getGraphCount('tbl_savr' , 'review_date' , 'total_defects', $ba , $request);
 
-   $data['suryed_substation']       = $this->totalGraphCount('tbl_substation' , $ba ,'visit_date' , $request);
+      $data['suryed_substation']       = $this->totalGraphCount('tbl_substation' , $ba ,'visit_date' , $request);
       $data['suryed_feeder_pillar']    = $this->totalGraphCount('tbl_feeder_pillar' , $ba ,'visit_date' , $request );
       $data['suryed_link_box']         = $this->totalGraphCount('tbl_link_box', $ba ,'visit_date' , $request );
       $data['suryed_cable_bridge']     = $this->totalGraphCount('tbl_cable_bridge' , $ba ,'visit_date' , $request);
@@ -71,29 +71,28 @@ class GraphCounts extends Controller
             $sbar = "km as bar";
         }
 
-        $from_date  = $request->from_date;
-        $to_date    = $request->to_date;
+        // $from_date  = $request->from_date;
+        // $to_date    = $request->to_date;
         $query      = DB::table($table)
                         ->select('ba', DB::raw("$date::date as visit_date"), $sbar)
                         ->whereNotNull($date)
                         ->whereNotNull($bar)
                         ->where($bar, '<>', 0);
 
-                        if ($ba) {
-                            $query->where('ba', $ba);
-                        }
+                       $query =  $this->filter($query , $date , $request);
 
-                        if ($from_date) {
-                            $query->where($date, '>=', $from_date);
-                        }
-
-                        if ($to_date) {
-                            $query->where($date, '<=' , $to_date);
-                        }
-
-                        // if (Auth::user()->ba == '' && $bar != 'km') {
-                        //     $query->where('qa_status', 'Accept');
+                        // if ($ba) {
+                        //     $query->where('ba', $ba);
                         // }
+
+                        // if ($from_date) {
+                        //     $query->where($date, '>=', $from_date);
+                        // }
+
+                        // if ($to_date) {
+                        //     $query->where($date, '<=' , $to_date);
+                        // }
+
                         if ($bar != 'km') {
                             
                             $query->whereNotNull('qa_status') ->where('qa_status', '!=', '') ->where('qa_status', '!=', 'Reject')->groupBy('ba', DB::raw("$date::date"));
@@ -117,17 +116,19 @@ class GraphCounts extends Controller
                          ->where('qa_status', '!=', 'Reject')
                          ->whereNotNull('qa_status');
 
-                         if ($ba) {
-                             $query->where('ba', $ba);
-                         }
+                         $query =  $this->filter($query , $date , $request);
 
-                         if ($from_date) {
-                             $query->where($date, '>=', $from_date);
-                         }
+                        //  if ($ba) {
+                        //      $query->where('ba', $ba);
+                        //  }
 
-                         if ($to_date) {
-                             $query->where($date, '<=' , $to_date);
-                         }
+                        //  if ($from_date) {
+                        //      $query->where($date, '>=', $from_date);
+                        //  }
+
+                        //  if ($to_date) {
+                        //      $query->where($date, '<=' , $to_date);
+                        //  }
                         //  if (Auth::user()->ba == '') {
                         //    $query->where('qa_status','Accept');
                         //  }
@@ -144,8 +145,8 @@ class GraphCounts extends Controller
 
     private function getPendingCounts($table , $ba , $date, $request){
 
-        $from_date  = $request->from_date;
-        $to_date    = $request->to_date;
+        // $from_date  = $request->from_date;
+        // $to_date    = $request->to_date;
         $query      = DB::table($table)
                         ->select('ba', DB::raw("$date::date as visit_date"), DB::raw('count(*) as bar' ))
                         ->whereNotNull($date)
@@ -154,17 +155,20 @@ class GraphCounts extends Controller
 
                         ->whereNotNull('total_defects');
 
-                        if ($ba) {
-                            $query->where('ba', $ba);
-                        }
+                       $query =  $this->filter($query , $date , $request);
 
-                        if ($from_date) {
-                            $query->where($date, '>=', $from_date);
-                        }
 
-                        if ($to_date) {
-                            $query->where($date, '<=' , $to_date);
-                        }
+                        // if ($ba) {
+                        //     $query->where('ba', $ba);
+                        // }
+
+                        // if ($from_date) {
+                        //     $query->where($date, '>=', $from_date);
+                        // }
+
+                        // if ($to_date) {
+                        //     $query->where($date, '<=' , $to_date);
+                        // }
                         
                           $query->where('qa_status','pending');
                         

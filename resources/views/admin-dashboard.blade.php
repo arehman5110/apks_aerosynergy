@@ -42,83 +42,102 @@
     </style>
 @endsection
 @section('content')
+
+
     @if (Auth::user()->ba == '')
+
+        {{-- FILTER START --}}
         <div class=" px-4  mt-2  from-input  ">
             <div class="card p-0 mb-3">
                 <div class="card-body row">
 
-                    <div class=" col-md-3">
+                    {{-- ZONE --}}
+                    <div class=" col-md-2">
                         <label for="excelZone">Zone :</label>
                         <select name="excelZone" id="excelZone" class="form-control" onchange="getBa(this.value)">
-                            <option value="" hidden>
-                                Select Zone
-                            </option>
-
+                            <option value="" hidden>Select Zone</option>
                             <option value="W1">W1</option>
                             <option value="B1">B1</option>
                             <option value="B2">B2</option>
                             <option value="B4">B4</option>
-
                         </select>
                     </div>
-                    <div class=" col-md-3">
+
+                    {{-- BA --}}
+                    <div class=" col-md-2">
                         <label for="excelBa">BA :</label>
                         <select name="excelBa" id="excelBa" class="form-control" onchange="onChangeBA(this.value)">
 
-
                         </select>
                     </div>
+
+                    {{-- TEAM --}}
+                    <div class=" col-md-2">
+                        <label for="team">TEAM :</label>
+                        <select name="team" id="team" class="form-control" onchange="onChangeTeam(this.value)">
+                            <option value="" hidden>select team</option>
+                            @foreach ($teams as $team)
+                                <option value="{{$team->id}}">{{$team->team_name}}</option> 
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- USER --}}
+                    <div class=" col-md-2">
+                        <label for="excelBa">USER :</label>
+                        <select name="user" id="user" class="form-control" onchange="onChangeBA()">
+                            <option value="">select user</option>
+                        </select>
+                    </div>
+
+                    {{-- FROM DATE --}}
                     <div class=" col-md-2 form-input">
                         <label for="excel_from_date">From Date : </label>
-                        <input type="date" name="excel_from_date" id="excel_from_date" class="form-control"
-                            onchange="setMinDate(this.value)">
+                        <input type="date" name="excel_from_date" id="excel_from_date" class="form-control" onchange="setMinDate(this.value)">
                     </div>
+
+                    {{-- TO DATE --}}
                     <div class=" col-md-2 form-input">
                         <label for="excel_to_date">To Date : </label>
-                        <input type="date" name="excel_to_date" id="excel_to_date" onchange="setMaxDate(this.value)"
-                            class="form-control">
+                        <input type="date" name="excel_to_date" id="excel_to_date" onchange="setMaxDate(this.value)" class="form-control">
                     </div>
+
+                    {{-- RESET BUTTON --}}
                     <div class="col-md-2 pt-2">
                         <br>
                         <button class="btn btn-secondary  " type="button" onclick="resetDashboard()">Reset</button>
                     </div>
 
-
-
                 </div>
             </div>
         </div>
 
+        {{-- END FILTER --}}
 
 
-        <div class=" d-sm-flex px-4    ">
+
+        <div class=" d-sm-flex px-4 ">
+
+            {{-- TABLE COUNTS START --}}
             <div class="col-md-6 ">
-                
-            <div class="card p-0">
-                <div class="card-header">
-
-                    <h3 class="card-title">Total Pending and Surveyed</h3>
-
-                    <div class="card-tools">
-
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-
+                <div class="card p-0">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Pending and Surveyed</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
                     <div class="card-body from-input">
-
                         <div class="table-responsive  ">
                             <table class="table" id="stats_table_1">
                                 <thead>
                                     <tr>
-
                                         <th scope="col" >BA</th>
                                         <th scope="col" >Patroling(KM)</th>
                                         <th scope="col">Substation</th>
@@ -127,7 +146,6 @@
                                         <th scope="col">Link Box</th>
                                         <th scope="col">Cable Bridge</th>
                                     </tr>
-                            
                                 </thead>
 
                                 <tbody id='stats_table'>
@@ -141,8 +159,9 @@
                     </div>
                 </div>
             </div>
+            {{-- TABLE COUNTS END --}}
 
-           
+            {{-- MAP START --}}
             <div class="col-md-6">
                 <div class="card p-0">
                     <div class="card-header">
@@ -165,69 +184,58 @@
                     </div>
                 </div>
             </div>
-            </div>
+            {{-- MAP END --}}
+        </div>
          
     @endif
+
     <div class=" px-4 mt-2">
         <div class="row dashboard-counts">
-            {{-- <div class="col-md-2">
-        <div class="card p-3">
-
-                <h3 class="text-center">   3rd Party Digging </h3>
-                <p class="text-center mb-0 pb-0"><span>0</span></p>
-
-          </div>
-    </div> --}}
- 
+            {{-- PATROLLING START --}}
             <div class="col-md-12">
                 <div class="card card-success">
+
                     <div class="card-header">
                         <h3 class="card-title text-white">{{ __('messages.patroling') }}</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            
                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
+
                     <div class="card-body">
                         <div class="row">
+                            {{-- TOTAL PATROLLING DONE --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_patrollig_done') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span id="total_km"> </span> KM
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="total_km"> </span> KM</p>
                                 </div>
                             </div>
-
+                            {{-- TOTAL NOTICE GENERATED --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
-
                                     <h3 class="text-center">{{ __('messages.total_notice_generated') }} </h3>
                                     <p class="text-center mb-0 pb-0">
                                         <span id="total_notice"></span>
                                     </p>
-
                                 </div>
                             </div>
-
+                            {{-- TOTAL SUPERVISION --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_supervision') }} </h3>
                                     <p class="text-center mb-0 pb-0">
                                         <span id="total_supervision"></span>
                                     </p>
-
                                 </div>
                             </div>
 
- 
+                            {{-- PATROLLING BAR CAHRT --}}
                             <div class="col-md-12">
                                 <div class="card p-3">
                                     <div id="patrolling-container" class="high-chart" style="width:100%; height: 400px; margin: 0 auto"></div>
@@ -236,49 +244,46 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
+            {{-- PATROLLING END --}}
 
 
+            {{-- SUBSTATION START --}}
             <div class="col-md-12">
                 <div class="card card-warning">
+
                     <div class="card-header text-white">{{ __('messages.substation') }}</div>
+
                     <div class="card-body">
                         <div class="row">
+
+                            {{-- TOTAL SUBSTATION VISITED --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_substation_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="substation"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="substation"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL SUBSTATION DEFECTS --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_substation_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="substation_defect"></span></p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="substation_defect"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL SUBSTATION PENDING --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_substation_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="substation_pending"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="substation_pending"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL SUBSTATION ACCEPT --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_substation_accept') }}</h3>
                                     <p class="text-center mb-0 pb-0">
                                         <span id="substation_accept"></span>
@@ -287,108 +292,82 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-2">
-                                <div class="card p-3">
-
-                                    <h3 class="text-center"> {{ __('messages.total_substation_reject') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="substation_reject"></span>
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
+                            {{-- SURYED SUBSTATION --}}
                             <div class="col-md-4 ">
                                 <div class="card p-3">
                                     <div id="suryed_substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- SUBSTATION --}}
                             <div class="col-md-4 ">
                                 <div class="card p-3">
                                     <div id="substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- PENDING SUBSTATION --}}
                             <div class="col-md-4 ">
                                 <div class="card p-3">
                                     <div id="pending_substation-container" style="width:100%; height: 400px; margin: 0 auto"   class="high-chart" ></div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- SUBSTATION END --}}
 
+            {{-- FEEDER PILLAR START --}}
             <div class="col-md-12">
                 <div class="card card-info">
+
                     <div class="card-header">{{ __('messages.feeder_pillar') }}</div>
+
                     <div class="card-body">
                         <div class="row">
+
+                            {{-- TOTAL FEEDER PILLAR VISITED --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center">{{ __('messages.total_feeder_pillar_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="feeder_pillar"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL FEEDER PILLAR DEFECTS --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="feeder_pillar_defect"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_defect"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL FEEDER PILLAR PENDING --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="feeder_pillar_pending"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_pending"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL FEEDER PILLAR ACCEPT --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_feeder_pillar_accept') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="feeder_pillar_accept"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar_accept"></span></p>
                                 </div>
                             </div>
-{{-- 
-                            <div class="col-md-2">
-                                <div class="card p-3">
 
-                                    <h3 class="text-center"> {{ __('messages.total_feeder_pillar_reject') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="feeder_pillar_reject"></span>
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
+                            {{-- SURYED FEEDER PILLAR CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="suryed_feeder_pillar-container"
                                         style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
+
+                            {{-- FEEDER PILLAR CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="feeder_pillar-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
@@ -396,184 +375,147 @@
                                 </div>
                             </div>
 
+                            {{-- PENDING FEEDER PILLAR --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="pending_feeder_pillar-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" >
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- FEEDER PILLAR END --}}
 
+
+
+            {{-- TIANG START --}}
 
             <div class="col-md-12">
                 <div class="card card-success">
+
                     <div class="card-header">{{ __('messages.tiang') }}</div>
+
                     <div class="card-body">
                         <div class="row">
 
+                            {{-- TOTAL TIANG VISITED --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center">{{ __('messages.total_tiang_visited') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="tiang"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="tiang"></span></p>
                                 </div>
                             </div>
 
-
+                            {{-- TOTAL TIANG DEFECTS --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_tiang_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="tiang_defect"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="tiang_defect"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL TIANG PENDING --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_tiang_pending') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="tiang_pending"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="tiang_pending"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL TIANG ACCEPT --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_tiang_accept') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="tiang_accept"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="tiang_accept"></span></p>
                                 </div>
                             </div>
-{{-- 
-                            <div class="col-md-2">
-                                <div class="card p-3">
 
-                                    <h3 class="text-center"> {{ __('messages.total_tiang_reject') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="tiang_reject"></span>
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
-
+                            {{-- SURVEY TIANG CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="suryed_tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- TIANG CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- PENDING CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="pending_tiang-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- TIANG END --}}
 
+
+
+            {{-- LINK BOX START --}}
             <div class="col-md-12">
                 <div class="card card-primary">
+
                     <div class="card-header">{{ __('messages.link_box') }}</div>
+
                     <div class="card-body">
                         <div class="row">
+
+                            {{-- TOTAL LINK BOX --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_link_box_visited') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="link_box"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="link_box"></span></p>
                                 </div>
                             </div>
 
-
+                            {{-- TOTAL LINK BOX DEFECTS --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_link_box_defects') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="link_box_defect"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="link_box_defect"></span></p>
                                 </div>
                             </div>
 
-
+                            {{-- TOTAL LINK BOX PENDING --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_link_box_pending') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="link_box_pending"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="link_box_pending"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL LINK BOX ACCEPT --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_link_box_accept') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="link_box_accept"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="link_box_accept"></span></p>
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-2">
-                                <div class="card p-3">
-
-                                    <h3 class="text-center"> {{ __('messages.total_link_box_reject') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="link_box_reject"></span>
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
-
+                            {{-- SURVYED LINK BOX CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="suryed_link_box-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
+
+                            {{-- LINK BOX CHART --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="link_box-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- PENDING LINK BOX --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="pending_link_box-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
@@ -584,96 +526,79 @@
                     </div>
                 </div>
             </div>
+            {{-- LINK BOX END --}}
 
 
+
+            {{-- CABLE BRIDGE START --}}
             <div class="col-md-12">
                 <div class="card card-danger">
+
                     <div class="card-header"> {{ __('messages.cable_bridge') }}</div>
+
                     <div class="card-body">
                         <div class="row">
+
+                            {{-- TOTAL CABLE BRIDGE VISITED --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="cable_bridge"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge"></span></p>
                                 </div>
                             </div>
+
+                            {{-- TOTAL CABLE BRIDGE DEFECTS --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_defects') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="cable_bridge_defect"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge_defect"></span> </p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL CABLE BRIDGE PENDING --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_pending') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="cable_bridge_pending"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge_pending"></span></p>
                                 </div>
                             </div>
 
+                            {{-- TOTAL CABLE BRIDGE ACCEPT --}}
                             <div class="col-md-3">
                                 <div class="card p-3">
-
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_accept') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="cable_bridge_accept"></span>
-                                    </p>
-
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge_accept"></span></p>
                                 </div>
                             </div>
 
-
-                            {{-- <div class="col-md-2">
-                                <div class="card p-3">
-
-                                    <h3 class="text-center"> {{ __('messages.total_cable_bridge_reject') }} </h3>
-                                    <p class="text-center mb-0 pb-0">
-                                        <span id="cable_bridge_reject"></span>
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
-
+                            {{-- SURVYED CABLE BRIDGE --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
-                                    <div id="suryed_cable_bridge-container"
-                                        style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
+                                    <div id="suryed_cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
+
+                            {{-- CABLE BRIDGE --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
+                            {{-- PENDING CABLE BRIDGE --}}
                             <div class="col-md-4">
                                 <div class="card p-3">
                                     <div id="pending_cable_bridge-container" style="width:100%; height: 400px; margin: 0 auto" class="high-chart" ></div>
                                 </div>
                             </div>
 
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
+            {{-- CABLE BRIDGE END --}}
 
+        </div>
     </div>
 @endsection
 
@@ -697,32 +622,32 @@
     {{-- MAP START   --}}
 
     <script>
+
         var patroling = '';
-
         var patrol = [];
-
         var from_date = $('#excel_from_date').val();
         var to_date = $('#excel_to_date').val();
         var excel_ba = $('#search_ba').val();
 
         zoom = 9;
 
-        function addRemoveBundary(param, paramY, paramX) {
+        function addRemoveBundary(param, paramY, paramX) 
+        {
 
             var q_cql = "ba ILIKE '%" + param + "%' "
             var t_cql = q_cql;
             var p_cql = q_cql;
+
             if (from_date != '') {
                 q_cql = q_cql + "AND visit_date>=" + from_date;
                 t_cql = t_cql + "AND review_date>=" + from_date;
                 p_cql = p_cql + "AND vist_date>=" + from_date;
-
             }
+
             if (to_date != '') {
                 q_cql = q_cql + "AND visit_date<=" + to_date;
                 t_cql = t_cql + "AND review_date<=" + to_date;
                 p_cql = p_cql + "AND vist_date<=" + to_date;
-
 
             }
 
@@ -744,20 +669,17 @@
             map.addLayer(boundary)
             boundary.bringToFront()
 
-
-            // zoom to map
+        // ZOOM TO MAP
             map.flyTo([parseFloat(paramY), parseFloat(paramX)], zoom, {
                 duration: 1.5, // Animation duration in seconds
                 easeLinearity: 0.25,
             });
 
 
-            //  add patrolling layer
-
+        // PATROLLING 
             if (patroling !== '') {
                 map.removeLayer(patroling)
             }
-
 
             patroling = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
                 layers: 'cite:patroling_lines',
@@ -771,8 +693,8 @@
             map.addLayer(patroling)
             patroling.bringToFront()
 
-            // add pano layer
-
+        
+        // PANO LAYER
             if (pano_layer !== '') {
                 map.removeLayer(pano_layer)
             }
@@ -787,10 +709,7 @@
             });
 
 
-            // map.addLayer(pano_layer);
-
-            //  add work package
-
+        // WORK PACKAGE
             if (work_package) {
                 map.removeLayer(work_package);
             }
@@ -805,10 +724,9 @@
                 buffer: 10
             })
             map.addLayer(work_package)
-            // work_package.bringToFront()
 
 
-
+        // SUBSTATION WITH DEFECTS
             if (substation_with_defects != '') {
                 map.removeLayer(substation_with_defects)
             }
@@ -828,8 +746,7 @@
             substation_with_defects.bringToFront()
 
 
-
-
+        // SUBSTATION WITHOUT DEFECTS
             if (substation_without_defects != '') {
                 map.removeLayer(substation_without_defects)
             }
@@ -847,26 +764,23 @@
             substation_without_defects.bringToFront()
 
 
+        // SUBSTATION REJECT
+            if (sub_reject != '') { map.removeLayer(sub_reject) }
 
-            if (sub_reject != '') {
-                    map.removeLayer(sub_reject)
-                }
+            sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
+                layers: 'cite:sub_reject',
+                format: 'image/png',
+                cql_filter: q_cql,
+                maxZoom: 21,
+                transparent: true
+            }, {
+                buffer: 10
+            })
 
-                sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                    layers: 'cite:sub_reject',
-                    format: 'image/png',
-                    cql_filter: q_cql,
-                    maxZoom: 21,
-                    transparent: true
-                }, {
-                    buffer: 10
-                })
+            map.addLayer(sub_reject)
+            sub_reject.bringToFront()
 
-
-                map.addLayer(sub_reject)
-                sub_reject.bringToFront()
-
-
+        // SUBSTATION PENDING
                 if (sub_pending != '') {
                     map.removeLayer(sub_pending)
                 }
@@ -881,33 +795,11 @@
                     buffer: 10
                 })
 
-
                 map.addLayer(sub_pending)
                 sub_pending.bringToFront()
 
-                // if (unservey != '') {
-                //     map.removeLayer(unservey)
-                // }
-                // unservey = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
-                //     layers: 'cite:sub_unserveyed',
-                //     format: 'image/png',
-                //     cql_filter: "ba ILIKE '%" + param + "%'",
-                //     maxZoom: 21,
-                //     transparent: true
-                // }, {
-                //     buffer: 10
-                // })
 
-                // map.addLayer(unservey)
-                // unservey.bringToFront()
-
-
-
-
-
-
-
-
+        // FEEDER PILLAR DEFECTS
             if (fp_with_defects != '') {
                 map.removeLayer(fp_with_defects)
             }
@@ -926,6 +818,7 @@
             fp_with_defects.bringToFront()
 
 
+        // FEEDER PILLAR WITHOUT DEFECTS 
             if (fp_without_defects != '') {
                 map.removeLayer(fp_without_defects)
             }
@@ -944,6 +837,7 @@
             fp_without_defects.bringToFront()
 
 
+        // FEEDER PILLAR REJECT
             if (fp_reject != '') {
                 map.removeLayer(fp_reject)
             }
@@ -958,11 +852,11 @@
                 buffer: 10
             })
 
-
             map.addLayer(fp_reject)
             fp_reject.bringToFront()
 
-
+        
+        // FEEDER PILLAR PENDING
             if (fp_pending != '') {
                 map.removeLayer(fp_pending)
             }
@@ -1123,10 +1017,6 @@
             cb_with_defects.bringToFront()
 
 
-
-
-
-
             // addpanolayer();
             addGroupOverLays()
 
@@ -1142,12 +1032,12 @@
 
 
 
-        function addGroupOverLays() {
+        function addGroupOverLays() 
+        {
             if (layerControl != '') {
-                // console.log("inmsdanssdkjnasjnd");
                 map.removeControl(layerControl);
             }
-            // console.log("sdfsdf");
+            
             groupedOverlays = {
                 "POI": {
                     'Boundary': boundary,
@@ -1232,7 +1122,8 @@
         }
 
 
-        function mainBarChart(cat, series, id, tName) {
+        function mainBarChart(cat, series, id, tName) 
+        {
             var barName = '';
             var titleName = 'Total ' + tName;
             if (id == "patrolling-container") {
@@ -1288,54 +1179,47 @@
 
 
 
-        function getDateCounts() {
+        function getDateCounts() 
+        {
 
-            var cu_ba = $('#excelBa').val() ?? 'null';
-            var from_datee = $('#excel_from_date').val() ?? '';
-            var to_datee = $('#excel_to_date').val() ?? '';
-
+            var cu_ba       = $('#excelBa').val() ?? 'null';
+            var from_datee  = $('#excel_from_date').val() ?? '';
+            var to_datee    = $('#excel_to_date').val() ?? '';
+            let team        = $('#team').val();
+            let user        = $('#user').val();
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}`,
-
+                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
-                success: function callback(data) {
-
-
+                success: function callback(data) 
+                {
                     if (data && data['patrolling'] != '') {
                         makeArray(data['patrolling'], 'patrolling-container', '')
                     }
 
                     const counts = ['substation' , 'feeder_pillar' , 'link_box' , 'cable_bridge' , 'tiang']
 
-                    for (let index = 0; index < 5; index++) {
-
-
+                    for (let index = 0; index < 5; index++) 
+                    {
                         makeArray(data[counts[index]] , `${counts[index]}-container` , "Defects" );
-
                         makeArray(data['suryed_'+counts[index]] , `suryed_${counts[index]}-container` , "Visited" );
-
                         makeArray(data['pending_'+counts[index]] , `pending_${counts[index]}-container` , "Pending" );
-
-                        
                     }
-
-
                 }
             });
 
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}`,
+                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
-                success: function callback(data) {
-
+                success: function callback(data) 
+                {
                     for (var key in data) {
                         $("#" + key).html(data[key]);
                     }
@@ -1345,9 +1229,8 @@
 
         }
 
-        function makeTotalArray(arr, id) {
-
-            console.log(arr);
+        function makeTotalArray(arr, id) 
+        {
             var cate = arr.map(item => item.ba);
             var seriesD = arr.map(item => item.count);
 
@@ -1363,7 +1246,8 @@
         }
 
 
-        function makeArray(data, id, tName) {
+        function makeArray(data, id, tName) 
+        {
 
 
             var series = [];
@@ -1426,9 +1310,11 @@
     {{-- COUNTS START --}}
 
     <script>
-        function getAllStats() {
+        function getAllStats() 
+        {
             let todaydate = '{{ date('Y-m-d') }}';
-
+            let team = $('#team').val();
+            let user = $('#user').val();
 
 
             var cu_ba = $('#excelBa').val() ?? 'null';
@@ -1443,15 +1329,16 @@
                 var to_datee = $('#excel_to_date').val();
             }
 
+            
+
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
                 success: function callback(data) {
                     var table = data.data;
                     var table_footer = data.sum;
-                    // console.log(data.sum.substation.pending);
 
                     // Destroy existing DataTable instance (if any)
 
@@ -1462,17 +1349,20 @@
                     var str = '';
                     
 
-                    for (var i = 0; i < table.length; i++) {
-                        str += '<tr><td>' + table[i].ba + '</td><td>' + table[i].patroling + '</td><td>' +
-                            table[i].substation + '</td><td>' + table[i].feeder_pillar + '</td><td>' + table[i]
-                            .tiang + '</td><td>' +
-                                table[i].link_box + '</td><td>' + table[i].cable_bridge + '</td></tr>';
-
-                      
+                    for (var i = 0; i < table.length; i++) 
+                    {
+                        str += `<tr>
+                                    <td>${table[i].ba}</td>
+                                    <td>${table[i].patroling}</td>
+                                    <td>${table[i].substation}</td>
+                                    <td>${table[i].feeder_pillar}</td>
+                                    <td>${table[i].tiang}</td>
+                                    <td>${table[i].link_box}</td>
+                                    <td>${table[i].cable_bridge}</td>
+                                </tr>`;
                     }
 
                     $('#stats_table').html(str);
-
 
 
                     var str2 = '<tr><th>Total</th>';
@@ -1485,8 +1375,6 @@
                         str2 += `<th>${table_footer.cable_bridge.pending} / ${table_footer.cable_bridge.surveyed} </th>`;
                         str += '</tr>'
 
-
-                    
 
                     $('#stats_table_footer').html(str2);
 
@@ -1503,9 +1391,10 @@
         }
 
 
-        function resetDashboard() {
+        function resetDashboard() 
+        {
             $('#excelBa').empty();
-            $('#excel_from_date, #excel_to_date ').val('');
+            $('#excel_from_date, #excel_to_date , #team , #user').val('');
             onChangeBA();
             from_date = '';
             to_date = '';
@@ -1515,13 +1404,37 @@
             } else {
                 callLayers(ba);
             }
-            // $("#excelBa").val($("#excelBa option:first").val());
         }
 
 
         setTimeout(() => {
             getDateCounts();
         }, 1000);
+
+
+        function onChangeTeam(team)
+        {
+            $.ajax({
+                url: `/{{ app()->getLocale() }}/get-users-by-team?team=${team}`,
+                dataType: 'JSON',
+                method: 'GET',
+                async: false,
+                success: function callback(response) 
+                {
+                    var data = response.data
+                    console.log(data);
+                    onChangeBA()
+                    $('#user').find('option').remove();
+                    $('#user').append(`<option value="" hidden>select user</option>`)
+                    for (let index = 0; index < data.length; index++) {
+                        const element = data[index];
+                        $('#user').append(`<option value="${element.name}">${element.name}</option>`)
+                        
+                    }
+                }
+            })
+
+        }
     </script>
 
     {{-- COUNTS END --}}

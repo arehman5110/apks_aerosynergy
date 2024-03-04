@@ -240,6 +240,24 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="user_type">User Type</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="user_type" id="user_type" class="form-control" required>
+                                    <option value="" hidden>select user type</option>
+                                    <option value="aerosynergy" >Aerosynergy</option>
+                                    <option value="tnb" >tnb</option>
+                                    <option value="" >apks</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        
+
 
                         <div class="row">
                             <div class="col-md-4">

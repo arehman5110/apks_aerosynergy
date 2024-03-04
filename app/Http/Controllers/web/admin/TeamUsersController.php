@@ -52,14 +52,14 @@ class TeamUsersController extends Controller
                 ->with('failed', 'Request Failed ! Email or Username is already in use');
             }
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'id_team' => $request->id_team,
-                'password' => Hash::make($request->password),
-                'is_admin' => false,
-                'zone'=>$request->zone,
-                'ba'=>$request->ba,
-
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'id_team'   => $request->id_team,
+                'password'  => Hash::make($request->password),
+                'is_admin'  => false,
+                'zone'      => $request->zone,
+                'ba'        => $request->ba,
+                'user_type' => $request->user_type,
             ]);
             return redirect()
                 ->route('team-users.index' , app()->getLocale())
