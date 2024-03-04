@@ -4,7 +4,9 @@ namespace App\Http\Controllers\web\adminDashboardControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Patroling;
+use App\Models\Team;
 use App\Models\ThirdPartyDiging;
+use App\Models\User;
 use App\Traits\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +21,7 @@ class AdminDashboard extends Controller
     public function index(Request $request){
  
 
-            return view('admin-dashboard');
+            return view('admin-dashboard',['teams'=>Team::all()]);
 
        
     }
@@ -29,18 +31,9 @@ class AdminDashboard extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
     public function getAllCounts(Request $request)
     {
+   
 
     //   return  Substation::where('qa_status','Accept')->whereNotNull('qa_status')->where('qa_status', '!=', '')->count();
         try {
@@ -65,11 +58,11 @@ class AdminDashboard extends Controller
     
     
                  $query = $this->filter($query, $column, $request);
-
+                 
     
-                 $count = clone $query;
-                 $accept = clone $query;
-                 $defect = clone $query;
+                 $count   = clone $query;
+                 $accept  = clone $query;
+                 $defect  = clone $query;
                  $pending = Clone $query;
                 //  $reject = Clone $query;
 
@@ -82,7 +75,7 @@ class AdminDashboard extends Controller
 
                  // Sum total_defects
                  $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
-    
+
                  $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
                 //  $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
              
@@ -143,15 +136,17 @@ class AdminDashboard extends Controller
 
 
         if ( $request->ba_name != 'null' ) {
-            $bas = [];
+                $bas = [];
                 $bas = [$request->ba_name];
         }
+        
         $data = [];
         $sum = [];
 
 
        
-        foreach ($bas as $ba) {
+        foreach ($bas as $ba) 
+        {
             $request['ba'] = $ba;
             $count = [];
             $count['ba'] = $ba;
@@ -161,6 +156,7 @@ class AdminDashboard extends Controller
     
                 // Clone the original query for each table
                 $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
+
     
                 $accept = $query->count();
                 $pending = $query->where('qa_status', '!=',  'pending')->count();
@@ -181,28 +177,26 @@ class AdminDashboard extends Controller
                 $count[$tableKey] =  $pending. ' / ' .  $accept;
             }
     
-    
+                $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request);
 
-                $count['patroling'] = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request)->sum('km');
-
-
+                
+                $count['patroling'] = $patroling->sum('km');
+                
                 if (!isset($sum['patroling'])) {
                     $sum['patroling'] = 0;
                 }
 
                 $sum['patroling'] += $count['patroling'];
-
-
                 $data[] = $count;
-
         }
-
         return response()->json(['data'=>$data , 'sum'=>$sum] );
-
-       
-
     }
 
+
+    public function getUsersByTeam(Request $req)
+    {
+        return response()->json(['data'=>User::where('id_team', $req->team)->select('id' , 'name')->get()]);
+    }
 
 
 

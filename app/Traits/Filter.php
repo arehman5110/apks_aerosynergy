@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 trait Filter
@@ -42,6 +43,14 @@ trait Filter
         if ($request->filled('to_date')) {
             $model->where($column, '<=', $request->to_date);
         }
+
+        if ($request->filled('user')) {
+            $model->where('created_by' , $request->user);
+        }elseif (!empty($request->team)) {
+            $users = User::where('id_team', $request->team)->pluck('name');
+            $model->whereIn('created_by' , $users);
+        }
+
 
         // if auth ba is empty then add two more conditions
         // if (Auth::user()->ba == '') {
@@ -95,6 +104,13 @@ trait Filter
 
         if ($request->filled('to_date')) {
             $model->where($column, '<=', $request->to_date);
+        }
+
+        if ($request->filled('user')) {
+            $model->where('created_by' , $request->user);
+        }elseif (!empty($request->team)) {
+            $users = User::where('id_team', $request->team)->pluck('name');
+            $model->whereIn('created_by' , $users);
         }
 
         return $model;

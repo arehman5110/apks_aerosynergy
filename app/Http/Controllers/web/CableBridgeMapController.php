@@ -22,10 +22,6 @@ class CableBridgeMapController extends Controller
 
     public function update(Request $request, $language, $id)
     {
-        //
-
-
-
         try {
             $currentDate = Carbon::now()->toDateString();
             $combinedDateTime = $currentDate . ' ' . $request->patrol_time;
