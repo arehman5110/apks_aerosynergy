@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Traits\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\Util\Cloner;
 
 class AdminDashboard extends Controller
 {
@@ -19,24 +18,14 @@ class AdminDashboard extends Controller
 
 
     public function index(Request $request){
- 
-
-            return view('admin-dashboard',['teams'=>Team::all()]);
-
-       
+        return view('admin-dashboard',['teams'=>Team::all()]);   
     }
-
-
-
-
 
 
     public function getAllCounts(Request $request)
     {
-   
-
-    //   return  Substation::where('qa_status','Accept')->whereNotNull('qa_status')->where('qa_status', '!=', '')->count();
-        try {
+        try 
+        {
             // $this->filter  is trait  this function taking 3 params (1) model query (2)column name (3) $request that contains  visit_date from-to date nad ba
             // traits return filtered orms and after filtered count
 
@@ -47,41 +36,31 @@ class AdminDashboard extends Controller
                 'link_box' => 'tbl_link_box',
                 'cable_bridge' => 'tbl_cable_bridge',
             ];
-       
-     
-             $data = [];
     
-             foreach ($tables as $key => $tableName) {
-                 $query = DB::table($tableName);
+            $data = [];
+    
+            foreach ($tables as $key => $tableName) 
+            {
+                $query = DB::table($tableName);
 
-                 $column = $key == 'tiang' ? 'review_date' : 'visit_date';
-    
-    
-                 $query = $this->filter($query, $column, $request);
-                 
-    
-                 $count   = clone $query;
-                 $accept  = clone $query;
-                 $defect  = clone $query;
-                 $pending = Clone $query;
-                //  $reject = Clone $query;
-
-      
-                 $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
-
-                 $data[$key] = $count->count(); // Count records
+                $column = $key == 'tiang' ? 'review_date' : 'visit_date';
+                $query = $this->filter($query, $column, $request);
                 
+                $count   = clone $query;
+                $accept  = clone $query;
+                $defect  = clone $query;
+                $pending = Clone $query;
 
+                $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
 
-                 // Sum total_defects
-                 $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
-
-                 $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
-                //  $data[$key.'_reject'] = $reject->where('qa_status','Reject')->count();
+                $data[$key] = $count->count(); // Count records
+            
+                // Sum total_defects
+                $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
+                $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
              
-             }
+            }
        
-    
                 $data['total_km'] = $this->filterWithOutAccpet(Patroling::select(DB::raw('sum(km)')), 'vist_date', $request)->first()->sum;
                 $data['total_notice'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('notice', 'yes'), 'survey_date', $request)->count();
                 $data['total_supervision'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('supervision', 'yes'), 'survey_date', $request)->count();
@@ -98,19 +77,8 @@ class AdminDashboard extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    function statsTable(Request $request){
+    public function statsTable(Request $request)
+    {
         $bas = [
             'RAWANG',
             'KUALA LUMPUR PUSAT',
@@ -134,7 +102,6 @@ class AdminDashboard extends Controller
             'cable_bridge' => 'tbl_cable_bridge',
         ];
 
-
         if ( $request->ba_name != 'null' ) {
                 $bas = [];
                 $bas = [$request->ba_name];
@@ -143,8 +110,6 @@ class AdminDashboard extends Controller
         $data = [];
         $sum = [];
 
-
-       
         foreach ($bas as $ba) 
         {
             $request['ba'] = $ba;
@@ -157,7 +122,6 @@ class AdminDashboard extends Controller
                 // Clone the original query for each table
                 $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
 
-    
                 $accept = $query->count();
                 $pending = $query->where('qa_status', '!=',  'pending')->count();
     

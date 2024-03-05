@@ -15,13 +15,7 @@ class GraphCounts extends Controller
     //
     use Filter;
 
-
-
-
-
-
-
-
+    
     function patrol_graph(Request $request)
     {
         $ba = Auth::user()->ba;
@@ -73,34 +67,19 @@ class GraphCounts extends Controller
 
         // $from_date  = $request->from_date;
         // $to_date    = $request->to_date;
-        $query      = DB::table($table)
-                        ->select('ba', DB::raw("$date::date as visit_date"), $sbar)
-                        ->whereNotNull($date)
+        $query      = DB::table($table)->select('ba', DB::raw("$date::date as visit_date"), $sbar)->whereNotNull($date)
                         ->whereNotNull($bar)
                         ->where($bar, '<>', 0);
 
-                       $query =  $this->filter($query , $date , $request);
+        $query =  $this->filter($query , $date , $request);
 
-                        // if ($ba) {
-                        //     $query->where('ba', $ba);
-                        // }
+        if ($bar != 'km') {
+            $query->whereNotNull('qa_status') ->where('qa_status', '!=', '') ->where('qa_status', '!=', 'Reject')->groupBy('ba', DB::raw("$date::date"));
+        }
 
-                        // if ($from_date) {
-                        //     $query->where($date, '>=', $from_date);
-                        // }
+        $query->orderBy($date , 'desc');
 
-                        // if ($to_date) {
-                        //     $query->where($date, '<=' , $to_date);
-                        // }
-
-                        if ($bar != 'km') {
-                            
-                            $query->whereNotNull('qa_status') ->where('qa_status', '!=', '') ->where('qa_status', '!=', 'Reject')->groupBy('ba', DB::raw("$date::date"));
-                        }
-
-                        $query->orderBy($date , 'desc');
-
-            return $query->get();
+        return $query->get();
     }
 
     private function totalGraphCount($table , $ba , $date, $request){

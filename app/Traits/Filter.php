@@ -16,18 +16,13 @@ trait Filter
 
         // request contains param like from-to date ,ba , status ect...
 
-        //$ba = $request->filled('ba') ? $request->ba : Auth::user()->ba;
-
-      //  dd($request);
         $ba = Auth::user()->ba;
         if ($ba == ''  && $request->ba != 'null') {
-                $ba = $request->ba;
-               // return $ba;
+            $ba = $request->ba;
         }
 
-     //   dd($ba);
-
         //cheeck if request has ba and ba is not empty then  add where ba = request ba
+
         if (!empty($ba)) {
             $model->where('ba', $ba);
         }
@@ -46,19 +41,12 @@ trait Filter
 
         if ($request->filled('user')) {
             $model->where('created_by' , $request->user);
-        }elseif (!empty($request->team)) {
-            $users = User::where('id_team', $request->team)->pluck('name');
-            $model->whereIn('created_by' , $users);
         }
 
-
         // if auth ba is empty then add two more conditions
-        // if (Auth::user()->ba == '') {
             $model->whereNotNull($column);
             $model->where('qa_status' , '!=' , 'Reject');
 
-            // $model->whereNotNull($column);
-        // }
 
         // if request has status
         if ($request->filled('status')) {
@@ -94,7 +82,7 @@ trait Filter
                // return $ba;
         }
 
-         if (!empty($ba)) {
+        if (!empty($ba)) {
             $model->where('ba', $ba);
         }
 

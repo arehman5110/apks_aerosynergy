@@ -635,8 +635,15 @@
         {
 
             var q_cql = "ba ILIKE '%" + param + "%' "
+            var user  = $('#user').val(); 
             var t_cql = q_cql;
             var p_cql = q_cql;
+
+            if (user != '') {
+                q_cql = q_cql + " AND created_by='" + user+"' ";
+                t_cql = t_cql + " AND created_by='" + user+"' ";
+                p_cql = p_cql + " AND created_by='" + user+"' ";
+            }
 
             if (from_date != '') {
                 q_cql = q_cql + "AND visit_date>=" + from_date;
@@ -1185,12 +1192,12 @@
             var cu_ba       = $('#excelBa').val() ?? 'null';
             var from_datee  = $('#excel_from_date').val() ?? '';
             var to_datee    = $('#excel_to_date').val() ?? '';
-            let team        = $('#team').val();
+            // let team        = $('#team').val();
             let user        = $('#user').val();
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1214,7 +1221,7 @@
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1313,7 +1320,7 @@
         function getAllStats() 
         {
             let todaydate = '{{ date('Y-m-d') }}';
-            let team = $('#team').val();
+            // let team = $('#team').val();
             let user = $('#user').val();
 
 
@@ -1332,7 +1339,7 @@
             
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&team=${team}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1423,7 +1430,6 @@
                 {
                     var data = response.data
                     console.log(data);
-                    onChangeBA()
                     $('#user').find('option').remove();
                     $('#user').append(`<option value="" hidden>select user</option>`)
                     for (let index = 0; index < data.length; index++) {
