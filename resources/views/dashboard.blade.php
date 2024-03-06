@@ -20,7 +20,6 @@
             color: #7379AE;
             font-size: 20px !important;
         }
-
         .accordion .card {
             background: #d1cfcf14;
         }
@@ -42,7 +41,6 @@
     </style>
 @endsection
 @section('content')
-
     <div class=" px-4 mt-2">
         <div class="row dashboard-counts">
             {{-- <div class="col-md-2">
@@ -73,8 +71,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center">{{ __('messages.total_notice_generated') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="total_notice"></span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="total_notice"></span></p>
 
                                 </div>
                             </div>
@@ -83,8 +80,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_supervision') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="total_supervision"></span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="total_supervision"></span></p>
 
                                 </div>
                             </div>
@@ -92,10 +88,10 @@
 
 
                             <!-- <div class="col-md-6">
-                                                            <div class="card p-3">
-                                                            <div id="suryed_patrolling-container" style="width:100%; height: 400px; margin: 0 auto"></div>
-                                                            </div>
-                                                        </div> -->
+                                                                <div class="card p-3">
+                                                                <div id="suryed_patrolling-container" style="width:100%; height: 400px; margin: 0 auto"></div>
+                                                                </div>
+                                                            </div> -->
 
                             <div class="col-md-12">
                                 <div class="card p-3">
@@ -127,8 +123,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_substation_defects') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="substation_defects"> </span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="substation_defects"> </span></p>
 
                                 </div>
                             </div>
@@ -136,8 +131,8 @@
 
                             <div class="col-md-6">
                                 <div class="card p-3">
-                                    <div id="suryed_substation-container"
-                                        style="width:100%; height: 400px; margin: 0 auto"></div>
+                                    <div id="suryed_substation-container" style="width:100%; height: 400px; margin: 0 auto">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -163,8 +158,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center">{{ __('messages.total_feeder_pillar_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="feeder_pillar"> </span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="feeder_pillar"> </span></p>
 
                                 </div>
                             </div>
@@ -295,8 +289,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_visited') }}</h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge"></span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge"></span></p>
 
                                 </div>
                             </div>
@@ -304,8 +297,7 @@
                                 <div class="card p-3">
 
                                     <h3 class="text-center"> {{ __('messages.total_cable_bridge_defects') }} </h3>
-                                    <p class="text-center mb-0 pb-0"><span
-                                            id="cable_bridge_defect"> </span></p>
+                                    <p class="text-center mb-0 pb-0"><span id="cable_bridge_defect"> </span></p>
 
                                 </div>
                             </div>
@@ -352,8 +344,6 @@
 
 
     <script>
-
-
         var from_date = $('#excel_from_date').val();
         var to_date = $('#excel_to_date').val();
         var excel_ba = $('#search_ba').val();

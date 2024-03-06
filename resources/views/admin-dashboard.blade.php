@@ -1251,8 +1251,8 @@
             var cu_ba       = $('#excelBa').val() ?? 'null';
             var from_datee  = $('#excel_from_date').val() ?? '';
             var to_datee    = $('#excel_to_date').val() ?? '';
-             let team        = $('#team').val();
-            let user        = $('#user').val();
+            let team =$('#team').length > 0 ? $('#team').val() : ''
+            let user =$('#user').length > 0 ? $('#user').val() : ''
 
 
             $.ajax({
@@ -1379,8 +1379,9 @@
         function getAllStats()
         {
             let todaydate = '{{ date('Y-m-d') }}';
-            let team = $('#team').val();
-            let user = $('#user').val();
+            let team =$('#team').length > 0 ? $('#team').val() : ''
+            let user =$('#user').length > 0 ? $('#user').val() : ''
+
 
 
             var cu_ba = $('#excelBa').val() ?? 'null';

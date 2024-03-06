@@ -165,7 +165,7 @@ class AdminDashboard extends Controller
            $user->where('ba' , $req->ba_name);
         }
         
-        $user = $user->select('id' , 'name')->get();
+    $user = $user->select('id' , 'name')->get();
 
         return response()->json(['data'=>$user]);
     }
