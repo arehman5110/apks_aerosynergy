@@ -77,7 +77,7 @@
                         <select name="team" id="team" class="form-control" onchange="onChangeTeam(this.value)">
                             <option value="" hidden>select team</option>
                             @foreach ($teams as $team)
-                                <option value="{{$team->id}}">{{$team->team_name}}</option> 
+                                <option value="{{$team->id}}">{{$team->team_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -166,12 +166,12 @@
                 <div class="card p-0">
                     <div class="card-header">
                         <h3 class="card-title">Map</h3>
-                        
+
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            
+
                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -186,7 +186,7 @@
             </div>
             {{-- MAP END --}}
         </div>
-         
+
     @endif
 
     <div class=" px-4 mt-2">
@@ -244,7 +244,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
             {{-- PATROLLING END --}}
 
 
@@ -631,11 +631,11 @@
 
         zoom = 9;
 
-        function addRemoveBundary(param, paramY, paramX) 
+        function addRemoveBundary(param, paramY, paramX)
         {
 
             var q_cql = "ba ILIKE '%" + param + "%' "
-            var user  = $('#user').val(); 
+            var user  = $('#user').val();
             var t_cql = q_cql;
             var p_cql = q_cql;
 
@@ -683,7 +683,7 @@
             });
 
 
-        // PATROLLING 
+        // PATROLLING
             if (patroling !== '') {
                 map.removeLayer(patroling)
             }
@@ -700,7 +700,7 @@
             map.addLayer(patroling)
             patroling.bringToFront()
 
-        
+
         // PANO LAYER
             if (pano_layer !== '') {
                 map.removeLayer(pano_layer)
@@ -825,7 +825,7 @@
             fp_with_defects.bringToFront()
 
 
-        // FEEDER PILLAR WITHOUT DEFECTS 
+        // FEEDER PILLAR WITHOUT DEFECTS
             if (fp_without_defects != '') {
                 map.removeLayer(fp_without_defects)
             }
@@ -862,7 +862,7 @@
             map.addLayer(fp_reject)
             fp_reject.bringToFront()
 
-        
+
         // FEEDER PILLAR PENDING
             if (fp_pending != '') {
                 map.removeLayer(fp_pending)
@@ -1039,12 +1039,12 @@
 
 
 
-        function addGroupOverLays() 
+        function addGroupOverLays()
         {
             if (layerControl != '') {
                 map.removeControl(layerControl);
             }
-            
+
             groupedOverlays = {
                 "POI": {
                     'Boundary': boundary,
@@ -1121,7 +1121,7 @@
             // clear all charts
 
             $('.high-chart').html('');
-            
+
 
             getDateCounts();
             getAllStats();
@@ -1129,7 +1129,7 @@
         }
 
 
-        function mainBarChart(cat, series, id, tName) 
+        function mainBarChart(cat, series, id, tName)
         {
             var barName = '';
             var titleName = 'Total ' + tName;
@@ -1186,22 +1186,22 @@
 
 
 
-        function getDateCounts() 
+        function getDateCounts()
         {
 
             var cu_ba       = $('#excelBa').val() ?? 'null';
             var from_datee  = $('#excel_from_date').val() ?? '';
             var to_datee    = $('#excel_to_date').val() ?? '';
-            // let team        = $('#team').val();
+             let team        = $('#team').val();
             let user        = $('#user').val();
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
-                success: function callback(data) 
+                success: function callback(data)
                 {
                     if (data && data['patrolling'] != '') {
                         makeArray(data['patrolling'], 'patrolling-container', '')
@@ -1209,7 +1209,7 @@
 
                     const counts = ['substation' , 'feeder_pillar' , 'link_box' , 'cable_bridge' , 'tiang']
 
-                    for (let index = 0; index < 5; index++) 
+                    for (let index = 0; index < 5; index++)
                     {
                         makeArray(data[counts[index]] , `${counts[index]}-container` , "Defects" );
                         makeArray(data['suryed_'+counts[index]] , `suryed_${counts[index]}-container` , "Visited" );
@@ -1221,11 +1221,11 @@
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
-                success: function callback(data) 
+                success: function callback(data)
                 {
                     for (var key in data) {
                         $("#" + key).html(data[key]);
@@ -1236,7 +1236,7 @@
 
         }
 
-        function makeTotalArray(arr, id) 
+        function makeTotalArray(arr, id)
         {
             var cate = arr.map(item => item.ba);
             var seriesD = arr.map(item => item.count);
@@ -1253,7 +1253,7 @@
         }
 
 
-        function makeArray(data, id, tName) 
+        function makeArray(data, id, tName)
         {
 
 
@@ -1317,10 +1317,10 @@
     {{-- COUNTS START --}}
 
     <script>
-        function getAllStats() 
+        function getAllStats()
         {
             let todaydate = '{{ date('Y-m-d') }}';
-            // let team = $('#team').val();
+             let team = $('#team').val();
             let user = $('#user').val();
 
 
@@ -1336,10 +1336,10 @@
                 var to_datee = $('#excel_to_date').val();
             }
 
-            
+
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1354,9 +1354,9 @@
                     }
 
                     var str = '';
-                    
 
-                    for (var i = 0; i < table.length; i++) 
+
+                    for (var i = 0; i < table.length; i++)
                     {
                         str += `<tr>
                                     <td>${table[i].ba}</td>
@@ -1398,7 +1398,7 @@
         }
 
 
-        function resetDashboard() 
+        function resetDashboard()
         {
             $('#excelBa').empty();
             $('#excel_from_date, #excel_to_date , #team , #user').val('');
@@ -1426,7 +1426,7 @@
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
-                success: function callback(response) 
+                success: function callback(response)
                 {
                     var data = response.data
                     console.log(data);
@@ -1435,8 +1435,10 @@
                     for (let index = 0; index < data.length; index++) {
                         const element = data[index];
                         $('#user').append(`<option value="${element.name}">${element.name}</option>`)
-                        
+
+
                     }
+                    onChangeBA()
                 }
             })
 
