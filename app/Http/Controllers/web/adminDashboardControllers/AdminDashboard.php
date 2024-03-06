@@ -159,7 +159,95 @@ class AdminDashboard extends Controller
 
     public function getUsersByTeam(Request $req)
     {
-        return response()->json(['data'=>User::where('id_team', $req->team)->select('id' , 'name')->get()]);
+        $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb'])
+        ->orWhere('users.user_type' , null);
+        if ($req->filled('ba_name') && $req->ba_name != 'null') {
+           $user->where('ba' , $req->ba_name);
+        }
+        
+        $user = $user->select('id' , 'name')->get();
+
+        return response()->json(['data'=>$user]);
+    }
+
+
+
+    // GET COUNTS BY USER NAME
+    public function getStatsByUsers(Request $request) 
+    {
+         $users = User::join('tbl_team', 'users.id_team', '=', 'tbl_team.id')
+        ->where('users.is_admin', false)
+        ->whereNotIn('users.user_type', ['aerosynergy', 'tnb'])
+        ->orWhere('users.user_type' , null);
+        if ($request->filled('ba_name') && $request->ba_name != 'null') {
+            $users->where('users.ba',$request->ba_name);
+        }
+        if ($request->filled('team') && $request->team != 'null') {
+            $users->where('users.id_team',$request->team);
+        }
+        if ($request->filled('user') && $request->user != 'null') {
+            $users->where('users.name',$request->user);
+        }
+       $users = $users->select('users.name', 'tbl_team.team_name as team_name')
+       ->get();
+   
+    
+        $bas = ['RAWANG', 'KUALA LUMPUR PUSAT', 'KLANG', 'KUALA SELANGOR', 'PELABUHAN KLANG', 'BANGI', 'CHERAS',
+            'BANTING',
+            'PUTRAJAYA & CYBERJAYA',
+            'PETALING JAYA',
+            'SEPANG',
+            'PUCHONG'
+        ];
+
+        $tables = [
+            'substation' => 'tbl_substation',
+            'feeder_pillar' => 'tbl_feeder_pillar',
+            'tiang' => 'tbl_savr',
+            'link_box' => 'tbl_link_box',
+            'cable_bridge' => 'tbl_cable_bridge',
+        ];
+
+ 
+        $sum = [];
+ 
+        foreach($users as $user){
+            // return $user;
+        
+            $arr = [];
+            $arr['name'] =$user->name;
+        
+                foreach ($tables as $tableKey => $tableName) {
+                    $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
+        
+                    // Clone the original query for each table
+                    $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status')->where('created_by' , $user->name);
+
+                    $userCount = $query->count();
+        
+                    // Initialize sum for the table if it's not set
+                    
+                  
+                    // Push the new key-value pair into the nested array
+                    $arr[$tableKey] =  $userCount;
+                    
+                    
+                
+                    
+                }
+                
+            
+    
+                $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request)->where('created_by' , $user->name);
+
+                
+                $countPatroling = $patroling->sum('km');
+                $arr['patroling'] = $countPatroling;
+                $sum[] = $arr;
+      
+        }
+        return response()->json(['data'=>$sum] );
+ 
     }
 
 

@@ -39,6 +39,21 @@
 
             border: 0px;
         }
+        .table-responsive::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the track */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #9f9f9f; /* Set the color of the thumb */
+  border-radius: 6px; /* Add rounded corners to the thumb */
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #747474; /* Change the color on hover */
+}
     </style>
 @endsection
 @section('content')
@@ -116,7 +131,7 @@
 
 
 
-        <div class=" d-sm-flex px-4 ">
+        <div class=" row px-4 ">
 
             {{-- TABLE COUNTS START --}}
             <div class="col-md-6 ">
@@ -134,11 +149,11 @@
                     </div>
 
                     <div class="card-body from-input">
-                        <div class="table-responsive  ">
-                            <table class="table" id="stats_table_1">
+                        <div class="table-responsive  " style="height:100vh;">
+                            <table class="table" id="stats_table_1" >
                                 <thead>
                                     <tr>
-                                        <th scope="col" >BA</th>
+                                        <th scope="col" >Ba</th>
                                         <th scope="col" >Patroling(KM)</th>
                                         <th scope="col">Substation</th>
                                         <th scope="col">Feeder Pillar</th>
@@ -178,13 +193,59 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id='map' style="width:100%;height:800px;"  >
+                        <div id='map' style="width:100%;height:100vh;"  >
 
                         </div>
                     </div>
                 </div>
             </div>
             {{-- MAP END --}}
+
+
+            {{-- COUNTS BY USER --}}
+
+            <div class="col-md-12 ">
+                <div class="card p-0">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Counts By Users</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body from-input">
+                        <div class="table-responsive  " style="max-height:100vh;">
+                            <table class="table" id="stats-count-by-users" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col" >User</th>
+                                        <th scope="col" >Patroling(KM)</th>
+                                        <th scope="col">Substation</th>
+                                        <th scope="col">Feeder Pillar</th>
+                                        <th scope="col">Tiang</th>
+                                        <th scope="col">Link Box</th>
+                                        <th scope="col">Cable Bridge</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id='stats-count-by-users-body'>
+
+                                </tbody>
+                                <tfoot id='stats-count-by-users-footer'>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- END COUNTS BY USER --}}
         </div>
          
     @endif
@@ -1119,10 +1180,8 @@
         function onChangeBA(param) {
 
             // clear all charts
-
             $('.high-chart').html('');
             
-
             getDateCounts();
             getAllStats();
             callLayers(param);
@@ -1320,7 +1379,7 @@
         function getAllStats() 
         {
             let todaydate = '{{ date('Y-m-d') }}';
-            // let team = $('#team').val();
+            let team = $('#team').val();
             let user = $('#user').val();
 
 
@@ -1393,8 +1452,51 @@
 
 
                 }
-
             });
+
+
+            $.ajax({
+                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
+                dataType: 'JSON',
+                method: 'GET',
+                async: false,
+                success: function callback(data) {
+                    var table = data.data;
+                    
+                    console.log(table);
+
+
+                    // Destroy existing DataTable instance (if any)
+
+                    if ($.fn.DataTable.isDataTable('#stats-count-by-users')) {
+                        $('#stats-count-by-users').DataTable().destroy();
+                    }
+
+                    var str = '';
+                    
+
+                    for (var i = 0; i < table.length; i++) 
+                    {
+                        str += `<tr>
+                                    <td>${table[i].name}</td>
+                                    <td>${table[i].patroling}</td>
+                                    <td>${table[i].substation}</td>
+                                    <td>${table[i].feeder_pillar}</td>
+                                    <td>${table[i].tiang}</td>
+                                    <td>${table[i].link_box}</td>
+                                    <td>${table[i].cable_bridge}</td>
+                                </tr>`;
+                    }
+
+                    $('#stats-count-by-users-body').html(str);
+
+                    // Reinitialize DataTable with new options
+                    $('#stats-count-by-users').DataTable();
+
+
+                }
+            })
+
         }
 
 
@@ -1421,8 +1523,10 @@
 
         function onChangeTeam(team)
         {
+            var cu_ba = $('#excelBa').val() ?? 'null';
+
             $.ajax({
-                url: `/{{ app()->getLocale() }}/get-users-by-team?team=${team}`,
+                url: `/{{ app()->getLocale() }}/get-users-by-team?team=${team}&ba_name=${cu_ba}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
