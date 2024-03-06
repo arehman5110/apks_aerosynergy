@@ -1952,6 +1952,35 @@
 #66 C:\\xampp\\htdocs\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #67 {main}
 "} 
+<<<<<<< HEAD
+[2024-01-03 13:06:50] local.ERROR: Undefined array key 1 {"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php:312)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 312)
+#1 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(312): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 312)
+#2 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(277): Illuminate\\Foundation\\Console\\ServeCommand->getDateFromLine(':06:49 2024] 20...')
+#3 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Traits\\EnumeratesValues.php(235): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}(':06:49 2024] 20...', 0)
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(240): Illuminate\\Support\\Collection->each(Object(Closure))
+#5 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1274): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}('err', ':06:49 2024] 20...')
+#6 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1372): Symfony\\Component\\Process\\Process->Symfony\\Component\\Process\\{closure}('err', ':06:49 2024] 20...')
+#7 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1292): Symfony\\Component\\Process\\Process->readPipes(false, false)
+#8 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(836): Symfony\\Component\\Process\\Process->updateStatus(false)
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(102): Symfony\\Component\\Process\\Process->isRunning()
+#10 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ServeCommand->handle()
+#11 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#13 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)
+#16 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Command\\Command.php(291): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#17 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(152): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#18 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(1014): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ServeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#23 D:\\apks_aerosynergy\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+=======
 [2024-01-05 13:55:38] local.ERROR: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "broken_gutter" does not exist
 LINE 1: ...elect "id" from "feeder_pillar_all_defects" where "broken_gu...
                                                              ^ (SQL: select "id" from "feeder_pillar_all_defects" where "broken_gutter" = Yes) {"userId":40,"exception":"[object] (Illuminate\\Database\\QueryException(code: 42703): SQLSTATE[42703]: Undefined column: 7 ERROR:  column \"broken_gutter\" does not exist
@@ -4620,6 +4649,63 @@ LINE 1: ... \"rust_status\" = $3 or \"vandalism_status\" = $4 or \"collapsed...
 #49 C:\\xampp\\htdocs\\apks_aerosynergy\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #50 C:\\xampp\\htdocs\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #51 {main}
+
+"} 
+[2024-01-21 21:42:05] local.ERROR: Undefined array key 1 {"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php:312)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 312)
+#1 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(312): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 312)
+#2 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(256): Illuminate\\Foundation\\Console\\ServeCommand->getDateFromLine('024] 45.227.254...')
+#3 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Traits\\EnumeratesValues.php(235): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}('024] 45.227.254...', 0)
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(240): Illuminate\\Support\\Collection->each(Object(Closure))
+#5 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1274): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}('err', '024] 45.227.254...')
+#6 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1372): Symfony\\Component\\Process\\Process->Symfony\\Component\\Process\\{closure}('err', '024] 45.227.254...')
+#7 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1292): Symfony\\Component\\Process\\Process->readPipes(false, false)
+#8 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(836): Symfony\\Component\\Process\\Process->updateStatus(false)
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(102): Symfony\\Component\\Process\\Process->isRunning()
+#10 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ServeCommand->handle()
+#11 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#13 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)
+#16 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Command\\Command.php(291): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#17 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(152): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#18 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(1014): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ServeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#23 D:\\apks_aerosynergy\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+"} 
+[2024-02-08 22:17:23] local.ERROR: Undefined array key 1 {"exception":"[object] (ErrorException(code: 0): Undefined array key 1 at D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php:325)
+[stacktrace]
+#0 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 325)
+#1 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(325): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined array...', 'D:\\\\apks_aerosyn...', 325)
+#2 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(264): Illuminate\\Foundation\\Console\\ServeCommand->getRequestPortFromLine('27 Closing')
+#3 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Traits\\EnumeratesValues.php(235): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}('27 Closing', 0)
+#4 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(240): Illuminate\\Support\\Collection->each(Object(Closure))
+#5 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1274): Illuminate\\Foundation\\Console\\ServeCommand->Illuminate\\Foundation\\Console\\{closure}('err', '27 Closing\\n[Thu...')
+#6 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1372): Symfony\\Component\\Process\\Process->Symfony\\Component\\Process\\{closure}('err', '27 Closing\\n[Thu...')
+#7 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(1292): Symfony\\Component\\Process\\Process->readPipes(false, false)
+#8 D:\\apks_aerosynergy\\vendor\\symfony\\process\\Process.php(836): Symfony\\Component\\Process\\Process->updateStatus(false)
+#9 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(102): Symfony\\Component\\Process\\Process->isRunning()
+#10 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ServeCommand->handle()
+#11 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#13 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)
+#16 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Command\\Command.php(291): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#17 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(152): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#18 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(1014): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#19 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ServeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#20 D:\\apks_aerosynergy\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#21 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#22 D:\\apks_aerosynergy\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#23 D:\\apks_aerosynergy\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
 "} 
 [2024-03-04 17:28:14] local.ERROR: Undefined variable $team {"view":{"view":"C:\\xampp\\htdocs\\apks_aerosynergy\\resources\\views\\admin-dashboard.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1280620510 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#267</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
