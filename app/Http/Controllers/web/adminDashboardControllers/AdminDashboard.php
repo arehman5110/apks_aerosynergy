@@ -102,7 +102,7 @@ class AdminDashboard extends Controller
             'cable_bridge' => 'tbl_cable_bridge',
         ];
 
-        if ( $request->ba_name != 'null' ) {
+        if ( $request->filled('ba_name') && $request->ba_name != 'null'   ) {
                 $bas = [];
                 $bas = [$request->ba_name];
         }

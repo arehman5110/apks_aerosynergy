@@ -31,3 +31,4 @@ public/assets/updated-excels/qr-tiang-talian.xlsx
 *.xlsx
 *.xlsx
 *.xlsx
+storage/logs/laravel.log

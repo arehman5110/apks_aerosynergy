@@ -76,6 +76,12 @@ class GraphCounts extends Controller
         if ($bar != 'km') {
             $query->whereNotNull('qa_status') ->where('qa_status', '!=', '') ->where('qa_status', '!=', 'Reject')->groupBy('ba', DB::raw("$date::date"));
         }
+//         else{
+//             $rawQuery = $query->toSql();
+
+// // Output or log the raw SQL query
+// return$rawQuery;
+//         }
 
         $query->orderBy($date , 'desc');
 

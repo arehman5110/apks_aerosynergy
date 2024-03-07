@@ -54,10 +54,68 @@
 .table-responsive::-webkit-scrollbar-thumb:hover {
   background-color: #747474; /* Change the color on hover */
 }
+
+
+#loader {
+    position: fixed; 
+    z-index: 1002;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+   
+}
+
+#overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.897); 
+    backdrop-filter: blur(0.5px); 
+    display: none;
+    z-index: 1001;  
+}
+ 
+.loader {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  line-height: 1.2em;
+  display: inline-grid;
+}
+.loader:before,
+.loader:after {
+  content:"Loading...";
+  grid-area: 1/1;
+  -webkit-mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
+  color: #0000;
+  text-shadow: 0 0 0 #000,0 calc(var(--s,1)*1.2em) 0 #000;
+  animation: l15 1s infinite;
+}
+.loader:after {
+  -webkit-mask-position: 1ch 50%;
+  --s:-1;
+}
+@keyframes l15 {80%,100%{text-shadow:0 calc(var(--s,1)*-1.2em)  0 #000,0 0 0 #000}}
+
+
     </style>
 @endsection
 @section('content')
 
+
+<div id="overlay2"  ></div>
+
+ 
+<div id="loader"   >
+    <div class="loader"></div>
+    {{-- <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+        <img id="spinner" src="{{URL::asset( 'assets/web-images/loader.svg')}}" height="50" width="50" />
+        <span>loading... please wait!</span>
+    </div> --}}
+</div>
 
     @if (Auth::user()->ba == '')
 
@@ -65,7 +123,7 @@
         <div class=" px-4  mt-2  from-input  ">
             <div class="card p-0 mb-3">
                 <div class="card-body row">
-
+                    
                     {{-- ZONE --}}
                     <div class=" col-md-2">
                         <label for="excelZone">Zone :</label>
@@ -134,7 +192,7 @@
         <div class=" row px-4 ">
 
             {{-- TABLE COUNTS START --}}
-            <div class="col-md-6 ">
+            <div class="col-md-12 ">
                 <div class="card p-0">
                     <div class="card-header">
                         <h3 class="card-title">Total Pending and Surveyed</h3>
@@ -176,30 +234,7 @@
             </div>
             {{-- TABLE COUNTS END --}}
 
-            {{-- MAP START --}}
-            <div class="col-md-6">
-                <div class="card p-0">
-                    <div class="card-header">
-                        <h3 class="card-title">Map</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id='map' style="width:100%;height:100vh;"  >
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- MAP END --}}
+            
 
 
             {{-- COUNTS BY USER --}}
@@ -246,6 +281,35 @@
             </div>
 
             {{-- END COUNTS BY USER --}}
+
+
+
+            {{-- MAP START --}}
+            <div class="col-md-12">
+                <div class="card p-0">
+                    <div class="card-header">
+                        <h3 class="card-title">Map</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id='map' style="width:100%;height:100vh;"  >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- MAP END --}}
+
+
         </div>
 
     @endif
@@ -688,7 +752,9 @@
         var patrol = [];
         var from_date = $('#excel_from_date').val();
         var to_date = $('#excel_to_date').val();
-        var excel_ba = $('#search_ba').val();
+        var excel_ba = $('#excelBa').val() ?? '';
+        var team = '';
+        var user = '';
 
         zoom = 9;
 
@@ -1146,16 +1212,19 @@
 
 
         $(function() {
-            // $('#stats_table').DataTable()
-            if ('{{ Auth::user()->ba }}' == '') {
+            showLoader();
+            setTimeout(() => {
+                if ('{{ Auth::user()->ba }}' == '') {
                 getAllStats()
             }
+        }, 1000);
+            // $('#stats_table').DataTable()
+           
 
             $('#excel_from_date , #excel_to_date').on('change', function() {
                 var ff_ba = $('#excelBa').val() ?? '';
                 from_date = $('#excel_from_date').val() ?? null;
                 to_date = $('#excel_to_date').val() ?? null;
-
                 onChangeBA();
                 // getAllStats();
                 callLayers(ff_ba)
@@ -1177,14 +1246,20 @@
     {{-- Charts Start --}}
 
     <script>
-        function onChangeBA(param) {
+        function onChangeBA(param) 
+        {
 
             // clear all charts
             $('.high-chart').html('');
-            
-            getDateCounts();
-            getAllStats();
-            callLayers(param);
+            showLoader();
+
+            setTimeout(() => {
+                if ('{{ Auth::user()->ba }}' == '') {
+                getAllStats();
+                callLayers(param);
+                }
+            }, 1000);
+           
         }
 
 
@@ -1248,15 +1323,9 @@
         function getDateCounts()
         {
 
-            var cu_ba       = $('#excelBa').val() ?? 'null';
-            var from_datee  = $('#excel_from_date').val() ?? '';
-            var to_datee    = $('#excel_to_date').val() ?? '';
-            let team =$('#team').length > 0 ? $('#team').val() : ''
-            let user =$('#user').length > 0 ? $('#user').val() : ''
-
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/patrol_graph?ba=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1274,13 +1343,21 @@
                         makeArray(data['suryed_'+counts[index]] , `suryed_${counts[index]}-container` , "Visited" );
                         makeArray(data['pending_'+counts[index]] , `pending_${counts[index]}-container` , "Pending" );
                     }
+                    getAllCounts()
+                },error: function (error) {
+                    alert("Request Failed");
+                    hideLoader();
                 }
             });
+        }
 
+
+        function getAllCounts()
+        {
 
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/admin-get-all-counts?ba=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1289,6 +1366,10 @@
                     for (var key in data) {
                         $("#" + key).html(data[key]);
                     }
+                    hideLoader()
+                },error: function (error) {
+                    alert("Request Failed");
+                    hideLoader();
                 }
             });
 
@@ -1376,30 +1457,37 @@
     {{-- COUNTS START --}}
 
     <script>
-        function getAllStats()
+//         $(document).ajaxStart(function () {
+//     showLoader();
+// }).ajaxStop(function () {
+//     hideLoader();
+// });
+
+
+        function getValues()
         {
             let todaydate = '{{ date('Y-m-d') }}';
-            let team =$('#team').length > 0 ? $('#team').val() : ''
-            let user =$('#user').length > 0 ? $('#user').val() : ''
+            team =$('#team').length > 0 ? $('#team').val() : ''
+            user =$('#user').length > 0 ? $('#user').val() : ''
 
-
-
-            var cu_ba = $('#excelBa').val() ?? 'null';
+            excel_ba = $('#excelBa').val() ?? '';
             if ($('#excel_from_date').val() == '') {
-                var from_datee = '1970-01-01'
+                from_date = '1970-01-01'
             } else {
-                var from_datee = $('#excel_from_date').val();
+                from_date = $('#excel_from_date').val();
             }
             if ($('#excel_to_date').val() == '') {
-                var to_datee = todaydate
+                to_date = todaydate
             } else {
-                var to_datee = $('#excel_to_date').val();
+                to_date = $('#excel_to_date').val();
             }
-
-
-
+        }
+        function getAllStats()
+        {
+            // showLoader();
+            getValues()
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1414,8 +1502,6 @@
                     }
 
                     var str = '';
-
-
                     for (var i = 0; i < table.length; i++)
                     {
                         str += `<tr>
@@ -1430,10 +1516,7 @@
                     }
 
                     $('#stats_table').html(str);
-
-
                     var str2 = '<tr><th>Total</th>';
-
                         str2 += `<th>${parseFloat(table_footer['patroling']).toFixed(2)}</th>`;
                         str2 += `<th>${table_footer.substation.pending} / ${table_footer.substation.surveyed} </th>`;
                         str2 += `<th>${table_footer.feeder_pillar.pending} / ${table_footer.feeder_pillar.surveyed} </th>`;
@@ -1442,7 +1525,6 @@
                         str2 += `<th>${table_footer.cable_bridge.pending} / ${table_footer.cable_bridge.surveyed} </th>`;
                         str += '</tr>'
 
-
                     $('#stats_table_footer').html(str2);
 
                     // Reinitialize DataTable with new options
@@ -1450,14 +1532,20 @@
                         searching: false, // Disable search bar
                         paging: false // Disable pagination
                     });
-
-
+                    getAllStatsByUser();
+                },error: function (error) {
+                    alert("Request Failed");
+                    hideLoader();
                 }
             });
+        }
+        // END GET ALL STATS
 
+        function getAllStatsByUser()
+        {
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${cu_ba}&from_date=${from_datee}&to_date=${to_datee}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1475,7 +1563,6 @@
 
                     var str = '';
                     
-
                     for (var i = 0; i < table.length; i++) 
                     {
                         str += `<tr>
@@ -1492,9 +1579,16 @@
                     $('#stats-count-by-users-body').html(str);
 
                     // Reinitialize DataTable with new options
-                    $('#stats-count-by-users').DataTable();
+                    $('#stats-count-by-users').DataTable({
+                        "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                    ]});
 
-
+                    getDateCounts();
+                }, error: function (error) {
+                    alert("Request Failed");
+                    hideLoader();
                 }
             })
 
@@ -1518,7 +1612,7 @@
 
 
         setTimeout(() => {
-            getDateCounts();
+            // getDateCounts();
         }, 1000);
 
 
@@ -1548,6 +1642,16 @@
             })
 
         }
+
+        function showLoader() {
+    document.getElementById('overlay2').style.display = 'block';
+    document.getElementById('loader').style.display = 'block';
+}
+
+function hideLoader() {
+    document.getElementById('overlay2').style.display = 'none';
+    document.getElementById('loader').style.display = 'none';
+}
     </script>
 
     {{-- COUNTS END --}}
