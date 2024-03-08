@@ -117,7 +117,9 @@
     </div> --}}
 </div>
 
-    @if (Auth::user()->ba == '')
+     
+@if (Auth::user()->ba == '')
+    
 
         {{-- FILTER START --}}
         <div class=" px-4  mt-2  from-input  ">
@@ -128,11 +130,15 @@
                     <div class=" col-md-2">
                         <label for="excelZone">Zone :</label>
                         <select name="excelZone" id="excelZone" class="form-control" onchange="getBa(this.value)">
+                            @if (Auth::user()->ba != '')
+                            <option value="{{Auth::user()->zone}}" hidden>{{Auth::user()->zone}}</option>
+                            @else
                             <option value="" hidden>Select Zone</option>
                             <option value="W1">W1</option>
                             <option value="B1">B1</option>
                             <option value="B2">B2</option>
                             <option value="B4">B4</option>
+                            @endif
                         </select>
                     </div>
 
@@ -140,7 +146,9 @@
                     <div class=" col-md-2">
                         <label for="excelBa">BA :</label>
                         <select name="excelBa" id="excelBa" class="form-control" onchange="onChangeBA(this.value)">
-
+                            @if (Auth::user()->ba != '')
+                                <option value="{{Auth::user()->ba}}" hidden>{{Auth::user()->ba}}</option>
+                            @endif
                         </select>
                     </div>
 
@@ -283,7 +291,7 @@
 
             {{-- END COUNTS BY USER --}}
 
-
+           
 
            
             {{-- MAP START --}}
@@ -313,8 +321,8 @@
 
 
         </div>
+    
         @endif
-
          
 
     <div class=" px-4 mt-2">
@@ -755,8 +763,8 @@
 
         var patroling = '';
         var patrol = [];
-        var from_date = $('#excel_from_date').val();
-        var to_date = $('#excel_to_date').val();
+        var from_date = $('#excel_from_date').length > 0 ?$('#excel_from_date').val() : '';
+        var to_date = $('#excel_to_date').length > 0 ?  $('#excel_to_date').val(): '';
         var excel_ba = $('#excelBa').val() ?? '';
         var team = '';
         var user = '';
@@ -1219,9 +1227,9 @@
         $(function() {
             showLoader();
             setTimeout(() => {
-                if ('{{ Auth::user()->ba }}' == '') {
+                
                 getAllStats()
-            }
+            
         }, 1000);
             // $('#stats_table').DataTable()
            
@@ -1476,12 +1484,14 @@
             user =$('#user').length > 0 ? $('#user').val() : ''
 
             excel_ba = $('#excelBa').val() ?? '';
-            if ($('#excel_from_date').val() == '') {
+            if ($('#excel_from_date').length ==0 || $('#excel_from_date').val() == '') {
                 from_date = '1970-01-01'
+                console.log('id');
             } else {
+                console.log("esle");
                 from_date = $('#excel_from_date').val();
             }
-            if ($('#excel_to_date').val() == '') {
+            if ($('#excel_to_date').length ==0 || $('#excel_to_date').val() == '') {
                 to_date = todaydate
             } else {
                 to_date = $('#excel_to_date').val();
@@ -1605,7 +1615,12 @@
 
         function resetDashboard()
         {
-            $('#excelBa').empty();
+            if ("{{Auth::user()->ba}}" == '') {
+                $('#excelBa').empty();
+                $('#zone').val('');
+
+            }
+            
             $('#excel_from_date, #excel_to_date , #team , #user').val('');
             onChangeBA();
             from_date = '';
@@ -1613,7 +1628,9 @@
 
             if (ba == '') {
                 addRemoveBundary('', 2.75101756479656, 101.304931640625)
-            } 
+            } else {
+                callLayers(ba);
+            }
         }
 
 
