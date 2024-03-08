@@ -226,6 +226,7 @@
                                         <th scope="col">Tiang</th>
                                         <th scope="col">Link Box</th>
                                         <th scope="col">Cable Bridge</th>
+                                        <th scope="col">Total</th>
                                     </tr>
                                 </thead>
 
@@ -1517,18 +1518,20 @@
                     }
 
                     var str = '';
-                    for (var i = 0; i < table.length; i++)
-                    {
-                        str += `<tr>
-                                    <td>${table[i].ba}</td>
-                                    <td>${table[i].patroling}</td>
-                                    <td>${table[i].substation}</td>
-                                    <td>${table[i].feeder_pillar}</td>
-                                    <td>${table[i].tiang}</td>
-                                    <td>${table[i].link_box}</td>
-                                    <td>${table[i].cable_bridge}</td>
-                                </tr>`;
-                    }
+                        for (var i = 0; i < table.length; i++)
+                        {
+                            let total = table[i].ba + '_total';
+                            str += `<tr>
+                                        <td>${table[i].ba}</td>
+                                        <td>${table[i].patroling}</td>
+                                        <td>${table[i].substation}</td>
+                                        <td>${table[i].feeder_pillar}</td>
+                                        <td>${table[i].tiang}</td>
+                                        <td>${table[i].link_box}</td>
+                                        <td>${table[i].cable_bridge}</td>
+                                        <td>${table[i][total]}</td>
+                                    </tr>`;
+                        }
 
                     $('#stats_table').html(str);
                     var str2 = '<tr><th>Total</th>';
@@ -1538,7 +1541,8 @@
                         str2 += `<th>${table_footer.tiang.pending} / ${table_footer.tiang.surveyed} </th>`;
                         str2 += `<th>${table_footer.link_box.pending} / ${table_footer.link_box.surveyed} </th>`;
                         str2 += `<th>${table_footer.cable_bridge.pending} / ${table_footer.cable_bridge.surveyed} </th>`;
-                        str += '</tr>'
+                        str2 += `<th>${table_footer.pending} / ${table_footer.total}</th>`;
+                        str += '</tr>';
 
                     $('#stats_table_footer').html(str2);
 

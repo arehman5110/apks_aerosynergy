@@ -109,20 +109,24 @@ class AdminDashboard extends Controller
         
         $data = [];
         $sum = [];
+        $allPending = 0;
+        $allSurvey = 0;
 
         foreach ($bas as $ba) 
         {
             $request['ba'] = $ba;
             $count = [];
             $count['ba'] = $ba;
-    
+            $totalPending = 0;
+            $totalsurvey = 0;
+
             foreach ($tables as $tableKey => $tableName) {
                 $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
     
                 // Clone the original query for each table
                 $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
 
-                $accept = $query->count();
+                $total = $query->count();
                 $pending = $query->where('qa_status', '!=',  'pending')->count();
     
                 // Initialize sum for the table if it's not set
@@ -135,12 +139,17 @@ class AdminDashboard extends Controller
     
                 // Update sum for the table
                 $sum[$tableKey]['pending'] += $pending;
-                $sum[$tableKey]['surveyed'] += $accept;
-    
+                $sum[$tableKey]['surveyed'] += $total;
+
+                $totalPending += $pending;
+                $totalsurvey += $total;
+                $allPending += $pending;
+                $allSurvey += $total;
+                
                 // Store count for the table
-                $count[$tableKey] =  $pending. ' / ' .  $accept;
+                $count[$tableKey] =  $pending. ' / ' .  $total;
             }
-    
+                $count[$ba."_total"] = $totalPending. ' / ' . $totalsurvey;
                 $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request);
 
                 
@@ -153,6 +162,10 @@ class AdminDashboard extends Controller
                 $sum['patroling'] += $count['patroling'];
                 $data[] = $count;
         }
+        $sum['total'] = $allSurvey;
+        $sum['pending'] = $allPending;
+
+
         return response()->json(['data'=>$data , 'sum'=>$sum] );
     }
 
