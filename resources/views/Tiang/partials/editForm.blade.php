@@ -77,12 +77,20 @@
         </div>
 
         {{-- MAIN LINE OR SERVICE LINE --}}
+        {{-- MAIN LINE SERVICE LINE --}}
         <div class="row">
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-4">
                 <label for="main_line">{{__('messages.main_line_service_line')}}</label>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <input type="text" class="form-control" id="" value="{{$data->talian_utama_connection}}" disabled>    
+            <div class="col-md-5 d-sm-flex">
+                <div class="col-md-6">
+                    <input type="checkbox" name="main_line" id="main_line" disabled {{$data->service_line != '' ? 'checked' : ''}}>
+                    <label for="main_line">Main Line</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="checkbox" name="service_line" disabled id="service_line"  {{$data->main_line != '' ? 'checked' : ''}}>
+                    <label for="service_line">Service Line</label>
+                </div>
             </div>
         </div>
 
@@ -90,40 +98,57 @@
         <div class="row " id="main_line_connection">
             <div class="col-md-4 col-sm-4">  <label for=""> Number of Services Involves 1 user only </label> </div>
             <div class="col-md-4 col-sm-6">
-                <input type="number" name="talian_utama_connection" value="{{$data->talian_utama}}" class="form-control" id="main_line_connection_one"   {{'disabled'}}>  
+                <input type="number" name="talian_utama_connection"  value="{{$data->talian_utama}}" class="form-control" id="main_line_connection_one"   {{'disabled'}}>  
             </div>
         </div>
 
-        {{-- POLE IMAGE 1 --}}
-        <div class="row">
-            <div class="col-md-4 col-sm-4"><label for="pole_image-1">{{ __('messages.pole') }} Image 1</label></div>
-            <div class="col-md-4 col-sm-4">
-                @if ($data->pole_image_1 != '' )
-                    <a href="{{config('custom.image_url').$data->pole_image_1}}" data-lightbox="roadtrip">
-                        <img src="{{config('custom.image_url').$data->pole_image_1}}" alt="" class="adjust-height " style="height:30px; width:30px !important">
-                    </a>
-                @else
-                    <strong>{{ __('messages.no_image_found') }} </strong>
-                @endif
-            </div>
-        </div>
-
-        {{-- POLE IMAGE 2 --}}
-        <div class="row">
-            <div class="col-md-4 col-sm-4"><label for="pole_image-2">{{ __('messages.pole') }} Image 2</label></div>
-            <div class="col-md-4 col-sm-4">
-                @if ($data->pole_image_2 != '')
-                    <a href="{{config('custom.image_url').$data->pole_image_2}}" data-lightbox="roadtrip">
-                        <img src="{{config('custom.image_url').$data->pole_image_2}}" alt="" class="adjust-height " style="height:30px; width:30px !important">
-                    </a>
-                @else
-                    <strong>{{ __('messages.no_image_found') }} </strong>
-                @endif
-            </div>
-        </div>
-
+       
     </fieldset>
     {{-- END Info (1) --}}
+
+
+     {{-- IMAGES --}}
+     <h3>{{__('messages.images')}}</h3>
+
+     <fieldset class="form-input">
+         
+         {{-- POLE IMAGE 1 --}}
+         <div class="row">
+             <div class="col-md-4"><label for="pole_image-1">{{ __('messages.pole') }} Image 1 </label></div>
+             <div class="col-md-8 row">{!!  viewAndUpdateImage($data->pole_image_1 , 'pole_image_1' , true )  !!}</div>
+         </div>
+
+         {{-- POLE IMAGE 2 --}}
+
+         <div class="row">
+             <div class="col-md-4"><label for="pole_image-2">{{ __('messages.pole') }} Image 2</label></div>
+             <div class="col-md-8 row">{!!  viewAndUpdateImage($data->pole_image_1 , 'pole_image_1' , true )  !!}</div>
+
+         </div>
+
+         {{-- POLE IMAGE 3 --}}
+
+         <div class="row">
+             <div class="col-md-4"><label for="pole_image-3">{{ __('messages.pole') }} Image 3 </label></div>
+             <div class="col-md-8 row">{!!  viewAndUpdateImage($data->pole_image_3 , 'pole_image_3' , true )  !!}</div>
+         </div>
+
+         {{-- POLE IMAGE 4 --}}
+         <div class="row">
+             <div class="col-md-4"><label for="pole_image-4">{{ __('messages.pole') }} Image 4</label></div>
+             <div class="col-md-8 row">{!!  viewAndUpdateImage($data->pole_image_4 , 'pole_image_4' , true )  !!}</div>
+         </div>
+
+         {{-- POLE IMAGE 5 --}}
+         <div class="row">
+             <div class="col-md-4"><label for="pole_image-5">{{ __('messages.pole') }} Image 5 </label></div>
+             <div class="col-md-8 row">{!!  viewAndUpdateImage($data->pole_image_5 , 'pole_image_5' , true )  !!}</div>
+         </div>
+
+     </fieldset>
+
+     {{-- END IMAGES --}}
+
 
 
     {{-- START Asset Register (2) --}}
