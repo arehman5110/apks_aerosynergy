@@ -1,6 +1,7 @@
 <?php
  
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\web\admin\ChangeUserPasswordController;
 use App\Http\Controllers\web\admin\TeamController;
 use App\Http\Controllers\web\admin\TeamUsersController;
 use App\Http\Controllers\web\adminDashboardControllers\AdminDashboard;
@@ -217,6 +218,8 @@ Route::group(
                 Route::prefix('admin')->group(function () {
                     Route::resource('/team', TeamController::class);
                     Route::resource('team-users', TeamUsersController::class);
+                    Route::post('change-user-password/{id}', [ChangeUserPasswordController::class,'updatePassword'])->name('change-user-password');
+
                 });
             });
         });

@@ -265,6 +265,7 @@
                                         <th scope="col">Tiang</th>
                                         <th scope="col">Link Box</th>
                                         <th scope="col">Cable Bridge</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
 
@@ -284,8 +285,9 @@
 
 
 
+           
             {{-- MAP START --}}
-            <div class="col-md-12">
+            <div class="col-md-12  ">
                 <div class="card p-0">
                     <div class="card-header">
                         <h3 class="card-title">Map</h3>
@@ -311,8 +313,9 @@
 
 
         </div>
+        @endif
 
-    @endif
+         
 
     <div class=" px-4 mt-2">
         <div class="row dashboard-counts">
@@ -737,8 +740,10 @@
 
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+     
     @include('partials.map-js')
-
+        
+    
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
@@ -1562,6 +1567,7 @@
                     }
 
                     var str = '';
+                    var total = '';
                     
                     for (var i = 0; i < table.length; i++) 
                     {
@@ -1573,7 +1579,9 @@
                                     <td>${table[i].tiang}</td>
                                     <td>${table[i].link_box}</td>
                                     <td>${table[i].cable_bridge}</td>
+                                    <td>${ table[i].substation + table[i].feeder_pillar +table[i].tiang + table[i].link_box +table[i].cable_bridge}</td>
                                 </tr>`;
+                                 
                     }
 
                     $('#stats-count-by-users-body').html(str);
@@ -1605,9 +1613,7 @@
 
             if (ba == '') {
                 addRemoveBundary('', 2.75101756479656, 101.304931640625)
-            } else {
-                callLayers(ba);
-            }
+            } 
         }
 
 

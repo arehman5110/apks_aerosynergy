@@ -40,7 +40,15 @@
             @include('components.message')
 
 
-
+            @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
             <div class="row">
                 <div class="col-12">
@@ -95,7 +103,11 @@
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
 
-
+                                                        <button type="button" class="btn btn-primary dropdown-item"
+                                                        data-id="{{ $data->id }}" data-toggle="modal"
+                                                        data-target="#changePasswrodModal">
+                                                        Change Password
+                                                    </button>
 
 
                                                         <button type="button" class="btn btn-primary dropdown-item"
@@ -103,6 +115,8 @@
                                                             data-target="#myModal">
                                                             Remove
                                                         </button>
+
+                                                        
 
 
                                                     </div>
@@ -128,6 +142,9 @@
             </div>
         </div>
     </section>
+
+
+    {{-- REMOVE USER MODAL --}}
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content ">
@@ -147,16 +164,58 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                         <button type="submit" class="btn btn-danger">Remove</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
+    {{-- END REMOVE USER MODAL --}}
 
 
+     {{-- CHANGE PASSWORD  MODAL --}}
+     <div class="modal fade" id="changePasswrodModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form action="" id="change-password" method="POST">
+              
+                    @csrf
+
+                    <div class="modal-body">
+                       
+                        <div class="row">
+                            <div class="col-md-4"><label for="">New Password</label></div>
+                            <div class="col-md-8">
+                                <input type="text" name="password" required class="form-control" min="8" id="password">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4"><label for="">Confirm New Password</label></div>
+                            <div class="col-md-8">
+                                <input type="text" name="confirmpassword" required class="form-control" min="8" id="confirmpassword">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- END CHANGE PASSWORD MODAL --}}
+
+
+
+    {{-- ADD USER MODAL --}}
     <div class="modal fade" id="teamModal">
         <div class="modal-dialog">
             <div class="modal-content ">
@@ -167,36 +226,24 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form action="{{ route('team-users.store', app()->getLocale()) }}" id="addUser" method="POST">
-
                     @csrf
-
                     <div class="modal-body form-input">
-
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="name">Username</label>
+                            <div class="col-md-4"><label for="name">Username</label></div>
+                            <div class="col-md-8"> 
+                                <input type="text" name="name" id="name" class=" form-control" required>
                             </div>
-
-                            <div class="col-md-8"> <input type="text" name="name" id="name" class=" form-control"
-                                    required></div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="email">Email</label>
-
-                            </div>
+                            <div class="col-md-4"><label for="email">Email</label></div>
                             <div class="col-md-8">
                                 <input type="email" name="email" id="email" class="form-control" required>
                             </div>
                         </div>
 
-
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="team-name">Team</label>
-
-                            </div>
+                            <div class="col-md-4"><label for="team-name">Team</label></div>
                             <div class="col-md-8">
                                 <select name="id_team" id="team-id" class="form-control " required>
                                     <option value="" hidden>Select team</option>
@@ -208,42 +255,29 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="zone">{{ __('messages.zone') }}</label>
-
-                            </div>
+                            <div class="col-md-4"><label for="zone">{{ __('messages.zone') }}</label></div>
                             <div class="col-md-8">
                                 <select name="zone" id="search_zone" class="form-control" required>
-
                                     <option value="" hidden>select zone</option>
                                     <option value="W1">W1</option>
                                     <option value="B1">B1</option>
                                     <option value="B2">B2</option>
                                     <option value="B4">B4</option>
-
-
                                 </select>
-
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="ba">{{ __('messages.ba') }}</label>
-
-                            </div>
+                            <div class="col-md-4"><label for="ba">{{ __('messages.ba') }}</label></div>
                             <div class="col-md-8">
                                 <select name="ba" id="ba" class="form-control" required>
                                     <option value="" hidden>select BA</option>
-
                                 </select>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="user_type">User Type</label>
-                            </div>
+                            <div class="col-md-4"><label for="user_type">User Type</label></div>
                             <div class="col-md-8">
                                 <select name="user_type" id="user_type" class="form-control" required>
                                     <option value="" hidden>select user type</option>
@@ -254,31 +288,22 @@
                             </div>
                         </div>
 
-
-
-
-
-
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="email">Password</label>
-
-                            </div>
+                            <div class="col-md-4"><label for="email">Password</label></div>
                             <div class="col-md-8">
                                 <input type="text" name="password" id="password" class="form-control" required>
-
                             </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                 </form>
-
             </div>
         </div>
     </div>
+    {{-- END ADD USER --}}
 @endsection
 
 
@@ -351,6 +376,12 @@
                 $('#remove-foam').attr('action', '/{{ app()->getLocale() }}/admin/team-users/' + id)
             });
 
+            $('#changePasswrodModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var modal = $(this);
+                $('#change-password').attr('action', '/{{ app()->getLocale() }}/admin/change-user-password/' + id)
+            });
 
 
         });
