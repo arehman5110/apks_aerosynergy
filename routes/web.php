@@ -37,6 +37,7 @@ use App\Http\Controllers\web\TiangMapController;
 use App\Models\ThirdPartyDiging;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\web\excel\PatrollingExcelController;
+use App\Http\Controllers\web\Team\DashBoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -221,6 +222,12 @@ Route::group(
                     Route::post('change-user-password/{id}', [ChangeUserPasswordController::class,'updatePassword'])->name('change-user-password');
 
                 });
+            });
+
+            Route::prefix('team')->group(function () {
+                Route::get('/dashboard', [DashBoardController::class,'index']);
+            
+
             });
         });
         Route::view('/generate-pdf-for-notice', 'PDF.notice');

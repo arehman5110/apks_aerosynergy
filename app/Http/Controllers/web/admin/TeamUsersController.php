@@ -19,7 +19,7 @@ class TeamUsersController extends Controller
     {
         //
         $user = User::with('userTeam')
-            ->where('is_admin', '0')->where('ba' ,'!=' , '')
+            ->where('is_admin', '0')->where('is_admin' ,'!=' , true)
             ->get();
         return view('admin.users.index', ['users' => $user, 'teams' => Team::all()]);
     }
@@ -50,6 +50,10 @@ class TeamUsersController extends Controller
                 ->route('team-users.index' , app()->getLocale())
 
                 ->with('failed', 'Request Failed ! Email or Username is already in use');
+            }
+            if ($request->user_type == 'TeamLead') {
+                $request['ba'] = '';
+                $request['zone'] = '';
             }
             $user = User::create([
                 'name'      => $request->name,
