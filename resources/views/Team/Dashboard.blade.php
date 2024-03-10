@@ -157,6 +157,7 @@
                         <label for="excelBa">Status :</label>
                         <select name="status" id="status" class="form-control" onchange="onChangeBA()">
                             <option value="" hidden>status</option>
+                            <option value="" >All</option>
                             <option value="Accept">Accept</option>
                             <option value="Reject">Reject</option>
                             <option value="pending">Pending</option>
