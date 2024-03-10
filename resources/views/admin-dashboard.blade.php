@@ -1523,7 +1523,7 @@
                             let total = table[i].ba + '_total';
                             str += `<tr>
                                         <td>${table[i].ba}</td>
-                                        <td>${table[i].patroling}</td>
+                                        <td>${table[i].patroling} <strong>km </strong></td>
                                         <td>${table[i].substation}</td>
                                         <td>${table[i].feeder_pillar}</td>
                                         <td>${table[i].tiang}</td>
@@ -1535,7 +1535,7 @@
 
                     $('#stats_table').html(str);
                     var str2 = '<tr><th>Total</th>';
-                        str2 += `<th>${parseFloat(table_footer['patroling']).toFixed(2)}</th>`;
+                        str2 += `<th>${parseFloat(table_footer['patroling']).toFixed(2)} <strong>km </strong></th>`;
                         str2 += `<th>${table_footer.substation.pending} / ${table_footer.substation.surveyed} </th>`;
                         str2 += `<th>${table_footer.feeder_pillar.pending} / ${table_footer.feeder_pillar.surveyed} </th>`;
                         str2 += `<th>${table_footer.tiang.pending} / ${table_footer.tiang.surveyed} </th>`;
@@ -1570,6 +1570,8 @@
                 async: false,
                 success: function callback(data) {
                     var table = data.data;
+                    var tableTotal = data.tableTotal;
+
                     
                     console.log(table);
 
@@ -1581,13 +1583,15 @@
                     }
 
                     var str = '';
+                    var str2 = '';
+
                     var total = '';
                     
                     for (var i = 0; i < table.length; i++) 
                     {
                         str += `<tr>
                                     <td>${table[i].name}</td>
-                                    <td>${table[i].patroling}</td>
+                                    <td>${table[i].patroling} <strong>km </strong></td>
                                     <td>${table[i].substation}</td>
                                     <td>${table[i].feeder_pillar}</td>
                                     <td>${table[i].tiang}</td>
@@ -1597,8 +1601,19 @@
                                 </tr>`;
                                  
                     }
-
                     $('#stats-count-by-users-body').html(str);
+                    str2 += `<tr>
+                                    <th>Total</th>
+                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)} <strong>km </strong></th>
+                                    <th>${tableTotal.substation}</th>
+                                    <th>${tableTotal.feeder_pillar}</th>
+                                    <th>${tableTotal.tiang}</th>
+                                    <th>${tableTotal.link_box}</th>
+                                    <th>${tableTotal.cable_bridge}</th>
+                                    <th>${ tableTotal.substation + tableTotal.feeder_pillar +tableTotal.tiang + tableTotal.link_box +tableTotal.cable_bridge}</th>
+                                </tr>`;
+                    $('#stats-count-by-users-footer').html(str2);
+                    
 
                     // Reinitialize DataTable with new options
                     $('#stats-count-by-users').DataTable({

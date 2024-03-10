@@ -223,6 +223,8 @@ class AdminDashboard extends Controller
 
  
         $sum = [];
+        $tableTotal = [];
+
  
         foreach($users as $user){
             // return $user;
@@ -243,7 +245,11 @@ class AdminDashboard extends Controller
                   
                     // Push the new key-value pair into the nested array
                     $arr[$tableKey] =  $userCount;
-                    
+                    if (!isset($tableTotal[$tableKey])) {
+                        $tableTotal[$tableKey] = 0;
+
+                    }
+                    $tableTotal[$tableKey] += $userCount;
                     
                 
                     
@@ -257,9 +263,13 @@ class AdminDashboard extends Controller
                 $countPatroling = $patroling->sum('km');
                 $arr['patroling'] = $countPatroling;
                 $sum[] = $arr;
-      
+                if (!isset($tableTotal['patroling'])) {
+                    $tableTotal['patroling'] = 0;
+
+                }
+                $tableTotal['patroling'] += $countPatroling;
         }
-        return response()->json(['data'=>$sum] );
+        return response()->json(['data'=>$sum , 'tableTotal'=>$tableTotal] );
  
     }
 
