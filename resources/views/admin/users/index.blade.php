@@ -116,7 +116,7 @@
                                                             Remove
                                                         </button>
 
-                                                        
+
 
 
                                                     </div>
@@ -184,11 +184,11 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form action="" id="change-password" method="POST">
-              
+
                     @csrf
 
                     <div class="modal-body">
-                       
+
                         <div class="row">
                             <div class="col-md-4"><label for="">New Password</label></div>
                             <div class="col-md-8">
@@ -230,7 +230,7 @@
                     <div class="modal-body form-input">
                         <div class="row">
                             <div class="col-md-4"><label for="name">Username</label></div>
-                            <div class="col-md-8"> 
+                            <div class="col-md-8">
                                 <input type="text" name="name" id="name" class=" form-control" required>
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                         <div class="row d-none" id="zone-div">
                             <div class="col-md-4"><label for="zone">{{ __('messages.zone') }}</label></div>
                             <div class="col-md-8">
-                                <select name="zone" id="search_zone" class="form-control" required>
+                                <select name="zone" id="search_zone" class="form-control">
                                     <option value="" hidden>select zone</option>
                                     <option value="W1">W1</option>
                                     <option value="B1">B1</option>
@@ -283,13 +283,13 @@
                         <div class="row d-none" id="ba-div">
                             <div class="col-md-4"><label for="ba">{{ __('messages.ba') }}</label></div>
                             <div class="col-md-8">
-                                <select name="ba" id="ba" class="form-control" required>
+                                <select name="ba" id="ba" class="form-control">
                                     <option value="" hidden>select BA</option>
                                 </select>
                             </div>
                         </div>
 
-                        
+
 
                         <div class="row">
                             <div class="col-md-4"><label for="email">Password</label></div>
