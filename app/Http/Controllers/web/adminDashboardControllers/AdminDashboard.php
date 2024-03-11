@@ -172,8 +172,8 @@ class AdminDashboard extends Controller
 
     public function getUsersByTeam(Request $req)
     {
-        $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb'])
-        ->orWhere('users.user_type' , null);
+        $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])
+        ->orWhere('user_type' , null);
         if ($req->filled('ba_name') && $req->ba_name != 'null') {
            $user->where('ba' , $req->ba_name);
         }
@@ -194,13 +194,13 @@ class AdminDashboard extends Controller
         
         $users ->where('name',$request->user);
         }else{
-            $users->whereNotIn('user_type', ['aerosynergy', 'tnb'])->orWhere('user_type' , null);
-        if ($request->filled('ba_name') && $request->ba_name != 'null') {
-            $users->where('ba',$request->ba_name);
-        }
-        if ($request->filled('team') && $request->team != 'null') {
-            $users->where('id_team',$request->team);
-        }
+            $users->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])->orWhere('user_type' , null);
+            if ($request->filled('ba_name') && $request->ba_name != 'null') {
+                $users->where('ba',$request->ba_name);
+            }
+            if ($request->filled('team') && $request->team != 'null') {
+                $users->where('id_team',$request->team);
+            }
            
         }
        $users = $users->select('name')
