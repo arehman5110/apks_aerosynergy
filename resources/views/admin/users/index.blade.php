@@ -270,7 +270,7 @@
                         <div class="row d-none" id="zone-div">
                             <div class="col-md-4"><label for="zone">{{ __('messages.zone') }}</label></div>
                             <div class="col-md-8">
-                                <select name="zone" id="search_zone" class="form-control">
+                                <select name="zone" id="search_zone" class="form-control" >
                                     <option value="" hidden>select zone</option>
                                     <option value="W1">W1</option>
                                     <option value="B1">B1</option>
@@ -283,7 +283,7 @@
                         <div class="row d-none" id="ba-div">
                             <div class="col-md-4"><label for="ba">{{ __('messages.ba') }}</label></div>
                             <div class="col-md-8">
-                                <select name="ba" id="ba" class="form-control">
+                                <select name="ba" id="ba" class="form-control" >
                                     <option value="" hidden>select BA</option>
                                 </select>
                             </div>
@@ -391,12 +391,12 @@
                 if (this.value == 'TeamLead') {
                     if (!$('#zone-div').hasClass('d-none')) {
                         $('#zone-div , #ba-div').slideUp(function() {
-                            $(this).addClass('d-none');
+                            $(this).addClass('d-none').removeAttr('required');
                         });
                     }
                 } else {
                     if ($('#zone-div').hasClass('d-none')) {
-                        $('#zone-div , #ba-div').removeClass('d-none').hide().slideDown();
+                        $('#zone-div , #ba-div').removeClass('d-none').addAttr('required').hide().slideDown();
                     }
                 }
             });
