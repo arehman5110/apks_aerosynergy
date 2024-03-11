@@ -1523,7 +1523,7 @@
                             let total = table[i].ba + '_total';
                             str += `<tr>
                                         <td>${table[i].ba}</td>
-                                        <td>${table[i].patroling} <strong>km </strong></td>
+                                        <td>${table[i].patroling}</td>
                                         <td>${table[i].substation}</td>
                                         <td>${table[i].feeder_pillar}</td>
                                         <td>${table[i].tiang}</td>
@@ -1535,7 +1535,7 @@
 
                     $('#stats_table').html(str);
                     var str2 = '<tr><th>Total</th>';
-                        str2 += `<th>${parseFloat(table_footer['patroling']).toFixed(2)} <strong>km </strong></th>`;
+                        str2 += `<th>${parseFloat(table_footer['patroling']).toFixed(2)}</th>`;
                         str2 += `<th>${table_footer.substation.pending} / ${table_footer.substation.surveyed} </th>`;
                         str2 += `<th>${table_footer.feeder_pillar.pending} / ${table_footer.feeder_pillar.surveyed} </th>`;
                         str2 += `<th>${table_footer.tiang.pending} / ${table_footer.tiang.surveyed} </th>`;
@@ -1591,7 +1591,7 @@
                     {
                         str += `<tr>
                                     <td>${table[i].name}</td>
-                                    <td>${table[i].patroling} <strong>km </strong></td>
+                                    <td>${table[i].patroling}</td>
                                     <td>${table[i].substation}</td>
                                     <td>${table[i].feeder_pillar}</td>
                                     <td>${table[i].tiang}</td>
@@ -1604,7 +1604,7 @@
                     $('#stats-count-by-users-body').html(str);
                     str2 += `<tr>
                                     <th>Total</th>
-                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)} <strong>km </strong></th>
+                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)}</th>
                                     <th>${tableTotal.substation}</th>
                                     <th>${tableTotal.feeder_pillar}</th>
                                     <th>${tableTotal.tiang}</th>

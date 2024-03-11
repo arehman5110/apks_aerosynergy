@@ -225,7 +225,7 @@ Route::group(
             });
 
             Route::prefix('team')->group(function () {
-                Route::get('/dashboard', [DashBoardController::class,'index']);
+                Route::get('/dashboard', [DashBoardController::class,'index'])->name('team.dashboard');
             
 
             });

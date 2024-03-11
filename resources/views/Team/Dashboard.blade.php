@@ -348,7 +348,7 @@
                     {
                         str += `<tr>
                                     <td>${table[i].name}</td>
-                                    <td>${table[i].patroling} <strong>km </strong></td>
+                                    <td>${table[i].patroling}</td>
                                     <td>${table[i].substation}</td>
                                     <td>${table[i].feeder_pillar}</td>
                                     <td>${table[i].tiang}</td>
@@ -361,7 +361,7 @@
                     $('#stats-count-by-users-body').html(str);
                     str2 += `<tr>
                                     <th>Total</th>
-                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)} <strong>km </strong></th>
+                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)}</th>
                                     <th>${tableTotal.substation}</th>
                                     <th>${tableTotal.feeder_pillar}</th>
                                     <th>${tableTotal.tiang}</th>
