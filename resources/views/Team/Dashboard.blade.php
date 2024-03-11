@@ -56,13 +56,13 @@
 
 
 #loader {
-    position: fixed; 
+    position: fixed;
     z-index: 1002;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-   
+
 }
 
 #overlay2 {
@@ -71,12 +71,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.897); 
-    backdrop-filter: blur(0.5px); 
+    background: rgba(255, 255, 255, 0.897);
+    backdrop-filter: blur(0.5px);
     display: none;
-    z-index: 1001;  
+    z-index: 1001;
 }
- 
+
 .loader {
   font-weight: bold;
   font-family: monospace;
@@ -107,7 +107,7 @@
 
 <div id="overlay2"  ></div>
 
- 
+
 <div id="loader"   >
     <div class="loader"></div>
     {{-- <div class="d-flex flex-column justify-content-center align-items-center gap-2">
@@ -116,26 +116,26 @@
     </div> --}}
 </div>
 
-     
- 
-    
+
+
+
 
         {{-- FILTER START --}}
         <div class=" px-4  mt-2  from-input  ">
             <div class="card p-0 mb-3">
                 <div class="card-body row">
-                    
+
                     {{-- ZONE --}}
                     <div class=" col-md-2">
                         <label for="excelZone">Zone :</label>
                         <select name="excelZone" id="excelZone" class="form-control" onchange="getBa(this.value)">
-                        
+
                             <option value="" hidden>Select Zone</option>
                             <option value="W1">W1</option>
                             <option value="B1">B1</option>
                             <option value="B2">B2</option>
                             <option value="B4">B4</option>
-                        
+
                         </select>
                     </div>
 
@@ -143,9 +143,9 @@
                     <div class=" col-md-2">
                         <label for="excelBa">BA :</label>
                         <select name="excelBa" id="excelBa" class="form-control" onchange="onChangeBA(this.value)">
-                         
-                                
-                       
+
+
+
                         </select>
                     </div>
 
@@ -249,7 +249,7 @@
 </div>
 
 
-    
+
 
 @endsection
 
@@ -257,9 +257,9 @@
 @section('script')
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        
 
-    
+
+
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script>
@@ -275,7 +275,7 @@
         $(function(){
             onChangeBA()
             $('#excel_from_date , #excel_to_date').on('change', function() {
-               
+
                 onChangeBA();
 
             })
@@ -289,7 +289,7 @@
                     getAllStatsByUser();
                     onChangeTeam()
             }, 1000);
-           
+
         }
 
 
@@ -329,7 +329,7 @@
                     var table = data.data;
                     var tableTotal = data.tableTotal;
 
-                    
+
                     console.log(table);
 
 
@@ -343,8 +343,8 @@
                     var str2 = '';
 
                     var total = '';
-                    
-                    for (var i = 0; i < table.length; i++) 
+
+                    for (var i = 0; i < table.length; i++)
                     {
                         str += `<tr>
                                     <td>${table[i].name}</td>
@@ -356,7 +356,7 @@
                                     <td>${table[i].cable_bridge}</td>
                                     <td>${ table[i].total}</td>
                                 </tr>`;
-                                 
+
                     }
                     $('#stats-count-by-users-body').html(str);
                     str2 += `<tr>
@@ -372,7 +372,7 @@
                     </tr>`;
 
                     $('#stats-count-by-users-footer').html(str2);
-                    
+
 
                     // Reinitialize DataTable with new options
                     $('#stats-count-by-users').DataTable({
@@ -427,18 +427,18 @@
         }
 
 
-        
+
         function resetDashboard()
         {
-      
+
                 $('#excelBa').empty();
                 $('#zone').val('');
 
                 $('#excel_from_date, #excel_to_date').val('');
-            
+
             $('#user').val('');
             onChangeBA();
-    
+
         }
 
 </script>

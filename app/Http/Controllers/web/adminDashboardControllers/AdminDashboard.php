@@ -18,13 +18,13 @@ class AdminDashboard extends Controller
 
 
     public function index(Request $request){
-        return view('admin-dashboard',['teams'=>Team::all()]);   
+        return view('admin-dashboard',['teams'=>Team::all()]);
     }
 
 
     public function getAllCounts(Request $request)
     {
-        try 
+        try
         {
             // $this->filter  is trait  this function taking 3 params (1) model query (2)column name (3) $request that contains  visit_date from-to date nad ba
             // traits return filtered orms and after filtered count
@@ -36,16 +36,16 @@ class AdminDashboard extends Controller
                 'link_box' => 'tbl_link_box',
                 'cable_bridge' => 'tbl_cable_bridge',
             ];
-    
+
             $data = [];
-    
-            foreach ($tables as $key => $tableName) 
+
+            foreach ($tables as $key => $tableName)
             {
                 $query = DB::table($tableName);
 
                 $column = $key == 'tiang' ? 'review_date' : 'visit_date';
                 $query = $this->filter($query, $column, $request);
-                
+
                 $count   = clone $query;
                 $accept  = clone $query;
                 $defect  = clone $query;
@@ -54,19 +54,19 @@ class AdminDashboard extends Controller
                 $data[$key.'_accept'] =$accept->where('qa_status','Accept')->count();
 
                 $data[$key] = $count->count(); // Count records
-            
+
                 // Sum total_defects
                 $data[$key . '_defect'] = $defect->where('total_defects', '>', 0)->sum('total_defects');
                 $data[$key.'_pending'] = $pending->where('qa_status','pending')->count();
-             
+
             }
-       
+
                 $data['total_km'] = $this->filterWithOutAccpet(Patroling::select(DB::raw('sum(km)')), 'vist_date', $request)->first()->sum;
                 $data['total_notice'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('notice', 'yes'), 'survey_date', $request)->count();
                 $data['total_supervision'] = $this->filterWithOutAccpet(ThirdPartyDiging::where('supervision', 'yes'), 'survey_date', $request)->count();
 
                 return $data;
- 
+
         } catch (\Throwable $th) {
             return $th->getMessage();
             return redirect()->route('third-party-digging.index', app()->getLocale());
@@ -106,13 +106,13 @@ class AdminDashboard extends Controller
                 $bas = [];
                 $bas = [$request->ba_name];
         }
-        
+
         $data = [];
         $sum = [];
         $allPending = 0;
         $allSurvey = 0;
 
-        foreach ($bas as $ba) 
+        foreach ($bas as $ba)
         {
             $request['ba'] = $ba;
             $count = [];
@@ -122,13 +122,13 @@ class AdminDashboard extends Controller
 
             foreach ($tables as $tableKey => $tableName) {
                 $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
-    
+
                 // Clone the original query for each table
                 $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
 
                 $total = $query->count();
                 $pending = $query->where('qa_status', '!=',  'pending')->count();
-    
+
                 // Initialize sum for the table if it's not set
                 if (!isset($sum[$tableKey])) {
                     $sum[$tableKey] = [
@@ -136,7 +136,7 @@ class AdminDashboard extends Controller
                         'surveyed' => 0,
                     ];
                 }
-    
+
                 // Update sum for the table
                 $sum[$tableKey]['pending'] += $pending;
                 $sum[$tableKey]['surveyed'] += $total;
@@ -145,16 +145,16 @@ class AdminDashboard extends Controller
                 $totalsurvey += $total;
                 $allPending += $pending;
                 $allSurvey += $total;
-                
+
                 // Store count for the table
                 $count[$tableKey] =  $pending. ' / ' .  $total;
             }
                 $count[$ba."_total"] = $totalPending. ' / ' . $totalsurvey;
                 $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request);
 
-                
+
                 $count['patroling'] = $patroling->sum('km');
-                
+
                 if (!isset($sum['patroling'])) {
                     $sum['patroling'] = 0;
                 }
@@ -177,7 +177,7 @@ class AdminDashboard extends Controller
         if ($req->filled('ba_name') && $req->ba_name != 'null') {
            $user->where('ba' , $req->ba_name);
         }
-        
+
     $user = $user->select('id' , 'name')->get();
 
         return response()->json(['data'=>$user]);
@@ -186,12 +186,13 @@ class AdminDashboard extends Controller
 
 
     // GET COUNTS BY USER NAME
-    public function getStatsByUsers(Request $request) 
+    public function getStatsByUsers(Request $request)
     {
          $users = User::where('is_admin', false);
-       
+
+
         if ($request->filled('user') && $request->user != 'null') {
-        
+
         $users ->where('name',$request->user);
         }else{
             $users->whereNotIn('user_type', ['aerosynergy', 'tnb'])->orWhere('user_type' , null);
@@ -201,12 +202,12 @@ class AdminDashboard extends Controller
         if ($request->filled('team') && $request->team != 'null') {
             $users->where('id_team',$request->team);
         }
-           
+
         }
        $users = $users->select('name')
        ->get();
-   
-    
+
+
         $bas = ['RAWANG', 'KUALA LUMPUR PUSAT', 'KLANG', 'KUALA SELANGOR', 'PELABUHAN KLANG', 'BANGI', 'CHERAS',
             'BANTING',
             'PUTRAJAYA & CYBERJAYA',
@@ -223,23 +224,23 @@ class AdminDashboard extends Controller
             'cable_bridge' => 'tbl_cable_bridge',
         ];
 
- 
+
         $sum = [];
         $tableTotal = [];
         $tableTotalCount = [];
 
 
- 
+
         foreach($users as $user){
             // return $user;
-        
+
             $arr = [];
             $arr['name'] =$user->name;
             $rowcount = ['accept' => 0 , 'total'=>0];
-        
+
                 foreach ($tables as $tableKey => $tableName) {
                     $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
-        
+
                     // Clone the original query for each table
                     $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status')->where('created_by' , $user->name);
 
@@ -248,34 +249,34 @@ class AdminDashboard extends Controller
 
                     $accept = $accept->where('qa_status' ,'!=' , 'pending')->count();
                     $userCount = $count->count();
-        
+
                     // Initialize sum for the table if it's not set
-                    
-                  
+
+
                     // Push the new key-value pair into the nested array
                     $arr[$tableKey] = $accept . '/' .   $userCount;
                     if (!isset($tableTotal[$tableKey])) {
                         $tableTotal[$tableKey] = 0;
                         $tableTotal[$tableKey.'_accept'] = 0;
                     }
-                    
+
                     $rowcount['accept'] += $accept ;
                     $rowcount['total'] += $userCount ;
-                    
+
                     $tableTotal[$tableKey] += $userCount;
                     $tableTotal[$tableKey.'_accept'] += $accept;
-                    
-                
-                    
+
+
+
                 }
                 $arr['total'] = $rowcount['accept'].' / '.$rowcount['total'];
 
-                
-            
-    
+
+
+
                 $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request)->where('created_by' , $user->name);
 
-                
+
                 $countPatroling = $patroling->sum('km');
                 $arr['patroling'] = $countPatroling;
                 $sum[] = $arr;
@@ -286,7 +287,7 @@ class AdminDashboard extends Controller
                 $tableTotal['patroling'] += $countPatroling;
         }
         return response()->json(['data'=>$sum , 'tableTotal'=>$tableTotal] );
- 
+
     }
 
 
@@ -464,23 +465,23 @@ class AdminDashboard extends Controller
     //         $column = $key == 'tiang' ? 'review_date' : 'visit_date';
 
     //              $query = DB::table($tableName);
-    
+
     //              $query = $this->filter($query, $column, $request)->whereNotNull('qa_status');
 
 
-    
-      
+
+
     //              $data[$key] = $query->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get(); // Count records
-    
+
     //              // Sum total_defects
     //              $data[$key . '_defect'] = $this->totalGraphCount($query , $column);
-    
-           
+
+
     //              $data[$key.'_pending'] = $query->where('qa_status','pending')->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get();
-    
+
     //          }
 
-     
+
 
     //   return response()->json($data);
 
