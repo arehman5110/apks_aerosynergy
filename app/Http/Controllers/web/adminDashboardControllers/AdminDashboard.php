@@ -188,20 +188,22 @@ class AdminDashboard extends Controller
     // GET COUNTS BY USER NAME
     public function getStatsByUsers(Request $request) 
     {
-         $users = User::join('tbl_team', 'users.id_team', '=', 'tbl_team.id')
-        ->where('users.is_admin', false)
-        ->whereNotIn('users.user_type', ['aerosynergy', 'tnb'])
-        ->orWhere('users.user_type' , null);
+         $users = User::where('is_admin', false);
+       
+        if ($request->filled('user') && $request->user != 'null') {
+        
+        $users ->where('name',$request->user);
+        }else{
+            $users->whereNotIn('user_type', ['aerosynergy', 'tnb'])->orWhere('user_type' , null);
         if ($request->filled('ba_name') && $request->ba_name != 'null') {
-            $users->where('users.ba',$request->ba_name);
+            $users->where('ba',$request->ba_name);
         }
         if ($request->filled('team') && $request->team != 'null') {
-            $users->where('users.id_team',$request->team);
+            $users->where('id_team',$request->team);
         }
-        if ($request->filled('user') && $request->user != 'null') {
-            $users->where('users.name',$request->user);
+           
         }
-       $users = $users->select('users.name', 'tbl_team.team_name as team_name')
+       $users = $users->select('name')
        ->get();
    
     
