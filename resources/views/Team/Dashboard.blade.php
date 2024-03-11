@@ -152,8 +152,8 @@
                     {{-- TEAM --}}
                     <input type="hidden" name="team" id="team" value="{{Auth::user()->id_team}}">
 
-                    {{-- USER --}}
-                    <div class=" col-md-2">
+                    {{-- QA Status --}}
+                    {{-- <div class=" col-md-2">
                         <label for="excelBa">Status :</label>
                         <select name="status" id="status" class="form-control" onchange="onChangeBA()">
                             <option value="" hidden>status</option>
@@ -162,7 +162,7 @@
                             <option value="Reject">Reject</option>
                             <option value="pending">Pending</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{-- USER --}}
                     <div class=" col-md-2">
@@ -298,7 +298,7 @@
             let todaydate = '{{ date('Y-m-d') }}';
             team =$('#team').length > 0 ? $('#team').val() : ''
             user =$('#user').length > 0 ? $('#user').val() : ''
-            status =$('#status').length > 0 ? $('#status').val() : ''
+            // status =$('#status').length > 0 ? $('#status').val() : ''
 
 
             excel_ba = $('#excelBa').val() ?? '';
@@ -321,7 +321,7 @@
         {
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&status=${status}`,
+                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -354,21 +354,23 @@
                                     <td>${table[i].tiang}</td>
                                     <td>${table[i].link_box}</td>
                                     <td>${table[i].cable_bridge}</td>
-                                    <td>${ table[i].substation + table[i].feeder_pillar +table[i].tiang + table[i].link_box +table[i].cable_bridge}</td>
+                                    <td>${ table[i].total}</td>
                                 </tr>`;
                                  
                     }
                     $('#stats-count-by-users-body').html(str);
                     str2 += `<tr>
-                                    <th>Total</th>
-                                    <th>${parseFloat(tableTotal['patroling']).toFixed(2)}</th>
-                                    <th>${tableTotal.substation}</th>
-                                    <th>${tableTotal.feeder_pillar}</th>
-                                    <th>${tableTotal.tiang}</th>
-                                    <th>${tableTotal.link_box}</th>
-                                    <th>${tableTotal.cable_bridge}</th>
-                                    <th>${ tableTotal.substation + tableTotal.feeder_pillar +tableTotal.tiang + tableTotal.link_box +tableTotal.cable_bridge}</th>
-                                </tr>`;
+                        <th>Total</th>
+                        <th>${parseFloat(tableTotal['patroling']).toFixed(2)}</th>
+                        <th>${tableTotal['substation_accept']} / ${tableTotal['substation']}</th>
+                        <th>${tableTotal['feeder_pillar_accept']} / ${tableTotal['feeder_pillar']}</th>
+                        <th>${tableTotal['tiang_accept']} / ${tableTotal['tiang']}</th>
+                        <th>${tableTotal['link_box_accept']} / ${tableTotal['link_box']}</th>
+                        <th>${tableTotal['cable_bridge_accept']} / ${tableTotal['cable_bridge']}</th>
+                        <th>${tableTotal['substation_accept'] + tableTotal['feeder_pillar_accept'] + tableTotal['tiang_accept'] + tableTotal['link_box_accept'] + tableTotal['substation_accept']+ tableTotal['cable_bridge_accept']}
+                            / ${ tableTotal.substation + tableTotal.feeder_pillar +tableTotal.tiang + tableTotal.link_box +tableTotal.cable_bridge}</th>
+                    </tr>`;
+
                     $('#stats-count-by-users-footer').html(str2);
                     
 
@@ -434,7 +436,7 @@
 
                 $('#excel_from_date, #excel_to_date').val('');
             
-            $('#user,#status').val('');
+            $('#user').val('');
             onChangeBA();
     
         }
