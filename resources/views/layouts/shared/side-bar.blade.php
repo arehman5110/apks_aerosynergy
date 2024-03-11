@@ -25,7 +25,33 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
-                @if (Auth::user()->is_admin != '1')
+                @if (Auth::user()->is_admin == '1')
+
+               
+                <li class="nav-item">
+                    <a href="{{route('team.index', app()->getLocale())}}" class="nav-link ">
+                        <i class="fa fa-map"></i>
+                        <p>Team</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('team-users.index', app()->getLocale())}}" class="nav-link ">
+                        <i class="fa fa-user"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+                
+                @elseif(Auth::user()->user_type == 'TeamLead')
+
+                <li class="nav-item">
+                    <a href="/{{app()->getLocale()}}/team/dashboard" class="nav-link ">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <p>{{__('messages.dashboard')}}</p>
+                    </a>
+                </li>
+
+                @else
                 <li class="nav-item">
                     <a href="/{{app()->getLocale()}}/dashboard" class="nav-link ">
                         <i class="fas fa-tachometer-alt"></i>
@@ -309,20 +335,7 @@
                 </li> --}}
 
 
-                @else
-                <li class="nav-item">
-                    <a href="{{route('team.index', app()->getLocale())}}" class="nav-link ">
-                        <i class="fa fa-map"></i>
-                        <p>Team</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{route('team-users.index', app()->getLocale())}}" class="nav-link ">
-                        <i class="fa fa-user"></i>
-                        <p>Users</p>
-                    </a>
-                </li>
+         
                 @endif
             </ul>
         </nav>

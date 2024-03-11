@@ -172,7 +172,7 @@ class AdminDashboard extends Controller
 
     public function getUsersByTeam(Request $req)
     {
-        $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb'])
+        $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb','TeamLead'])
         ->orWhere('users.user_type' , null);
         if ($req->filled('ba_name') && $req->ba_name != 'null') {
            $user->where('ba' , $req->ba_name);
@@ -188,30 +188,21 @@ class AdminDashboard extends Controller
     // GET COUNTS BY USER NAME
     public function getStatsByUsers(Request $request) 
     {
-         $users = User::join('tbl_team', 'users.id_team', '=', 'tbl_team.id')
-        ->where('users.is_admin', false)
-        ->whereNotIn('users.user_type', ['aerosynergy', 'tnb'])
-        ->orWhere('users.user_type' , null);
+         $users = User::where('is_admin', false)
+        ->whereNotIn('user_type', ['aerosynergy', 'tnb','TeamLead'])
+        ->orWhere('user_type' , null);
         if ($request->filled('ba_name') && $request->ba_name != 'null') {
-            $users->where('users.ba',$request->ba_name);
+            $users->where('ba',$request->ba_name);
         }
         if ($request->filled('team') && $request->team != 'null') {
-            $users->where('users.id_team',$request->team);
+            $users->where('id_team',$request->team);
         }
         if ($request->filled('user') && $request->user != 'null') {
-            $users->where('users.name',$request->user);
+            $users->where('name',$request->user);
         }
-       $users = $users->select('users.name', 'tbl_team.team_name as team_name')
+       $users = $users->select('name')
        ->get();
-   
-    
-        $bas = ['RAWANG', 'KUALA LUMPUR PUSAT', 'KLANG', 'KUALA SELANGOR', 'PELABUHAN KLANG', 'BANGI', 'CHERAS',
-            'BANTING',
-            'PUTRAJAYA & CYBERJAYA',
-            'PETALING JAYA',
-            'SEPANG',
-            'PUCHONG'
-        ];
+ 
 
         $tables = [
             'substation' => 'tbl_substation',
@@ -223,6 +214,8 @@ class AdminDashboard extends Controller
 
  
         $sum = [];
+        $tableTotal = [];
+
  
         foreach($users as $user){
             // return $user;
@@ -234,7 +227,11 @@ class AdminDashboard extends Controller
                     $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
         
                     // Clone the original query for each table
+                   
                     $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status')->where('created_by' , $user->name);
+                    if ($request->filled('status')) {
+                        $query->where('qa_status', $request->status);
+                    }
 
                     $userCount = $query->count();
         
@@ -243,7 +240,11 @@ class AdminDashboard extends Controller
                   
                     // Push the new key-value pair into the nested array
                     $arr[$tableKey] =  $userCount;
-                    
+                    if (!isset($tableTotal[$tableKey])) {
+                        $tableTotal[$tableKey] = 0;
+
+                    }
+                    $tableTotal[$tableKey] += $userCount;
                     
                 
                     
@@ -257,9 +258,13 @@ class AdminDashboard extends Controller
                 $countPatroling = $patroling->sum('km');
                 $arr['patroling'] = $countPatroling;
                 $sum[] = $arr;
-      
+                if (!isset($tableTotal['patroling'])) {
+                    $tableTotal['patroling'] = 0;
+
+                }
+                $tableTotal['patroling'] += $countPatroling;
         }
-        return response()->json(['data'=>$sum] );
+        return response()->json(['data'=>$sum , 'tableTotal'=>$tableTotal] );
  
     }
 

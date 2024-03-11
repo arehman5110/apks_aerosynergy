@@ -50,11 +50,7 @@ trait Filter
 
         // if auth ba is empty then add two more conditions
             $model->whereNotNull($column);
-        if ($column != 'vist_date') {
-            $model->where('qa_status' , '!=' , 'Reject');
-
-        }
-
+        
 
         // if request has status
         if ($request->filled('status')) {
@@ -77,6 +73,10 @@ trait Filter
         if ($request->filled('qa_status')) {
             if ($request->qa_status == 'Accept' || $request->qa_status == 'Reject' || $request->qa_status == 'pending') {
                 $model->where('qa_status', $request->qa_status);
+            }
+        }else{
+            if ($column != 'vist_date') {
+                $model->where('qa_status' , '!=' , 'Reject');
             }
         }
         return $model;

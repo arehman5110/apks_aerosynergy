@@ -255,6 +255,19 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-md-4"><label for="user_type">User Type</label></div>
+                            <div class="col-md-8">
+                                <select name="user_type" id="user_type" class="form-control" required>
+                                    <option value="" hidden>select user type</option>
+                                    <option value="aerosynergy" >Aerosynergy</option>
+                                    <option value="tnb" >tnb</option>
+                                    <option value="" >apks</option>
+                                    <option value="TeamLead">TeamLead</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row d-none" id="zone-div">
                             <div class="col-md-4"><label for="zone">{{ __('messages.zone') }}</label></div>
                             <div class="col-md-8">
                                 <select name="zone" id="search_zone" class="form-control" required>
@@ -267,7 +280,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row d-none" id="ba-div">
                             <div class="col-md-4"><label for="ba">{{ __('messages.ba') }}</label></div>
                             <div class="col-md-8">
                                 <select name="ba" id="ba" class="form-control" required>
@@ -276,17 +289,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4"><label for="user_type">User Type</label></div>
-                            <div class="col-md-8">
-                                <select name="user_type" id="user_type" class="form-control" required>
-                                    <option value="" hidden>select user type</option>
-                                    <option value="aerosynergy" >Aerosynergy</option>
-                                    <option value="tnb" >tnb</option>
-                                    <option value="" >apks</option>
-                                </select>
-                            </div>
-                        </div>
+                        
 
                         <div class="row">
                             <div class="col-md-4"><label for="email">Password</label></div>
@@ -382,6 +385,22 @@
                 var modal = $(this);
                 $('#change-password').attr('action', '/{{ app()->getLocale() }}/admin/change-user-password/' + id)
             });
+
+
+            $('#user_type').on('change', function() {
+                if (this.value == 'TeamLead') {
+                    if (!$('#zone-div').hasClass('d-none')) {
+                        $('#zone-div , #ba-div').slideUp(function() {
+                            $(this).addClass('d-none');
+                        });
+                    }
+                } else {
+                    if ($('#zone-div').hasClass('d-none')) {
+                        $('#zone-div , #ba-div').removeClass('d-none').hide().slideDown();
+                    }
+                }
+            });
+
 
 
         });
