@@ -173,12 +173,12 @@ class AdminDashboard extends Controller
     public function getUsersByTeam(Request $req)
     {
         $user = User::where('id_team', $req->team)->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])
-        ->orWhere('user_type' , null);
+        ->orWhere('user_type' , null)->where('id_team', $req->team);
         if ($req->filled('ba_name') && $req->ba_name != 'null') {
            $user->where('ba' , $req->ba_name);
         }
 
-    $user = $user->select('id' , 'name')->get();
+        $user = $user->select('id' , 'name')->get();
 
         return response()->json(['data'=>$user]);
     }
