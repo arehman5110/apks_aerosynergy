@@ -741,6 +741,51 @@
                                     </div>
 
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="five_feet_away">{{ __('messages.five_feet_away') }} </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="five_feet_away" value="{{$data->five_feet_away}}" disabled id="five_feet_away" class="form-control">
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="ffa_no_of_houses">{{ __('messages.ffa_no_of_houses') }} </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="ffa_no_of_houses" value="{{$data->ffa_no_of_houses}}" disabled id="ffa_no_of_houses" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        <label for="ffa_house_no">{{ __('messages.ffa_house_no') }} </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="ffa_house_no" value="{{$data->ffa_house_no}}" disabled id="ffa_house_no" class="form-control">
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4"><label for="clean_banner_image">{{ __('messages.clean_banner') }} Image </label></div>
+                                    <div class="col-md-8 row">{!!  viewAndUpdateImage($data->clean_banner_image , 'clean_banner_image' , true )  !!}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4"><label for="remove_creepers_image">{{ __('messages.remove_creepers') }} Image </label></div>
+                                    <div class="col-md-8 row">{!!  viewAndUpdateImage($data->remove_creepers_image , 'remove_creepers_image' , true )  !!}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4"><label for="current_leakage_image">{{ __('messages.current_leakage') }} Image </label></div>
+                                    <div class="col-md-8 row">{!!  viewAndUpdateImage($data->current_leakage_image , 'current_leakage_image' , true )  !!}</div>
+                                </div>
+
                             </fieldset>
                             {{-- END Kebocoran Arus (5) --}}
 
