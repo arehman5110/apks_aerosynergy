@@ -128,12 +128,12 @@ class AdminDashboard extends Controller
 
                 $total   = clone $query;
                 $pending  = clone $query;
-                $total = $query->count();
-                $pending = $query->where('qa_status', '!=',  'pending')->count();
+                $total = $total->count();
+                $pending = $pending->where('qa_status', '!=',  'pending')->count();
     
                 // Initialize sum for the table if it's not set
                 if (!isset($sum[$tableKey])) {
-                    $sum[$tableKey] = [
+                    $sum[$tableKey] = [ 
                         'pending' => 0,
                         'surveyed' => 0,
                     ];
