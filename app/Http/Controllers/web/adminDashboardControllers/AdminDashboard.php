@@ -126,8 +126,10 @@ class AdminDashboard extends Controller
                 // Clone the original query for each table
                 $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
 
-                $total = $query->count();
-                $pending = $query->where('qa_status', '!=',  'pending')->count();
+                $total   = clone $query;
+                $pending  = clone $query;
+                $total = $total->count();
+                $pending = $pending->where('qa_status', '!=',  'pending')->count();
 
                 // Initialize sum for the table if it's not set
                 if (!isset($sum[$tableKey])) {
