@@ -1610,7 +1610,7 @@
                         <th>${tableTotal['tiang_accept']} / ${tableTotal['tiang']}</th>
                         <th>${tableTotal['link_box_accept']} / ${tableTotal['link_box']}</th>
                         <th>${tableTotal['cable_bridge_accept']} / ${tableTotal['cable_bridge']}</th>
-                        <th>${tableTotal['substation_accept'] + tableTotal['feeder_pillar_accept'] + tableTotal['tiang_accept'] + tableTotal['link_box_accept'] + tableTotal['substation_accept']+ tableTotal['cable_bridge_accept']}
+                        <th>${tableTotal['substation_accept'] + tableTotal['feeder_pillar_accept'] + tableTotal['tiang_accept'] + tableTotal['link_box_accept'] + tableTotal['cable_bridge_accept']}
                             / ${ tableTotal.substation + tableTotal.feeder_pillar +tableTotal.tiang + tableTotal.link_box +tableTotal.cable_bridge}</th>
                     </tr>`;
 
