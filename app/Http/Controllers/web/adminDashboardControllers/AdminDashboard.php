@@ -185,10 +185,184 @@ class AdminDashboard extends Controller
         return response()->json(['data'=>$user]);
     }
 
+//     public function getStatsByUsers(Request $request) 
+// {
+//     // Define tables and their respective columns for filtering
+//     $tables = [
+//         'substations' => 'created_by',
+//         'feederPillar' => 'created_by',
+//         // Define other tables and their filtering columns here
+//     ];
+
+//     // Retrieve users with eager loading of necessary data
+//     $usersQuery = User::where('is_admin', false)
+//                       ->whereHas('userType', function($query) use ($request) {
+//                           $query->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])
+//                                 ->orWhereNull('user_type');
+//                       })
+//                       ->withCount(array_map(function($column) {
+//                           return function ($query) use ($column) {
+//                               $query->where($column, '=', DB::raw('users.name')); // Filter by user name
+//                               // Apply additional filters if needed
+//                               // Example: $query->where('visit_date', $request->visit_date);
+//                           };
+//                       }, $tables));
+
+//     if ($request->filled('user') && $request->user != 'null') {
+//         $usersQuery->where('name', $request->user);
+//     }
+
+//     if ($request->filled('ba_name') && $request->ba_name != 'null') {
+//         $usersQuery->where('ba', $request->ba_name);
+//     }
+
+//     if ($request->filled('team') && $request->team != 'null') {
+//         $usersQuery->where('id_team', $request->team);
+//     }
+
+//     $users = $usersQuery->select('name')->get();
+
+//     // Calculate total counts for each table
+//     $tableTotals = [];
+
+//     foreach ($users as $user) {
+//         $tableCounts = [];
+        
+//         foreach ($tables as $table => $column) {
+//             $tableCounts[$table] = $user->{$table.'_count'} ?? 0;
+//         }
+        
+//         $tableTotals[$user->name] = $tableCounts;
+//     }
+
+//     return $tableTotals;
+// }
+
+
+
+    public function getStatsByUsers(Request $request) 
+    {
+        $users = User::where('is_admin', false);
+       
+        if ($request->filled('user') && $request->user != 'null') {
+        
+            $users->where('name',$request->user);
+        }else{
+            $users->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])->orWhere('user_type' , null);
+            if ($request->filled('ba_name') && $request->ba_name != 'null') {
+                $users->where('ba',$request->ba_name);
+            }
+            if ($request->filled('team') && $request->team != 'null') {
+                $users->where('id_team',$request->team);
+            }
+        }
+        
+        $users = $users->select('name')->get();
+
+        $tables = [
+                    'substation' => 'tbl_substation',
+                    'feeder_pillar' => 'tbl_feeder_pillar',
+                    'tiang' => 'tbl_savr',
+                    'link_box' => 'tbl_link_box',
+                    'cable_bridge' => 'tbl_cable_bridge',
+                ];
+
+        $sum = [];
+        $tableTotal = [];
+        $tableTotalCount = [];
+
+        foreach ($tables as $tableKey => $tableName) {
+            
+        
+            $column = ($tableKey == 'tiang') ? 'review_date' : 'visit_date';
+            $query = '';
+            $query = $this->filter(DB::table($tableName), $column, $request)->whereNotNull('qa_status');
+
+            $count   = clone $query;
+            $accept   = clone $query;
+
+            $sum[$tableKey] = $count->select(DB::raw('count(*) as total') , 'created_by')->groupBy('created_by')->get();
+            $sum['accept_'.$tableKey] = $accept->where('qa_status' , 'Accept')->select(DB::raw('count(*) as total') , 'created_by')->groupBy('created_by')->get();
+
+        
+        }
+
+        $patroling = $this->filterWithOutAccpet(DB::table('patroling') , 'vist_date' ,$request)->select(DB::raw('sum(km) as total') , 'created_by')->groupBy('created_by')->get();
+
+                
+      
+
+        $columnCount = [];
+        $columnTotal = [];
+        
+
+
+        foreach ($users as $user) {
+            
+        
+            $arr = [];
+            $arr['name'] = $user->name;
+        
+            // Initialize arrays to hold the total counts for each table
+
+            $columnCount['accept'] = 0;
+            $columnCount['total'] = 0;
+        
+            foreach ($tables as $tableKey => $tableName) {
+                $sumSubstation = $sum[$tableKey]->where('created_by', $user->name)->first();
+                $sumAcceptSubstation = $sum['accept_'.$tableKey]->where('created_by', $user->name)->first();
+
+                $substationTotal = $sumSubstation ? $sumSubstation->total : 0;
+                $acceptSubstationTotal = $sumAcceptSubstation ? $sumAcceptSubstation->total : 0;
+
+                $arr[$tableKey] = $acceptSubstationTotal . '/' .  $substationTotal;
+
+                $columnCount['accept'] +=$substationTotal;
+                $columnCount['total'] += $acceptSubstationTotal;
+
+                if (!isset($columnTotal[$tableKey])) {
+                    $columnTotal[$tableKey] = 0;
+                    $columnTotal[$tableKey.'_accept'] = 0;
+                }
+
+                $columnTotal[$tableKey] += $substationTotal;
+                $columnTotal[$tableKey.'_accept'] += $acceptSubstationTotal;
+                                    
+
+            }
+
+            $patrolSum = $patroling->where('created_by', $user->name)->first();
+            $patrolTotal = $patrolSum ? $patrolSum->total : 0;
+
+            $arr['patroling'] = $patrolTotal;
+            if (!isset($columnTotal['patroling'])) {
+                $columnTotal['patroling'] = 0;
+            }
+
+            $columnTotal['patroling'] += (float)$patrolTotal;
+
+        
+            // Add sums from other tables to the $arr
+            $arr['total'] = $columnCount['accept'] . '/' . $columnCount['total'];
+        
+            $tableTotal[] = $arr;
+        }
+        // $tableTotal['tableTotal'] = $columnTotal;
+        
+        return response()->json(['data'=>$tableTotal , 'tableTotal'=>$columnTotal] );
+
+        return $tableTotal;
+        
+        
+
+        return $tableTotal;
+
+
+    }
 
 
     // GET COUNTS BY USER NAME
-    public function getStatsByUsers(Request $request) 
+    public function getStatssByUsers(Request $request) 
     {
          $users = User::where('is_admin', false);
        

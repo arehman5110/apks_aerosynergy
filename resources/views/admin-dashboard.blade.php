@@ -183,6 +183,13 @@
                         <input type="date" name="excel_to_date" id="excel_to_date" onchange="setMaxDate(this.value)" class="form-control">
                     </div>
 
+
+                    <div class="col-md-2 pt-2">
+                        <br>
+                        <button class="btn btn-secondary  " type="button" onclick="filterByDate()">Filter</button>
+                    </div>
+
+
                     {{-- RESET BUTTON --}}
                     <div class="col-md-2 pt-2">
                         <br>
@@ -1235,7 +1242,14 @@
             // $('#stats_table').DataTable()
            
 
-            $('#excel_from_date , #excel_to_date').on('change', function() {
+           
+
+
+        })
+
+
+        
+        function filterByDate(){
                 var ff_ba = $('#excelBa').val() ?? '';
                 from_date = $('#excel_from_date').val() ?? null;
                 to_date = $('#excel_to_date').val() ?? null;
@@ -1243,10 +1257,7 @@
                 // getAllStats();
                 callLayers(ff_ba)
 
-            })
-
-
-        })
+        }
     </script>
 
     {{-- MAP END --}}
