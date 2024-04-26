@@ -51,4 +51,34 @@ class User extends Authenticatable
     public function userTeam() {
         return $this->belongsTo(Team::class, 'id_team');
     }
+
+    public function substations()
+    {
+        return $this->hasMany(Substation::class, 'created_by', 'name');
+    }
+
+    public function feederPillar()
+    {
+        return $this->hasMany(Substation::class, 'created_by', 'name');
+    }
+
+    public function tiang()
+    {
+        return $this->hasMany(Substation::class, 'created_by', 'name');
+    }
+
+    public function linkBox()
+    {
+        return $this->hasMany(Substation::class, 'created_by', 'name');
+    }
+
+    public function cableBridge()
+    {
+        return $this->hasMany(Substation::class, 'created_by', 'name');
+    }
+
+    public function userType()
+    {
+        return $this->belongsTo(Team::class, 'id_team');
+    }
 }
