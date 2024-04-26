@@ -317,8 +317,8 @@ class AdminDashboard extends Controller
 
                 $arr[$tableKey] = $acceptSubstationTotal . '/' .  $substationTotal;
 
-                $columnCount['accept'] +=$substationTotal;
-                $columnCount['total'] += $acceptSubstationTotal;
+                $columnCount['accept'] +=$acceptSubstationTotal;
+                $columnCount['total'] += $substationTotal;
 
                 if (!isset($columnTotal[$tableKey])) {
                     $columnTotal[$tableKey] = 0;
