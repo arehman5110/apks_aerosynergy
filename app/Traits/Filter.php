@@ -39,12 +39,12 @@ trait Filter
             $model->where($column, '<=', $request->to_date);
         }
 
-        if ($request->filled('user')) {
-            $model->where('created_by' , $request->user);
+        if ($request->filled('user') ) {
+            $model->where('updated_by' , $request->user);
         }
         elseif (!empty($request->team)) {
             $users = User::where('id_team', $request->team)->pluck('name');
-            $model->whereIn('created_by' , $users);
+            $model->whereIn('updated_by' , $users);
         }
 
         // if auth ba is empty then add two more conditions

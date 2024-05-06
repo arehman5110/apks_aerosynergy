@@ -270,6 +270,7 @@
                     </div>
 
                     <div class="card-body from-input">
+                        {{-- <button type="button" onclick="exportToPDF()">Download</button> --}}
                         <div class="table-responsive  " style="max-height:100vh;">
                             <table class="table" id="stats-count-by-users" >
                                 <thead>
@@ -748,6 +749,7 @@
 
 
 @section('script')
+
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -762,6 +764,8 @@
     
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> --}}
+
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
 
@@ -1698,6 +1702,47 @@
             })
 
         }
+
+        // Function to export DataTable to PDF using jsPDF
+function exportToPDF() {
+    // Initialize jsPDF
+    var doc = new jsPDF();
+    
+    // Get DataTable data
+    var table = $('#stats-count-by-users').DataTable();
+    var data = table.rows().data().toArray();
+    
+    // Prepare table headers
+    var headers = [];
+    $('#stats-count-by-users th').each(function(index, item) {
+        headers.push($(item).text());
+    });
+
+    // Prepare table rows
+    var rows = [];
+    data.forEach(function(row) {
+        var rowData = [];
+        row.forEach(function(cell) {
+            rowData.push(cell);
+        });
+        rows.push(rowData);
+    });
+
+    // Set table headers and rows
+    doc.autoTable({
+        head: [headers],
+        body: rows
+    });
+
+    // Save or download the PDF
+    doc.save('datatable.pdf');
+}
+
+// Call the exportToPDF function when user clicks a button or trigger an event
+$('#exportPDFBtn').on('click', function() {
+    exportToPDF();
+});
+
 
         function showLoader() {
     document.getElementById('overlay2').style.display = 'block';
