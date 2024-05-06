@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <style>
         h3 {
@@ -40,82 +41,32 @@
             border: 0px;
         }
         .table-responsive::-webkit-scrollbar {
-  width: 5px; /* Set the width of the scrollbar */
-}
-.table-responsive::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Set the color of the track */
-}
+        width: 5px; /* Set the width of the scrollbar */
+        }
+        .table-responsive::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Set the color of the track */
+        }
 
-.table-responsive::-webkit-scrollbar-thumb {
-  background-color: #9f9f9f; /* Set the color of the thumb */
-  border-radius: 6px; /* Add rounded corners to the thumb */
-}
+        .table-responsive::-webkit-scrollbar-thumb {
+        background-color: #9f9f9f; /* Set the color of the thumb */
+        border-radius: 6px; /* Add rounded corners to the thumb */
+        }
 
-.table-responsive::-webkit-scrollbar-thumb:hover {
-  background-color: #747474; /* Change the color on hover */
-}
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+        background-color: #747474; /* Change the color on hover */
+        }
 
 
-#loader {
-    position: fixed; 
-    z-index: 1002;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-   
-}
-
-#overlay2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.897); 
-    backdrop-filter: blur(0.5px); 
-    display: none;
-    z-index: 1001;  
-}
- 
-.loader {
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 30px;
-  line-height: 1.2em;
-  display: inline-grid;
-}
-.loader:before,
-.loader:after {
-  content:"Loading...";
-  grid-area: 1/1;
-  -webkit-mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
-  color: #0000;
-  text-shadow: 0 0 0 #000,0 calc(var(--s,1)*1.2em) 0 #000;
-  animation: l15 1s infinite;
-}
-.loader:after {
-  -webkit-mask-position: 1ch 50%;
-  --s:-1;
-}
-@keyframes l15 {80%,100%{text-shadow:0 calc(var(--s,1)*-1.2em)  0 #000,0 0 0 #000}}
-
+        
 
     </style>
 @endsection
 @section('content')
 
 
-<div id="overlay2"  ></div>
 
- 
-<div id="loader"   >
-    <div class="loader"></div>
-    {{-- <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-        <img id="spinner" src="{{URL::asset( 'assets/web-images/loader.svg')}}" height="50" width="50" />
-        <span>loading... please wait!</span>
-    </div> --}}
-</div>
+
+
 
      
 @if (Auth::user()->ba == '')
@@ -270,8 +221,11 @@
                     </div>
 
                     <div class="card-body from-input">
+                        <div class="text-end">
+                        <button class="btn btn-sm btn-secondary mb-3" type="button" onclick="previewUsersCountPdf()">Preview PDF</button>
+                        </div>
                         {{-- <button type="button" onclick="exportToPDF()">Download</button> --}}
-                        <div class="table-responsive  " style="max-height:100vh;">
+                        <div class="table-responsive  " id="stats-count-by-users-div" style="max-height:100vh;">
                             <table class="table" id="stats-count-by-users" >
                                 <thead>
                                     <tr>
@@ -754,7 +708,8 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
+{{-- asjdiaisjd --}}
+  
 
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -828,14 +783,14 @@
             map.addLayer(boundary)
             boundary.bringToFront()
 
-        // ZOOM TO MAP
+            // ZOOM TO MAP
             map.flyTo([parseFloat(paramY), parseFloat(paramX)], zoom, {
                 duration: 1.5, // Animation duration in seconds
                 easeLinearity: 0.25,
             });
 
 
-        // PATROLLING
+            // PATROLLING
             if (patroling !== '') {
                 map.removeLayer(patroling)
             }
@@ -853,7 +808,7 @@
             patroling.bringToFront()
 
 
-        // PANO LAYER
+            // PANO LAYER
             if (pano_layer !== '') {
                 map.removeLayer(pano_layer)
             }
@@ -868,7 +823,7 @@
             });
 
 
-        // WORK PACKAGE
+            // WORK PACKAGE
             if (work_package) {
                 map.removeLayer(work_package);
             }
@@ -885,7 +840,7 @@
             map.addLayer(work_package)
 
 
-        // SUBSTATION WITH DEFECTS
+            // SUBSTATION WITH DEFECTS
             if (substation_with_defects != '') {
                 map.removeLayer(substation_with_defects)
             }
@@ -905,7 +860,7 @@
             substation_with_defects.bringToFront()
 
 
-        // SUBSTATION WITHOUT DEFECTS
+            // SUBSTATION WITHOUT DEFECTS
             if (substation_without_defects != '') {
                 map.removeLayer(substation_without_defects)
             }
@@ -923,7 +878,7 @@
             substation_without_defects.bringToFront()
 
 
-        // SUBSTATION REJECT
+            // SUBSTATION REJECT
             if (sub_reject != '') { map.removeLayer(sub_reject) }
 
             sub_reject = L.tileLayer.wms("http://121.121.232.54:7090/geoserver/cite/wms", {
@@ -939,7 +894,7 @@
             map.addLayer(sub_reject)
             sub_reject.bringToFront()
 
-        // SUBSTATION PENDING
+            // SUBSTATION PENDING
                 if (sub_pending != '') {
                     map.removeLayer(sub_pending)
                 }
@@ -958,7 +913,7 @@
                 sub_pending.bringToFront()
 
 
-        // FEEDER PILLAR DEFECTS
+            // FEEDER PILLAR DEFECTS
             if (fp_with_defects != '') {
                 map.removeLayer(fp_with_defects)
             }
@@ -977,7 +932,7 @@
             fp_with_defects.bringToFront()
 
 
-        // FEEDER PILLAR WITHOUT DEFECTS
+            // FEEDER PILLAR WITHOUT DEFECTS
             if (fp_without_defects != '') {
                 map.removeLayer(fp_without_defects)
             }
@@ -996,7 +951,7 @@
             fp_without_defects.bringToFront()
 
 
-        // FEEDER PILLAR REJECT
+            // FEEDER PILLAR REJECT
             if (fp_reject != '') {
                 map.removeLayer(fp_reject)
             }
@@ -1015,7 +970,7 @@
             fp_reject.bringToFront()
 
 
-        // FEEDER PILLAR PENDING
+            // FEEDER PILLAR PENDING
             if (fp_pending != '') {
                 map.removeLayer(fp_pending)
             }
@@ -1270,8 +1225,6 @@
 
 
 
-
-
     {{-- Charts Start --}}
 
     <script>
@@ -1486,11 +1439,6 @@
     {{-- COUNTS START --}}
 
     <script>
-//         $(document).ajaxStart(function () {
-//     showLoader();
-// }).ajaxStop(function () {
-//     hideLoader();
-// });
 
 
         function getValues()
@@ -1513,6 +1461,7 @@
                 to_date = $('#excel_to_date').val();
             }
         }
+
         function getAllStats()
         {
             // showLoader();
@@ -1703,56 +1652,27 @@
 
         }
 
-        // Function to export DataTable to PDF using jsPDF
-function exportToPDF() {
-    // Initialize jsPDF
-    var doc = new jsPDF();
-    
-    // Get DataTable data
-    var table = $('#stats-count-by-users').DataTable();
-    var data = table.rows().data().toArray();
-    
-    // Prepare table headers
-    var headers = [];
-    $('#stats-count-by-users th').each(function(index, item) {
-        headers.push($(item).text());
-    });
+        function previewUsersCountPdf() {
+            
+            var url = `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`;
+            var a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.click();
+        }
 
-    // Prepare table rows
-    var rows = [];
-    data.forEach(function(row) {
-        var rowData = [];
-        row.forEach(function(cell) {
-            rowData.push(cell);
-        });
-        rows.push(rowData);
-    });
 
-    // Set table headers and rows
-    doc.autoTable({
-        head: [headers],
-        body: rows
-    });
-
-    // Save or download the PDF
-    doc.save('datatable.pdf');
-}
-
-// Call the exportToPDF function when user clicks a button or trigger an event
-$('#exportPDFBtn').on('click', function() {
-    exportToPDF();
-});
 
 
         function showLoader() {
-    document.getElementById('overlay2').style.display = 'block';
-    document.getElementById('loader').style.display = 'block';
-}
+            document.getElementById('overlay2').style.display = 'block';
+            document.getElementById('loader').style.display = 'block';
+        }
 
-function hideLoader() {
-    document.getElementById('overlay2').style.display = 'none';
-    document.getElementById('loader').style.display = 'none';
-}
+        function hideLoader() {
+            document.getElementById('overlay2').style.display = 'none';
+            document.getElementById('loader').style.display = 'none';
+        }
     </script>
 
     {{-- COUNTS END --}}

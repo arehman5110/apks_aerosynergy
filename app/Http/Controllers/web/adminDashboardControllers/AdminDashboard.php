@@ -298,13 +298,16 @@ class AdminDashboard extends Controller
         }
         // $tableTotal['tableTotal'] = $columnTotal;
         
-        return response()->json(['data'=>$tableTotal , 'tableTotal'=>$columnTotal] );
+        if ($request->ajax()) {
+            return response()->json(['data'=>$tableTotal , 'tableTotal'=>$columnTotal] );
+        }
+        if (!empty($request->team)) {
+            $request['team'] = Team::find($request->team)->team_name;
 
-        return $tableTotal;
-        
+        }
+        return view('Dashboard-user-table',['data'=>$tableTotal , 'tableTotal'=>$columnTotal,'requestData'=>$request]);
         
 
-        return $tableTotal;
 
 
     }
@@ -410,8 +413,11 @@ class AdminDashboard extends Controller
                 }
                 $tableTotal['patroling'] += $countPatroling;
         }
-        return response()->json(['data'=>$sum , 'tableTotal'=>$tableTotal] );
- 
+        if ($request->ajax()) {
+            return response()->json(['data'=>$sum , 'tableTotal'=>$tableTotal] );
+        }
+        return view('Dashboard-user-table',['data'=>$sum , 'tableTotal'=>$tableTotal]);
+        
     }
 
 
