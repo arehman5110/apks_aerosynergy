@@ -184,61 +184,6 @@ class AdminDashboard extends Controller
         return response()->json(['data'=>$user]);
     }
 
-<<<<<<< HEAD
-//     public function getStatsByUsers(Request $request)
-// {
-//     // Define tables and their respective columns for filtering
-//     $tables = [
-//         'substations' => 'created_by',
-//         'feederPillar' => 'created_by',
-//         // Define other tables and their filtering columns here
-//     ];
-
-//     // Retrieve users with eager loading of necessary data
-//     $usersQuery = User::where('is_admin', false)
-//                       ->whereHas('userType', function($query) use ($request) {
-//                           $query->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])
-//                                 ->orWhereNull('user_type');
-//                       })
-//                       ->withCount(array_map(function($column) {
-//                           return function ($query) use ($column) {
-//                               $query->where($column, '=', DB::raw('users.name')); // Filter by user name
-//                               // Apply additional filters if needed
-//                               // Example: $query->where('visit_date', $request->visit_date);
-//                           };
-//                       }, $tables));
-
-//     if ($request->filled('user') && $request->user != 'null') {
-//         $usersQuery->where('name', $request->user);
-//     }
-
-//     if ($request->filled('ba_name') && $request->ba_name != 'null') {
-//         $usersQuery->where('ba', $request->ba_name);
-//     }
-
-//     if ($request->filled('team') && $request->team != 'null') {
-//         $usersQuery->where('id_team', $request->team);
-//     }
-
-//     $users = $usersQuery->select('name')->get();
-
-//     // Calculate total counts for each table
-//     $tableTotals = [];
-
-//     foreach ($users as $user) {
-//         $tableCounts = [];
-
-//         foreach ($tables as $table => $column) {
-//             $tableCounts[$table] = $user->{$table.'_count'} ?? 0;
-//         }
-
-//         $tableTotals[$user->name] = $tableCounts;
-//     }
-
-//     return $tableTotals;
-// }
-=======
->>>>>>> a166b8ae92919dc9c7c63f7ed3f21b901948534b
 
 
 
@@ -258,13 +203,9 @@ class AdminDashboard extends Controller
                 $users->where('id_team',$request->team);
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> a166b8ae92919dc9c7c63f7ed3f21b901948534b
         $users = $users->select('name')->get();
 
-      
+
 
 
         $tables = [
@@ -493,7 +434,7 @@ class AdminDashboard extends Controller
 
 
 
-//     public function getStatsByUsers(Request $request) 
+//     public function getStatsByUsers(Request $request)
 // {
 //     // Define tables and their respective columns for filtering
 //     $tables = [
@@ -535,11 +476,11 @@ class AdminDashboard extends Controller
 
 //     foreach ($users as $user) {
 //         $tableCounts = [];
-        
+
 //         foreach ($tables as $table => $column) {
 //             $tableCounts[$table] = $user->{$table.'_count'} ?? 0;
 //         }
-        
+
 //         $tableTotals[$user->name] = $tableCounts;
 //     }
 
