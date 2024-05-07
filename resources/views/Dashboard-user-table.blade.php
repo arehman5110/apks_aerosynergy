@@ -51,16 +51,19 @@
                     <tbody id='stats-count-by-users-body'>
 
                         @foreach ($data as $count)
-                            <tr>
-                                <td>{{ $count['name'] }}</td>
-                                <td>{{ $count['patroling'] }}</td>
-                                <td>{{ $count['substation'] }}</td>
-                                <td>{{ $count['feeder_pillar'] }}</td>
-                                <td>{{ $count['tiang'] }}</td>
-                                <td>{{ $count['link_box'] }}</td>
-                                <td>{{ $count['cable_bridge'] }}</td>
-                                <td>{{ $count['total'] }}</td>
-                            </tr>
+                            @if ($count['total'] !== '0/0' || $count['patroling'] !== 0 && $count['patroling'] !== null)
+                                <tr>
+                                    <td>{{ $count['name'] }}</td>
+                                    <td>{{ $count['patroling'] }}</td>
+                                    <td>{{ $count['substation'] }}</td>
+                                    <td>{{ $count['feeder_pillar'] }}</td>
+                                    <td>{{ $count['tiang'] }}</td>
+                                    <td>{{ $count['link_box'] }}</td>
+                                    <td>{{ $count['cable_bridge'] }}</td>
+                                    <td>{{ $count['total'] }}</td>
+                                </tr>
+                            @endif
+
                         @endforeach
                     </tbody>
                     <tfoot id='stats-count-by-users-footer'>
