@@ -40,11 +40,11 @@ trait Filter
         }
 
         if ($request->filled('user') ) {
-            $model->where('updated_by' , $request->user);
+            $model->where('created_by' , $request->user);
         }
         elseif (!empty($request->team)) {
             $users = User::where('id_team', $request->team)->pluck('name');
-            $model->whereIn('updated_by' , $users);
+            $model->whereIn('created_by' , $users);
         }
 
         // if auth ba is empty then add two more conditions
