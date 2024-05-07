@@ -37,6 +37,7 @@
                 <table class="table table-bordered" id="stats-count-by-users">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th scope="col">User</th>
                             <th scope="col">Patroling(KM)</th>
                             <th scope="col">Substation</th>
@@ -53,6 +54,7 @@
                         @foreach ($data as $count)
                             {{-- @if ($count['total'] !== '0/0' || $count['patroling'] !== 0 && $count['patroling'] !== null) --}}
                                 <tr>
+                                    <td>{{$loop->index + 1}}</td>
                                     <td>{{ $count['name'] }}</td>
                                     <td>{{ $count['patroling'] }}</td>
                                     <td>{{ $count['substation'] }}</td>
@@ -68,6 +70,7 @@
                     </tbody>
                     <tfoot id='stats-count-by-users-footer'>
                         <tr>
+                            <th>{{sizeof($data)}}</th>
                             <th>Total</th>
                             <th>{{ $tableTotal['patroling'] }}</th>
                             <th>{{ $tableTotal['substation_accept'] }} / {{ $tableTotal['substation'] }}</th>
