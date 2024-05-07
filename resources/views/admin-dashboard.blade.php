@@ -1553,16 +1553,20 @@
                     
                     for (var i = 0; i < table.length; i++) 
                     {
-                        str += `<tr>
-                                    <td>${table[i].name}</td>
-                                    <td>${table[i].patroling}</td>
-                                    <td>${table[i].substation}</td>
-                                    <td>${table[i].feeder_pillar}</td>
-                                    <td>${table[i].tiang}</td>
-                                    <td>${table[i].link_box}</td>
-                                    <td>${table[i].cable_bridge}</td>
-                                    <td>${ table[i].total}</td>
-                                </tr>`;
+                        if (table[i].total !== '0/0' || table[i].patroling !== 0 && table[i].patroling !== null)
+                        {    
+                        
+                            str += `<tr>
+                                        <td>${table[i].name}</td>
+                                        <td>${table[i].patroling ?? 0}</td>
+                                        <td>${table[i].substation}</td>
+                                        <td>${table[i].feeder_pillar}</td>
+                                        <td>${table[i].tiang}</td>
+                                        <td>${table[i].link_box}</td>
+                                        <td>${table[i].cable_bridge}</td>
+                                        <td>${ table[i].total}</td>
+                                    </tr>`;
+                        }
                                  
                     }
                     $('#stats-count-by-users-body').html(str);

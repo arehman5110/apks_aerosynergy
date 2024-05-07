@@ -306,9 +306,7 @@ class AdminDashboard extends Controller
 
         }
         return view('Dashboard-user-table',['data'=>$tableTotal , 'tableTotal'=>$columnTotal,'requestData'=>$request]);
-        
-
-
+    
 
     }
 
