@@ -203,7 +203,7 @@ class AdminDashboard extends Controller
                 $users->where('id_team',$request->team);
             }
         }
-        $users = $users->select('name')->get();
+        $users = $users->select('name')->orderBy('name')->get();
 
 
 

@@ -1558,7 +1558,7 @@
 
                             str += `<tr>
                                         <td>${table[i].name}</td>
-                                        <td>${table[i].patroling ?? 0}</td>
+                                        <td>${table[i].patroling}</td>
                                         <td>${table[i].substation}</td>
                                         <td>${table[i].feeder_pillar}</td>
                                         <td>${table[i].tiang}</td>
