@@ -39,12 +39,16 @@ trait Filter
             $model->where($column, '<=', $request->to_date);
         }
 
-        if ($request->filled('user') ) {
-            $model->where('created_by' , $request->user);
-        }
-        elseif (!empty($request->team)) {
-            $users = User::where('id_team', $request->team)->pluck('name');
-            $model->whereIn('created_by' , $users);
+        if ($request->filled('user')  || !empty($request->team)) {
+           
+            $created_by = $request->filled('searchBy') ? $request->searchBy : 'created_by';
+            if ($request->filled('user') ) {
+                $model->where($created_by , $request->user);
+            }
+            elseif (!empty($request->team)) {
+                $users = User::where('id_team', $request->team)->pluck('name');
+                $model->whereIn($created_by , $users);
+            }
         }
 
         // if auth ba is empty then add two more conditions
