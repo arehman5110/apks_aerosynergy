@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 
     <style>
         h3 {
@@ -57,7 +57,7 @@
         }
 
 
-        
+
 
     </style>
 @endsection
@@ -68,15 +68,15 @@
 
 
 
-     
+
 @if (Auth::user()->ba == '')
-    
+
 
         {{-- FILTER START --}}
         <div class=" px-4  mt-2  from-input  ">
             <div class="card p-0 mb-3">
                 <div class="card-body row">
-                    
+
                     {{-- ZONE --}}
                     <div class=" col-md-2">
                         <label for="excelZone">Zone :</label>
@@ -201,7 +201,7 @@
             </div>
             {{-- TABLE COUNTS END --}}
 
-            
+
 
 
             {{-- COUNTS BY USER --}}
@@ -254,9 +254,9 @@
 
             {{-- END COUNTS BY USER --}}
 
-           
 
-           
+
+
             {{-- MAP START --}}
             <div class="col-md-12  ">
                 <div class="card p-0">
@@ -284,9 +284,9 @@
 
 
         </div>
-    
+
         @endif
-         
+
 
     <div class=" px-4 mt-2">
         <div class="row dashboard-counts">
@@ -709,14 +709,14 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 {{-- asjdiaisjd --}}
-  
+
 
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-     
+
     @include('partials.map-js')
-        
-    
+
+
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> --}}
@@ -1194,20 +1194,20 @@
         $(function() {
             showLoader();
             setTimeout(() => {
-                
+
                 getAllStats()
-            
+
         }, 1000);
             // $('#stats_table').DataTable()
-           
 
-           
+
+
 
 
         })
 
 
-        
+
         function filterByDate(){
                 var ff_ba = $('#excelBa').val() ?? '';
                 from_date = $('#excel_from_date').val() ?? null;
@@ -1228,7 +1228,7 @@
     {{-- Charts Start --}}
 
     <script>
-        function onChangeBA(param) 
+        function onChangeBA(param)
         {
 
             // clear all charts
@@ -1241,7 +1241,7 @@
                 callLayers(param);
                 }
             }, 1000);
-           
+
         }
 
 
@@ -1536,7 +1536,7 @@
                     var table = data.data;
                     var tableTotal = data.tableTotal;
 
-                    
+
                     console.log(table);
 
 
@@ -1550,12 +1550,12 @@
                     var str2 = '';
 
                     var total = '';
-                    
-                    for (var i = 0; i < table.length; i++) 
+
+                    for (var i = 0; i < table.length; i++)
                     {
                         // if (table[i].total !== '0/0' || table[i].patroling !== 0 && table[i].patroling !== null)
-                        // {    
-                        
+                        // {
+
                             str += `<tr>
                                         <td>${table[i].name}</td>
                                         <td>${table[i].patroling ?? 0}</td>
@@ -1567,7 +1567,7 @@
                                         <td>${ table[i].total}</td>
                                     </tr>`;
                         // }
-                                 
+
                     }
                     $('#stats-count-by-users-body').html(str);
                     str2 += `<tr>
@@ -1584,7 +1584,7 @@
 
                     $('#stats-count-by-users-footer').html(str2);
 
-                    
+
 
                     // Reinitialize DataTable with new options
                     $('#stats-count-by-users').DataTable({
@@ -1610,7 +1610,7 @@
                 $('#zone').val('');
 
             }
-            
+
             $('#excel_from_date, #excel_to_date , #team , #user').val('');
             onChangeBA();
             from_date = '';
@@ -1657,7 +1657,7 @@
         }
 
         function previewUsersCountPdf() {
-            
+
             var url = `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`;
             var a = document.createElement('a');
             a.href = url;

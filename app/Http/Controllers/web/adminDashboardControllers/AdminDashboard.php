@@ -174,7 +174,7 @@ class AdminDashboard extends Controller
 
     public function getUsersByTeam(Request $req)
     {
-        $user = User::where('id_team', $req->team)->where('user_type' , null)->where('id_team', $req->team);
+        $user = User::where('id_team', $req->team)->where('user_type' , '')->where('id_team', $req->team);
         if ($req->filled('ba_name') && $req->ba_name != 'null') {
            $user->where('ba' , $req->ba_name);
         }
@@ -195,7 +195,7 @@ class AdminDashboard extends Controller
 
             $users->where('name',$request->user);
         }else{
-            $users->where('user_type' , null);
+            $users->where('user_type' , '');
             if ($request->filled('ba_name') && $request->ba_name != 'null') {
                 $users->where('ba',$request->ba_name);
             }
@@ -321,7 +321,7 @@ class AdminDashboard extends Controller
 
         $users ->where('name',$request->user);
         }else{
-            $users->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])->orWhere('user_type' , null);
+            $users->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])->orWhere('user_type' , '');
             if ($request->filled('ba_name') && $request->ba_name != 'null') {
                 $users->where('ba',$request->ba_name);
             }
@@ -420,265 +420,6 @@ class AdminDashboard extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     public function getStatsByUsers(Request $request)
-// {
-//     // Define tables and their respective columns for filtering
-//     $tables = [
-//         'substations' => 'created_by',
-//         'feederPillar' => 'created_by',
-//         // Define other tables and their filtering columns here
-//     ];
-
-//     // Retrieve users with eager loading of necessary data
-//     $usersQuery = User::where('is_admin', false)
-//                       ->whereHas('userType', function($query) use ($request) {
-//                           $query->whereNotIn('user_type', ['aerosynergy', 'tnb', 'TeamLead'])
-//                                 ->orWhereNull('user_type');
-//                       })
-//                       ->withCount(array_map(function($column) {
-//                           return function ($query) use ($column) {
-//                               $query->where($column, '=', DB::raw('users.name')); // Filter by user name
-//                               // Apply additional filters if needed
-//                               // Example: $query->where('visit_date', $request->visit_date);
-//                           };
-//                       }, $tables));
-
-//     if ($request->filled('user') && $request->user != 'null') {
-//         $usersQuery->where('name', $request->user);
-//     }
-
-//     if ($request->filled('ba_name') && $request->ba_name != 'null') {
-//         $usersQuery->where('ba', $request->ba_name);
-//     }
-
-//     if ($request->filled('team') && $request->team != 'null') {
-//         $usersQuery->where('id_team', $request->team);
-//     }
-
-//     $users = $usersQuery->select('name')->get();
-
-//     // Calculate total counts for each table
-//     $tableTotals = [];
-
-//     foreach ($users as $user) {
-//         $tableCounts = [];
-
-//         foreach ($tables as $table => $column) {
-//             $tableCounts[$table] = $user->{$table.'_count'} ?? 0;
-//         }
-
-//         $tableTotals[$user->name] = $tableCounts;
-//     }
-
-//     return $tableTotals;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // function patrol_graph(Request $request)
-    // {
-    //     $ba = Auth::user()->ba;
-    //     if ($ba == ''  && $request->ba != 'null') {
-    //             $ba = $request->ba;
-    //            // return $ba;
-    //     }
-    //     $tables = [
-    //         'substation' => 'tbl_substation',
-    //         'feeder_pillar' => 'tbl_feeder_pillar',
-    //         'tiang' => 'tbl_savr',
-    //         'link_box' => 'tbl_link_box',
-    //         'cable_bridge' => 'tbl_cable_bridge',
-    //     ];
-
-
-    //      foreach ($tables as $key => $tableName) {
-
-    //         $column = $key == 'tiang' ? 'review_date' : 'visit_date';
-
-    //              $query = DB::table($tableName);
-
-    //              $query = $this->filter($query, $column, $request)->whereNotNull('qa_status');
-
-
-
-
-    //              $data[$key] = $query->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get(); // Count records
-
-    //              // Sum total_defects
-    //              $data[$key . '_defect'] = $this->totalGraphCount($query , $column);
-
-
-    //              $data[$key.'_pending'] = $query->where('qa_status','pending')->groupBy('ba', DB::raw("$column::date"))->orderBy($column , 'desc')->get();
-
-    //          }
-
-
-
-    //   return response()->json($data);
-
-
-    // }
-
-
-
-    //  private function totalGraphCount($query , $column){
-
-    //         return  $query->select('ba', DB::raw("$column::date as visit_date"), DB::raw('sum(total_defects) as bar' ))
-    //                         ->where('total_defects', '>', 0)
-    //                         ->groupBy('ba', DB::raw("$column::date"))
-    //                         ->orderBy($column , 'desc')
-    //                         ->get();
-    // }
 
 
 
