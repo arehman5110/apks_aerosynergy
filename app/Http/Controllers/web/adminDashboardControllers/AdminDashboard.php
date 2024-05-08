@@ -219,6 +219,7 @@ class AdminDashboard extends Controller
         $sum = [];
         $tableTotal = [];
         $tableTotalCount = [];
+        $created_by = $request->filled('searchBy') ? $request->searchBy : 'created_by';
 
         foreach ($tables as $tableKey => $tableName) {
             
@@ -230,8 +231,8 @@ class AdminDashboard extends Controller
             $count   = clone $query;
             $accept   = clone $query;
 
-            $sum[$tableKey] = $count->select(DB::raw('count(*) as total') , 'created_by')->groupBy('created_by')->get();
-            $sum['accept_'.$tableKey] = $accept->where('qa_status' , 'Accept')->select(DB::raw('count(*) as total') , 'created_by')->groupBy('created_by')->get();
+            $sum[$tableKey] = $count->select(DB::raw('count(*) as total') , $created_by)->groupBy($created_by)->get();
+            $sum['accept_'.$tableKey] = $accept->where('qa_status' , 'Accept')->select(DB::raw('count(*) as total') , $created_by)->groupBy($created_by)->get();
 
         
         }
@@ -258,8 +259,8 @@ class AdminDashboard extends Controller
             $columnCount['total'] = 0;
         
             foreach ($tables as $tableKey => $tableName) {
-                $sumSubstation = $sum[$tableKey]->where('created_by', $user->name)->first();
-                $sumAcceptSubstation = $sum['accept_'.$tableKey]->where('created_by', $user->name)->first();
+                $sumSubstation = $sum[$tableKey]->where($created_by, $user->name)->first();
+                $sumAcceptSubstation = $sum['accept_'.$tableKey]->where($created_by, $user->name)->first();
 
                 $substationTotal = $sumSubstation ? $sumSubstation->total : 0;
                 $acceptSubstationTotal = $sumAcceptSubstation ? $sumAcceptSubstation->total : 0;

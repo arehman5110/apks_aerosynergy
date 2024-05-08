@@ -135,6 +135,15 @@
                     </div>
 
 
+                    <div class=" col-md-2 form-input px-2">
+                        <label for="search_by">Search By : </label>
+                        <select name="search_by" id="search_by" class="form-control">
+                            <option value="created_by">created by</option>
+                            <option value="updated_by">updated by</option>
+                        </select>
+                    </div>
+
+
                     <div class="col-md-2 pt-2">
                         <br>
                         <button class="btn btn-secondary  " type="button" onclick="filterByDate()">Filter</button>
@@ -735,6 +744,7 @@
         var excel_ba = $('#excelBa').val() ?? '';
         var team = '';
         var user = '';
+        var searchBy = $('#search_by').val();
 
         zoom = 9;
 
@@ -1446,6 +1456,8 @@
             let todaydate = '{{ date('Y-m-d') }}';
             team =$('#team').length > 0 ? $('#team').val() : ''
             user =$('#user').length > 0 ? $('#user').val() : ''
+            searchBy = $('#search_by').val();
+
 
             excel_ba = $('#excelBa').val() ?? '';
             if ($('#excel_from_date').length ==0 || $('#excel_from_date').val() == '') {
@@ -1467,7 +1479,7 @@
             // showLoader();
             getValues()
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -1528,7 +1540,7 @@
         {
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}`,
+                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
