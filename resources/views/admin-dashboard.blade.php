@@ -1553,8 +1553,8 @@
 
                     for (var i = 0; i < table.length; i++)
                     {
-                        // if (table[i].total !== '0/0' || table[i].patroling !== 0 && table[i].patroling !== null)
-                        // {
+                         if (table[i].total !== '0/0' || table[i].patroling !== 0 && table[i].patroling !== null)
+                         {
 
                             str += `<tr>
                                         <td>${table[i].name}</td>
@@ -1566,7 +1566,7 @@
                                         <td>${table[i].cable_bridge}</td>
                                         <td>${ table[i].total}</td>
                                     </tr>`;
-                        // }
+                         }
 
                     }
                     $('#stats-count-by-users-body').html(str);
