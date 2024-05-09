@@ -50,11 +50,11 @@
                     </thead>
 
                     <tbody id='stats-count-by-users-body'>
-
+                        @php($i = 0)
                         @foreach ($data as $count)
                             @if ($count['total'] !== '0/0' || $count['patroling'] !== 0 && $count['patroling'] !== null)
                                 <tr>
-                                    <td>{{$loop->index + 1}}</td>
+                                    <td>{{$i+1}}</td>
                                     <td>{{ $count['name'] }}</td>
                                     <td>{{ $count['patroling'] }}</td>
                                     <td>{{ $count['substation'] }}</td>
@@ -64,6 +64,7 @@
                                     <td>{{ $count['cable_bridge'] }}</td>
                                     <td>{{ $count['total'] }}</td>
                                 </tr>
+                                @php($i++)
                             @endif
 
                         @endforeach
