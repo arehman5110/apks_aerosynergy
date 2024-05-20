@@ -54,6 +54,8 @@ class TeamUsersController extends Controller
             if ($request->user_type == 'TeamLead') {
                 $request['ba'] = '';
                 $request['zone'] = '';
+            }elseif (empty($request->user_type) ) {
+                $request['user_type'] = '';
             }
             $user = User::create([
                 'name'      => $request->name,
@@ -71,9 +73,8 @@ class TeamUsersController extends Controller
         } catch (\Throwable $th) {
             // return $th->getMessage();
             return redirect()
-            ->route('team-users.index' , app()->getLocale())
-
-                ->with('failed', 'Request Failed');
+                    ->route('team-users.index' , app()->getLocale())
+                    ->with('failed', 'Request Failed');
         }
     }
 
