@@ -35,20 +35,20 @@ class SubstationController extends Controller
 
             if ($request->filled('arr')) {
                 # code...
-           
+
                 // $input_req=explode(',',$request);
 
                 $getIds = DB::table('substation_all_defects');
-        
+
                 foreach($request->arr as $res){
-        
+
                     $getIds->orWhere($res,'Yes');
-        
+
                }
-        
+
                 $ids = $getIds->pluck('id');
  }
-          
+
 
 
 
@@ -64,15 +64,15 @@ class SubstationController extends Controller
             });
 
             return datatables()
-                ->of($result->get())  
+                ->of($result->get())
                 ->make(true);
 
                 // $result->orderBy('visit_date', 'desc');
- 
+
 
                 // $result->orderBy('created_at', 'desc');
                 // $dataTable = new DataTables;
-    
+
                 // $dataTable = $dataTable->eloquent($result)
                 //     ->make(true);
                 //     return $dataTable;
@@ -118,6 +118,7 @@ class SubstationController extends Controller
             Session::flash('success', 'Request Success');
 
         } catch (\Throwable $th) {
+
             Session::flash('failed', 'Request Failed');
         }
 
@@ -133,7 +134,7 @@ class SubstationController extends Controller
     public function show($language, $id)
     {
         $data = $this->substationRepository->getSubstation($id );
-       
+
         if ($data) {
             return view('substation.show', ['data' => $data, 'disabled' => true]);
         }
@@ -172,10 +173,10 @@ class SubstationController extends Controller
             if (!$data) {
                return abort(404);
             }
-        
+
             $user = Auth::user()->id;
             $data->updated_by = $user;
-           
+
             $res = $this->substationRepository->store($data, $request);
             $res->update();
         Session::flash('success', 'Request Success');
