@@ -27,11 +27,18 @@ trait Filter
             $model->where('ba', $ba);
         }
 
-        //cheeck if request has from_date and ba is not empty then  add where  = request from_date
+        //check if request has from_date and ba is not empty then  add where  = request from_date
 
         if ($request->filled('from_date')) {
             $model->where($column, '>=', $request->from_date);
         }
+
+       //check cycles
+
+        if ($request->filled('cycle')) {
+            $model->where('cycle', $request->cycle);
+        }
+
 
         //cheeck if request has ba and ba is not empty then  add where ba = request ba
 
@@ -40,7 +47,7 @@ trait Filter
         }
 
         if ($request->filled('user')  || !empty($request->team)) {
-           
+
             $created_by = $request->filled('searchBy') ? $request->searchBy : 'created_by';
             if ($request->filled('user') ) {
                 $model->where($created_by , $request->user);
@@ -95,6 +102,10 @@ trait Filter
 
         if (!empty($ba)) {
             $model->where('ba', $ba);
+        }
+
+        if ($request->filled('cycle')) {
+            $model->where('cycle', $request->cycle);
         }
 
         if ($request->filled('from_date')) {

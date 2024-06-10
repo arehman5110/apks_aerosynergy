@@ -144,6 +144,15 @@
                     </div>
 
 
+                    <div class=" col-md-2 form-input px-2">
+                        <label for="search_by">Cycle : </label>
+                        <select name="cycle" id="cycle" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+
+
                     <div class="col-md-2 pt-2">
                         <br>
                         <button class="btn btn-secondary  " type="button" onclick="filterByDate()">Filter</button>
@@ -303,6 +312,7 @@
         var team = '';
         var user = '';
         var searchBy = $('#search_by').val();
+        var cycles='';
 
         zoom = 9;
 
@@ -356,6 +366,7 @@
             team =$('#team').length > 0 ? $('#team').val() : ''
             user =$('#user').length > 0 ? $('#user').val() : ''
             searchBy = $('#search_by').val();
+            cycles = $('#cycle').val();
 
 
             excel_ba = $('#excelBa').val() ?? '';
@@ -386,7 +397,7 @@
         {
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}`,
+                url: `/{{ app()->getLocale() }}/admin-statsTable?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}&cycle=${cycles}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
@@ -454,7 +465,7 @@
         {
 
             $.ajax({
-                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}`,
+                url: `/{{ app()->getLocale() }}/admin-getstats-by-users?ba_name=${excel_ba}&from_date=${from_date}&to_date=${to_date}&user=${user}&team=${team}&searchBy=${searchBy}&cycle=${cycles}`,
                 dataType: 'JSON',
                 method: 'GET',
                 async: false,
