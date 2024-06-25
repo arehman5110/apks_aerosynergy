@@ -5,8 +5,12 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i
-                    class="fas fa-bars"></i></a>
+            <a href="/{{app()->getLocale()}}/dashboard" class="brand-link">
+                <img src="{{ asset('assets/web-images/main-logo-sm.png') }}" alt="AdminLTE Logo" class="brand-image "
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light text-white">APKS</span>
+            </a>
+
         </li>
         <li class="nav-item   d-sm-inline-block">
             <img src="{{ asset('assets/web-images/main-logo.png') }}" height="35" alt="">
@@ -31,6 +35,8 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
+
+
                 </button>
             </x-slot>
 

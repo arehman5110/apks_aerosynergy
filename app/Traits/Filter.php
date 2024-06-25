@@ -36,6 +36,7 @@ trait Filter
        //check cycles
 
         if ($request->filled('cycle')) {
+            
             $model->where('cycle', $request->cycle);
         }
 

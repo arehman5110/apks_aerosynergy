@@ -147,6 +147,7 @@
                     <div class=" col-md-2 form-input px-2">
                         <label for="search_by">Cycle : </label>
                         <select name="cycle" id="cycle" class="form-control">
+                            <option value="">All</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
