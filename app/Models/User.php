@@ -25,7 +25,8 @@ class User extends Authenticatable
         'id_team',
         'zone',
         'ba',
-        'user_type'
+        'user_type',
+        'team_name'
     ];
 
     /**

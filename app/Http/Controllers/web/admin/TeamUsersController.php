@@ -57,6 +57,8 @@ class TeamUsersController extends Controller
             }elseif (empty($request->user_type) ) {
                 $request['user_type'] = '';
             }
+
+            $team_name = Team::find($request->id_team);
             $user = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
@@ -66,6 +68,7 @@ class TeamUsersController extends Controller
                 'zone'      => $request->zone,
                 'ba'        => $request->ba,
                 'user_type' => $request->user_type,
+                'team_name' => $team_name->team_name,
             ]);
             return redirect()
                 ->route('team-users.index' , app()->getLocale())
