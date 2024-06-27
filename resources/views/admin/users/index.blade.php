@@ -389,15 +389,11 @@
 
             $('#user_type').on('change', function() {
                 if (this.value == 'TeamLead') {
-                    if (!$('#zone-div').hasClass('d-none')) {
-                        $('#zone-div , #ba-div').slideUp(function() {
-                            $(this).addClass('d-none').removeAttr('required');
-                        });
-                    }
+                    $('#zone-div, #ba-div').slideUp(function() {
+                        $(this).addClass('d-none').prop('required', false);
+                    });
                 } else {
-                    if ($('#zone-div').hasClass('d-none')) {
-                        $('#zone-div , #ba-div').removeClass('d-none').addAttr('required').hide().slideDown();
-                    }
+                    $('#zone-div, #ba-div').removeClass('d-none').prop('required', true).slideDown();
                 }
             });
 

@@ -21,10 +21,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/test/css/style.css') }}" />
     <style>
 
-body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
-        transition: margin-left .3s ease-in-out;
-        margin-left: 0px !important;
-    }
+
         body
 
 
@@ -47,9 +44,9 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-w
     </div>
     <div class="wrapper">
         @include('layouts.shared.nav-bar')
-        {{-- @auth
+
             @include('layouts.shared.side-bar')
-        @endauth --}}
+
 
         <div class="content-wrapper">
 

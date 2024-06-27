@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.map_layout')
 @section('css')
     @include('partials.map-css')
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -65,6 +65,7 @@
 
 
 
+@include('layouts.shared.nav-bar')
 
 
 

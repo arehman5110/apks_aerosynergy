@@ -20,12 +20,10 @@
     @include('layouts.shared.meta-title')
     <link rel="stylesheet" href="{{ URL::asset('assets/test/css/style.css') }}" />
     <style>
-        body
-
-        /* {
-        font-family: 'Arimo', sans-serif;
-font-family: 'Poppins', sans-serif;
-    } */
+       body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 0px !important;
+    }
         .nav-sidebar>.nav-item p,
         .nav-item {
             font-size: 0.9rem !important;
